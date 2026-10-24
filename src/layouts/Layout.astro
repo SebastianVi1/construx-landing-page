@@ -1,24 +1,23 @@
 ---
 import '../styles/global.css';
+import { locales, localeMeta, localeHome, getLocale, useTranslations } from '../i18n';
+
+const locale = getLocale(Astro.currentLocale);
+const t = useTranslations(locale);
 
 interface Props {
-	title?: string;
-	description?: string;
 	ogImage?: string;
 }
 
-const {
-	title = 'Construx | Construction project management in one platform',
-	description = 'Construx helps construction companies manage projects, coordinate their workforce, track activities, and organize operations across every site.',
-	ogImage = '/og-image.png',
-} = Astro.props;
+const { ogImage = '/og-image.png' } = Astro.props;
+const { title, description, ogLocale } = t.meta;
 
-const canonical = new URL(Astro.url.pathname, Astro.site);
+const canonical = new URL(localeHome(locale), Astro.site);
 const ogUrl = new URL(ogImage, Astro.site);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={localeMeta[locale].hreflang}>
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -28,12 +27,20 @@ const ogUrl = new URL(ogImage, Astro.site);
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		<link rel="canonical" href={canonical} />
+		{
+			locales.map((l) => (
+				<link rel="alternate" hreflang={localeMeta[l].hreflang} href={new URL(localeHome(l), Astro.site)} />
+			))
+		}
+		<link rel="alternate" hreflang="x-default" href={new URL(localeHome('en'), Astro.site)} />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<link rel="sitemap" href="/sitemap-index.xml" />
 
 		<meta property="og:type" content="website" />
 		<meta property="og:site_name" content="Construx" />
+		<meta property="og:locale" content={ogLocale} />
+		{locales.filter((l) => l !== locale).map((l) => <meta property="og:locale:alternate" content={useTranslations(l).meta.ogLocale} />)}
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={canonical} />
@@ -50,7 +57,7 @@ const ogUrl = new URL(ogImage, Astro.site);
 			href="#main"
 			class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-md focus:bg-safety-500 focus:px-4 focus:py-2 focus:font-semibold focus:text-ink-950"
 		>
-			Skip to content
+			{t.skip}
 		</a>
 		<slot />
 		<script>

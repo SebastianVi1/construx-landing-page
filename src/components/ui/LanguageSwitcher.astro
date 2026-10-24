@@ -1,0 +1,26 @@
+---
+import { locales, localeMeta, localeHome, getLocale, useTranslations } from '../../i18n';
+
+const current = getLocale(Astro.currentLocale);
+const t = useTranslations(current);
+---
+
+<nav aria-label={t.header.language} class="flex items-center rounded-md border border-blueprint-400/30 p-0.5 text-xs font-semibold">
+	{
+		locales.map((l) => (
+			<a
+				href={localeHome(l)}
+				lang={localeMeta[l].hreflang}
+				hreflang={localeMeta[l].hreflang}
+				aria-label={localeMeta[l].name}
+				aria-current={l === current ? 'true' : undefined}
+				class:list={[
+					'rounded px-2.5 py-1.5 transition-colors',
+					l === current ? 'bg-ink-700 text-paper' : 'text-paper-dim hover:text-paper',
+				]}
+			>
+				{localeMeta[l].label}
+			</a>
+		))
+	}
+</nav>

@@ -1,30 +1,29 @@
 ---
 import MockupFrame from './MockupFrame.astro';
+import { useTranslations } from '../../i18n';
 
-const markers = [
-	{ n: 1, x: 70, y: 62, label: 'Formwork' },
-	{ n: 2, x: 190, y: 62, label: 'Rebar check' },
-	{ n: 3, x: 250, y: 130, label: 'Slab pour' },
-	{ n: 4, x: 110, y: 135, label: 'MEP sleeves' },
+const t = useTranslations(Astro.currentLocale).mockup.plan;
+
+const positions = [
+	{ x: 70, y: 62 },
+	{ x: 190, y: 62 },
+	{ x: 250, y: 130 },
+	{ x: 110, y: 135 },
 ];
+const markers = positions.map((pos, i) => ({ ...pos, n: i + 1, label: t.markers[i] }));
 ---
 
-<MockupFrame title="Plan · Level 2 (sample)">
-	<svg
-		viewBox="0 0 320 190"
-		class="w-full"
-		role="img"
-		aria-label="Floor plan of level 2 with four numbered activity markers: formwork, rebar check, slab pour and MEP sleeves."
-	>
+<MockupFrame title={t.title}>
+	<svg viewBox="0 0 320 190" class="w-full" role="img" aria-label={t.alt}>
 		<g fill="none" stroke="var(--color-blueprint-400)" stroke-width="1.5" data-draw>
 			<rect x="20" y="20" width="280" height="150"></rect>
 			<path d="M20 90h120M140 20v150M140 110h160M220 110v60"></path>
 			<path d="M60 20v14M180 20v14M260 110v14" stroke-dasharray="3 3" opacity=".6"></path>
 		</g>
 		<g font-family="var(--font-mono)" font-size="8" fill="var(--color-paper-dim)">
-			<text x="28" y="38">Zone A</text>
-			<text x="148" y="38">Zone B</text>
-			<text x="148" y="128">Zone C</text>
+			<text x="28" y="38">{t.zones[0]}</text>
+			<text x="148" y="38">{t.zones[1]}</text>
+			<text x="148" y="128">{t.zones[2]}</text>
 		</g>
 		{
 			markers.map((m) => (

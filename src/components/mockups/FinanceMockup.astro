@@ -1,22 +1,21 @@
 ---
 import MockupFrame from './MockupFrame.astro';
+import { useTranslations } from '../../i18n';
 
-const bars = [
-	{ label: 'Materials', pct: 72 },
-	{ label: 'Labor', pct: 55 },
-	{ label: 'Equipment', pct: 34 },
-	{ label: 'Permits', pct: 18 },
-];
+const t = useTranslations(Astro.currentLocale).mockup.finance;
+
+const values = [72, 55, 34, 18];
+const bars = values.map((pct, i) => ({ pct, label: t.labels[i] }));
 ---
 
-<MockupFrame title="Expenses · Harbor Tower (sample)">
+<MockupFrame title={t.title}>
 	<ul class="space-y-3">
 		{
 			bars.map((b) => (
 				<li>
 					<div class="flex justify-between text-[11px]">
 						<span>{b.label}</span>
-						<span class="font-mono text-paper-dim">{b.pct}% of budget</span>
+						<span class="font-mono text-paper-dim">{b.pct}% {t.ofBudget}</span>
 					</div>
 					<div class="mt-1.5 h-2 overflow-hidden rounded-full bg-ink-600">
 						<div data-progress={b.pct} class="h-full origin-left rounded-full bg-blueprint-400" style={`width:${b.pct}%`} />

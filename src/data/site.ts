@@ -1,6 +1,5 @@
 export const site = {
 	name: 'Construx',
-	tagline: 'Take Control of Every Construction Project.',
 	// Set to a form service URL (Formspree, Tally, ...) to enable the contact form.
 	// While empty, the form renders disabled and states that it is not connected.
 	formEndpoint: '',
@@ -9,15 +8,12 @@ export const site = {
 	year: new Date().getFullYear(),
 };
 
-export const navLinks = [
-	{ label: 'Product', href: '#product' },
-	{ label: 'Features', href: '#features' },
-	{ label: 'Benefits', href: '#benefits' },
-	{ label: 'About', href: '#how-it-works' },
-	{ label: 'Contact', href: '#contact' },
-];
+export const navItems = [
+	{ key: 'product', href: '#product' },
+	{ key: 'features', href: '#features' },
+	{ key: 'benefits', href: '#benefits' },
+	{ key: 'about', href: '#how-it-works' },
+	{ key: 'contact', href: '#contact' },
+] as const;
 
-export const cta = {
-	primary: { label: 'Get Early Access', href: '#contact' },
-	secondary: { label: 'Explore Features', href: '#features' },
-};
+export const ctaHref = { primary: '#contact', secondary: '#features' };

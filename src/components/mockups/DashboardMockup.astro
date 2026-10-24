@@ -1,19 +1,22 @@
 ---
 import MockupFrame from './MockupFrame.astro';
+import { useTranslations } from '../../i18n';
+
+const t = useTranslations(Astro.currentLocale).mockup.dashboard;
 
 const stats = [
-	{ label: 'Active sites', value: '4' },
-	{ label: 'Crew on site', value: '86' },
-	{ label: 'Open tasks', value: '137' },
+	{ label: t.stats[0], value: '4' },
+	{ label: t.stats[1], value: '86' },
+	{ label: t.stats[2], value: '137' },
 ];
 const projects = [
-	{ name: 'Harbor Tower', site: 'Block A', progress: 62 },
-	{ name: 'Riverside Lofts', site: 'Phase 2', progress: 41 },
-	{ name: 'North Depot', site: 'Warehouse', progress: 88 },
+	{ name: 'Harbor Tower', site: t.sites[0], progress: 62 },
+	{ name: 'Riverside Lofts', site: t.sites[1], progress: 41 },
+	{ name: 'North Depot', site: t.sites[2], progress: 88 },
 ];
 ---
 
-<MockupFrame title="Overview · Acme Builders (sample)">
+<MockupFrame title={t.title}>
 	<div class="grid grid-cols-3 gap-2 sm:gap-3">
 		{
 			stats.map((s) => (
@@ -35,7 +38,7 @@ const projects = [
 					<div class="mt-2 h-1.5 overflow-hidden rounded-full bg-ink-600">
 						<div data-progress={p.progress} class="h-full origin-left rounded-full bg-safety-500" style={`width:${p.progress}%`} />
 					</div>
-					<p class="mt-1.5 text-right font-mono text-[10px] text-paper-dim">{p.progress}% complete</p>
+					<p class="mt-1.5 text-right font-mono text-[10px] text-paper-dim">{p.progress}% {t.complete}</p>
 				</li>
 			))
 		}

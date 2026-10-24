@@ -1,6 +1,9 @@
 ---
 import SectionHeading from '../ui/SectionHeading.astro';
 import { site } from '../../data/site';
+import { useTranslations } from '../../i18n';
+
+const t = useTranslations(Astro.currentLocale).contact;
 
 const connected = site.formEndpoint !== '';
 const field =
@@ -9,12 +12,7 @@ const field =
 
 <section id="contact" aria-labelledby="contact-title" class="bg-blueprint-grid border-t border-blueprint-400/10 py-24">
 	<div class="mx-auto grid max-w-6xl gap-12 px-5 lg:grid-cols-2">
-		<SectionHeading
-			id="contact-title"
-			eyebrow="Early access"
-			title="Be first on site when Construx opens."
-			description="Tell us about your company and the projects you run. We will reach out as early access opens."
-		/>
+		<SectionHeading id="contact-title" eyebrow={t.eyebrow} title={t.title} description={t.description} />
 
 		<form
 			action={connected ? site.formEndpoint : undefined}
@@ -23,34 +21,34 @@ const field =
 			data-reveal
 		>
 			<fieldset disabled={!connected} class="space-y-5">
-				<legend class="sr-only">Early access request</legend>
+				<legend class="sr-only">{t.legend}</legend>
 				<div>
-					<label for="name" class="text-sm font-medium">Full name</label>
+					<label for="name" class="text-sm font-medium">{t.name}</label>
 					<input id="name" name="name" type="text" autocomplete="name" required class={field} />
 				</div>
 				<div>
-					<label for="email" class="text-sm font-medium">Work email</label>
+					<label for="email" class="text-sm font-medium">{t.email}</label>
 					<input id="email" name="email" type="email" autocomplete="email" required class={field} />
 				</div>
 				<div>
-					<label for="company" class="text-sm font-medium">Company</label>
+					<label for="company" class="text-sm font-medium">{t.company}</label>
 					<input id="company" name="company" type="text" autocomplete="organization" class={field} />
 				</div>
 				<div>
-					<label for="message" class="text-sm font-medium">What would you like to manage with Construx?</label>
+					<label for="message" class="text-sm font-medium">{t.message}</label>
 					<textarea id="message" name="message" rows="3" class={field}></textarea>
 				</div>
 				<button
 					type="submit"
 					class="w-full rounded-md bg-safety-500 px-6 py-3 text-sm font-semibold text-ink-950 transition-colors hover:bg-safety-400 disabled:cursor-not-allowed disabled:opacity-50"
 				>
-					Get Early Access
+					{t.submit}
 				</button>
 			</fieldset>
 			{
 				!connected && (
 					<p role="status" class="mt-4 text-sm text-paper-dim">
-						Sign-ups are not open yet. This form is not connected to a service.
+						{t.notConnected}
 					</p>
 				)
 			}

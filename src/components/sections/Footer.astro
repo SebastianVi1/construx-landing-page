@@ -1,23 +1,24 @@
 ---
 import Logo from '../ui/Logo.astro';
-import { navLinks, site } from '../../data/site';
+import { navItems, site } from '../../data/site';
+import { useTranslations } from '../../i18n';
+
+const t = useTranslations(Astro.currentLocale);
 ---
 
 <footer class="border-t border-blueprint-400/10 bg-ink-950">
 	<div class="mx-auto flex max-w-6xl flex-col gap-8 px-5 py-12 md:flex-row md:items-start md:justify-between">
 		<div class="max-w-xs">
 			<Logo />
-			<p class="mt-4 text-sm text-paper-dim">
-				One platform to coordinate projects, workforce, and operations across every construction site.
-			</p>
+			<p class="mt-4 text-sm text-paper-dim">{t.footer.blurb}</p>
 		</div>
-		<nav aria-label="Footer">
+		<nav aria-label={t.footer.nav}>
 			<ul class="flex flex-wrap gap-x-8 gap-y-3">
 				{
-					navLinks.map((link) => (
+					navItems.map((item) => (
 						<li>
-							<a href={link.href} class="text-sm text-paper-dim hover:text-paper">
-								{link.label}
+							<a href={item.href} class="text-sm text-paper-dim hover:text-paper">
+								{t.nav[item.key]}
 							</a>
 						</li>
 					))
@@ -26,6 +27,6 @@ import { navLinks, site } from '../../data/site';
 		</nav>
 	</div>
 	<div class="border-t border-blueprint-400/10 py-6 text-center text-xs text-paper-dim">
-		&copy; {site.year} {site.name}. All rights reserved.
+		&copy; {site.year} {site.name}. {t.footer.rights}
 	</div>
 </footer>

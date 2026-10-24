@@ -1,15 +1,18 @@
 ---
 import MockupFrame from './MockupFrame.astro';
+import { useTranslations } from '../../i18n';
+
+const t = useTranslations(Astro.currentLocale).mockup.team;
 
 const people = [
-	{ name: 'Lucia Moreno', role: 'Site engineer', project: 'Harbor Tower', initials: 'LM' },
-	{ name: 'Jorge Ruiz', role: 'Foreman', project: 'Harbor Tower', initials: 'JR' },
-	{ name: 'Ana Kim', role: 'Safety officer', project: 'North Depot', initials: 'AK' },
-	{ name: 'Diego Paz', role: 'Surveyor', project: 'Riverside Lofts', initials: 'DP' },
+	{ name: 'Lucia Moreno', role: t.roles[0], project: 'Harbor Tower', initials: 'LM' },
+	{ name: 'Jorge Ruiz', role: t.roles[1], project: 'Harbor Tower', initials: 'JR' },
+	{ name: 'Ana Kim', role: t.roles[2], project: 'North Depot', initials: 'AK' },
+	{ name: 'Diego Paz', role: t.roles[3], project: 'Riverside Lofts', initials: 'DP' },
 ];
 ---
 
-<MockupFrame title="Team (sample)">
+<MockupFrame title={t.title}>
 	<ul class="divide-y divide-blueprint-400/10">
 		{
 			people.map((p) => (

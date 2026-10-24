@@ -1,24 +1,22 @@
 ---
 import SectionHeading from '../ui/SectionHeading.astro';
 import Button from '../ui/Button.astro';
-import { benefits } from '../../data/content';
-import { cta } from '../../data/site';
+import { ctaHref } from '../../data/site';
+import { useTranslations } from '../../i18n';
+
+const dict = useTranslations(Astro.currentLocale);
+const t = dict.benefits;
 ---
 
 <section id="benefits" aria-labelledby="benefits-title" class="border-t border-blueprint-400/10 py-24">
 	<div class="mx-auto grid max-w-6xl gap-12 px-5 lg:grid-cols-[1fr_1.2fr]">
 		<div>
-			<SectionHeading
-				id="benefits-title"
-				eyebrow="Benefits"
-				title="Clearer sites. Clearer responsibilities."
-				description="What changes when operational information lives in one place."
-			/>
-			<Button href={cta.primary.href} class="mt-8">{cta.primary.label}</Button>
+			<SectionHeading id="benefits-title" eyebrow={t.eyebrow} title={t.title} description={t.description} />
+			<Button href={ctaHref.primary} class="mt-8">{dict.cta.primary}</Button>
 		</div>
 		<ul class="grid gap-3 sm:grid-cols-2">
 			{
-				benefits.map((b) => (
+				t.items.map((b) => (
 					<li data-reveal class="flex gap-3 rounded-lg border border-blueprint-400/15 bg-ink-900/60 p-4 text-sm">
 						<svg viewBox="0 0 20 20" class="mt-0.5 size-5 shrink-0 text-ok" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
 							<path d="M4 10.5l4 4 8-9"></path>

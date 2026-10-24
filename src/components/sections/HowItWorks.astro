@@ -1,15 +1,13 @@
 ---
 import SectionHeading from '../ui/SectionHeading.astro';
-import { steps } from '../../data/content';
+import { useTranslations } from '../../i18n';
+
+const t = useTranslations(Astro.currentLocale).how;
 ---
 
 <section id="how-it-works" aria-labelledby="how-title" class="py-24">
 	<div class="mx-auto max-w-6xl px-5">
-		<SectionHeading
-			id="how-title"
-			eyebrow="How it works"
-			title="From company workspace to full site visibility in five steps."
-		/>
+		<SectionHeading id="how-title" eyebrow={t.eyebrow} title={t.title} />
 		<ol class="relative mt-14 grid gap-8 md:grid-cols-5 md:gap-4">
 			<div
 				data-steps-line
@@ -18,7 +16,7 @@ import { steps } from '../../data/content';
 			>
 			</div>
 			{
-				steps.map((s, i) => (
+				t.steps.map((s, i) => (
 					<li data-reveal class="relative flex gap-4 md:flex-col md:gap-0">
 						<span class="relative z-10 grid size-10 shrink-0 place-items-center rounded-full border border-safety-500 bg-ink-950 font-mono text-sm text-safety-400">
 							{i + 1}

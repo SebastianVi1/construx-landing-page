@@ -1,26 +1,24 @@
 ---
 import MockupFrame from './MockupFrame.astro';
+import { useTranslations } from '../../i18n';
 
-const columns = [
+const t = useTranslations(Astro.currentLocale).mockup.tasks;
+
+type Level = 'high' | 'med' | 'low';
+const columns: { title: string; tasks: { t: string; who: string; p: Level }[] }[] = [
+	{ title: t.columns[0], tasks: [{ t: t.items[0], who: 'LM', p: 'high' }] },
 	{
-		title: 'To do',
-		tasks: [{ t: 'Order rebar, level 2', who: 'LM', p: 'High' }],
-	},
-	{
-		title: 'In progress',
+		title: t.columns[1],
 		tasks: [
-			{ t: 'Pour slab, grid C', who: 'JR', p: 'High' },
-			{ t: 'Inspect scaffolding', who: 'AK', p: 'Med' },
+			{ t: t.items[1], who: 'JR', p: 'high' },
+			{ t: t.items[2], who: 'AK', p: 'med' },
 		],
 	},
-	{
-		title: 'Done',
-		tasks: [{ t: 'Survey boundary', who: 'DP', p: 'Low' }],
-	},
+	{ title: t.columns[2], tasks: [{ t: t.items[3], who: 'DP', p: 'low' }] },
 ];
 ---
 
-<MockupFrame title="Tasks · Harbor Tower (sample)">
+<MockupFrame title={t.title}>
 	<div class="grid grid-cols-3 gap-2">
 		{
 			columns.map((c) => (
@@ -35,10 +33,10 @@ const columns = [
 									<span
 										class:list={[
 											'rounded px-1 font-mono text-[9px]',
-											task.p === 'High' ? 'bg-safety-500/20 text-safety-400' : 'bg-blueprint-400/15 text-blueprint-300',
+											task.p === 'high' ? 'bg-safety-500/20 text-safety-400' : 'bg-blueprint-400/15 text-blueprint-300',
 										]}
 									>
-										{task.p}
+										{t.priority[task.p]}
 									</span>
 								</div>
 							</li>

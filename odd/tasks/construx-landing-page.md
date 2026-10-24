@@ -17,6 +17,7 @@ Branch: feat/landing-page | Delivery: ask-on-risk | Test runner: none (astro bui
 - S12: Semantic HTML, keyboard navigation, alt text, contrast, accessible labels.
 - S13: SEO: title, meta description, logical headings, social-sharing metadata. Analytics readiness (optional script slot).
 - S14: Performance: minimal JS, optimized assets, minimal layout shift, responsive at desktop/tablet/mobile.
+- S15: "add language support english and spanish" (user, 2026-10-24). Routing: / = English (default), /es/ = Spanish. All visible copy, mockup demo text and ARIA strings translated; hreflang + localized sitemap.
 
 ## Tasks
 - T1 (S12,S13,S14) Foundation: deps, Layout, global tokens, SEO meta | inline | done cbc7a58 (build ok)
@@ -25,9 +26,12 @@ Branch: feat/landing-page | Delivery: ask-on-risk | Test runner: none (astro bui
 - T4 (S7) Mockups (SVG/HTML) | inline | done ba0e8eb + QA fixes (visual verified)
 - T5 (S11) GSAP scroll animations + reduced motion | inline | done ba0e8eb + QA fixes (visual verified)
 - T6 (S12,S13,S14) QA: build, a11y, Lighthouse, breakpoints, sitemap/robots/OG | inline | done (Lighthouse 96/100/100/100, CLS 0, axe 0 violations, no overflow at 375/768/1280, reduced-motion verified)
+- T7 (S15) English/Spanish i18n: / (en) and /es/ (es), typed dictionaries, switcher, hreflang | inline | done (build, tsc, axe 0, no overflow 375-1440 both locales, switcher verified)
 
 ## Log
 L1 (user): "i need to create a landing page for my construction app @.claude/prd.md i explain everything."
 L2 (user, 2026-10-24): CTA destination choice "3" (in-page contact section, form handled by a service later); confirmed Tailwind v4 with "yes".
 L3: Node 22.22.1 < Astro 7 requirement (>=22.23.4); using `bun --bun astro` to build. No Chrome available for Playwright/DevTools MCP; visual QA pending.
 L4: Chromium installed via Playwright (user approved). Fixed mobile header CTA wrap, mockup header wrap, feature-grid overflow. Generated public/og-image.png and public/robots.txt. Open: formEndpoint empty, Node >=22.23.4 needed for npm scripts, site URL assumed https://construx.app.
+L5 (user, 2026-10-24): "now playwright is installed, i need you to add language support english and spanish"
+L6: i18n via Astro routing (/ en, /es/ es), typed dictionaries in src/i18n (es: Dict enforces key parity, verified by tsc failing on a renamed key), LanguageSwitcher, hreflang + localized sitemap. Header inline nav moved to lg breakpoint; hero h1 sm:text-5xl xl:text-6xl to keep Spanish lines intact. No auto-redirect by browser language (SEO-safe).

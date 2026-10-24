@@ -6,6 +6,9 @@ import GanttMockup from '../mockups/GanttMockup.astro';
 import WorkforceMockup from '../mockups/WorkforceMockup.astro';
 import FinanceMockup from '../mockups/FinanceMockup.astro';
 import { features } from '../../data/content';
+import { useTranslations } from '../../i18n';
+
+const t = useTranslations(Astro.currentLocale).features;
 
 const visuals = {
 	tasks: TaskBoardMockup,
@@ -18,21 +21,17 @@ const visuals = {
 
 <section id="features" aria-labelledby="features-title" class="bg-blueprint-grid border-y border-blueprint-400/10 py-24">
 	<div class="mx-auto max-w-6xl px-5">
-		<SectionHeading
-			id="features-title"
-			eyebrow="Features"
-			title="Everything a construction team needs to stay aligned."
-			description="Product previews below use demo data to show the intended experience."
-		/>
+		<SectionHeading id="features-title" eyebrow={t.eyebrow} title={t.title} description={t.description} />
 		<div class="mt-12 grid grid-cols-1 gap-5 lg:grid-cols-6">
 			{
 				features.map((f) => {
 					const Visual = f.visual === 'none' ? null : visuals[f.visual];
+					const copy = t.items[f.id];
 					return (
 						<article data-reveal class:list={['flex min-w-0 flex-col rounded-xl border border-blueprint-400/20 bg-ink-900/70 p-6', f.span]}>
-							<h3 class="text-xl font-bold">{f.title}</h3>
+							<h3 class="text-xl font-bold">{copy.title}</h3>
 							<ul class="mt-3 space-y-1.5 text-sm text-paper-dim">
-								{f.points.map((p) => (
+								{copy.points.map((p) => (
 									<li class="flex gap-2">
 										<span class="mt-2 size-1.5 shrink-0 rounded-full bg-safety-500" aria-hidden="true" />
 										{p}
