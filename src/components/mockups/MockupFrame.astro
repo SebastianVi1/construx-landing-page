@@ -1,0 +1,22 @@
+---
+interface Props {
+	title: string;
+	class?: string;
+}
+const { title, class: className = '' } = Astro.props;
+---
+
+<figure
+	class:list={['overflow-hidden rounded-xl border border-blueprint-400/25 bg-ink-900 shadow-2xl shadow-black/40', className]}
+>
+	<div class="flex items-center justify-between border-b border-blueprint-400/15 bg-ink-800 px-4 py-2.5">
+		<div class="flex items-center gap-1.5" aria-hidden="true">
+			<span class="size-2.5 rounded-full bg-ink-600"></span>
+			<span class="size-2.5 rounded-full bg-ink-600"></span>
+			<span class="size-2.5 rounded-full bg-ink-600"></span>
+		</div>
+		<figcaption class="font-mono text-[11px] tracking-wide text-paper-dim">{title}</figcaption>
+		<span class="rounded bg-safety-500/15 px-1.5 py-0.5 font-mono text-[10px] text-safety-400">Demo data</span>
+	</div>
+	<div class="p-4"><slot /></div>
+</figure>

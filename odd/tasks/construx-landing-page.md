@@ -19,13 +19,14 @@ Branch: feat/landing-page | Delivery: ask-on-risk | Test runner: none (astro bui
 - S14: Performance: minimal JS, optimized assets, minimal layout shift, responsive at desktop/tablet/mobile.
 
 ## Tasks
-- T1 (S12,S13,S14) Foundation: deps, Layout, global tokens, SEO meta | inline | pending
-- T2 (S2,S3,S9,S10) UI primitives, Header, Footer, Contact section | inline | pending
-- T3 (S3,S4,S5,S6,S8) Content sections driven by src/data | inline | pending
-- T4 (S7) Mockups (SVG/HTML) | inline | pending
-- T5 (S11) GSAP scroll animations + reduced motion | inline | pending
+- T1 (S12,S13,S14) Foundation: deps, Layout, global tokens, SEO meta | inline | done cbc7a58 (build ok)
+- T2 (S2,S3,S9,S10) UI primitives, Header, Footer, Contact section | inline | written, build ok, visual check pending (no browser)
+- T3 (S3,S4,S5,S6,S8) Content sections driven by src/data | inline | written, build ok, visual check pending (no browser)
+- T4 (S7) Mockups (SVG/HTML) | inline | written, build ok, visual check pending (no browser)
+- T5 (S11) GSAP scroll animations + reduced motion | inline | written, build ok, visual check pending (no browser)
 - T6 (S12,S13,S14) QA: build, a11y, Lighthouse, breakpoints, sitemap/robots/OG | inline | pending
 
 ## Log
 L1 (user): "i need to create a landing page for my construction app @.claude/prd.md i explain everything."
 L2 (user, 2026-10-24): CTA destination choice "3" (in-page contact section, form handled by a service later); confirmed Tailwind v4 with "yes".
+L3: Node 22.22.1 < Astro 7 requirement (>=22.23.4); using `bun --bun astro` to build. No Chrome available for Playwright/DevTools MCP; visual QA pending.

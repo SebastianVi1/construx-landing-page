@@ -1,0 +1,28 @@
+---
+import MockupFrame from './MockupFrame.astro';
+
+const bars = [
+	{ label: 'Materials', pct: 72 },
+	{ label: 'Labor', pct: 55 },
+	{ label: 'Equipment', pct: 34 },
+	{ label: 'Permits', pct: 18 },
+];
+---
+
+<MockupFrame title="Expenses · Harbor Tower (sample)">
+	<ul class="space-y-3">
+		{
+			bars.map((b) => (
+				<li>
+					<div class="flex justify-between text-[11px]">
+						<span>{b.label}</span>
+						<span class="font-mono text-paper-dim">{b.pct}% of budget</span>
+					</div>
+					<div class="mt-1.5 h-2 overflow-hidden rounded-full bg-ink-600">
+						<div data-progress={b.pct} class="h-full origin-left rounded-full bg-blueprint-400" style={`width:${b.pct}%`} />
+					</div>
+				</li>
+			))
+		}
+	</ul>
+</MockupFrame>

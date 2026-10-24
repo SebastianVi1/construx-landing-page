@@ -1,0 +1,39 @@
+---
+import Button from '../ui/Button.astro';
+import DashboardMockup from '../mockups/DashboardMockup.astro';
+import { cta, site } from '../../data/site';
+---
+
+<section id="top" aria-labelledby="hero-title" class="bg-blueprint-grid relative overflow-hidden pt-28 pb-20 sm:pt-36">
+	<div
+		class="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ink-950 to-transparent"
+		aria-hidden="true"
+	>
+	</div>
+	<div class="relative mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-[1.05fr_1fr]">
+		<div>
+			<p data-hero-in class="font-mono text-xs tracking-[0.2em] text-safety-400 uppercase">
+				Construction management platform
+			</p>
+			<h1 id="hero-title" class="mt-4 text-4xl leading-[1.05] font-bold sm:text-6xl">
+				<span data-hero-line class="block">Take Control of</span>
+				<span data-hero-line class="block text-safety-500">Every Construction</span>
+				<span data-hero-line class="block">Project.</span>
+			</h1>
+			<p data-hero-in class="mt-6 max-w-xl text-lg text-paper-dim">
+				Manage projects, coordinate your workforce, track activities, and organize construction operations in one
+				centralized platform.
+			</p>
+			<div data-hero-in class="mt-8 flex flex-wrap gap-3">
+				<Button href={cta.primary.href}>{cta.primary.label}</Button>
+				<Button href={cta.secondary.href} variant="secondary">{cta.secondary.label}</Button>
+			</div>
+			<p data-hero-in class="mt-6 text-xs text-paper-dim">
+				{site.name} is built for teams across Windows, macOS, iOS, and Android. Platform availability is still being decided.
+			</p>
+		</div>
+		<div data-hero-visual>
+			<DashboardMockup />
+		</div>
+	</div>
+</section>

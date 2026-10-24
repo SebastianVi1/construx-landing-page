@@ -1,0 +1,31 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+import { problems } from '../../data/content';
+---
+
+<section id="product" aria-labelledby="product-title" class="py-24">
+	<div class="mx-auto max-w-6xl px-5">
+		<SectionHeading
+			id="product-title"
+			eyebrow="The problem"
+			title="Construction runs on coordination. Most tools break it apart."
+			description="Construx connects the people, plans, and activities of each project so everyone works from the same picture."
+		/>
+		<ul class="mt-12 divide-y divide-blueprint-400/15 border-y border-blueprint-400/15">
+			{
+				problems.map((item) => (
+					<li data-reveal class="grid gap-3 py-6 md:grid-cols-2 md:gap-12">
+						<p class="text-paper-dim">
+							<span class="mr-2 font-mono text-xs tracking-widest text-safety-400 uppercase">Today</span>
+							{item.problem}
+						</p>
+						<p class="font-medium">
+							<span class="mr-2 font-mono text-xs tracking-widest text-ok uppercase">With Construx</span>
+							{item.solution}
+						</p>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</section>
