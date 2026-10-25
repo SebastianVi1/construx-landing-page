@@ -30,7 +30,7 @@ const visuals = {
 					const Visual = f.visual === 'none' ? null : visuals[f.visual];
 					const copy = t.items[f.id];
 					return (
-						<article data-reveal class:list={['flex min-w-0 flex-col rounded-xl border border-blueprint-400/20 bg-ink-900/70 p-6', f.span]}>
+						<article data-reveal class:list={['spotlight flex min-w-0 flex-col rounded-xl border border-blueprint-400/20 bg-ink-900/70 p-6', f.span]}>
 							<h3 class="text-xl font-bold">{copy.title}</h3>
 							<ul class="mt-3 space-y-1.5 text-sm text-paper-dim">
 								{copy.points.map((p) => (

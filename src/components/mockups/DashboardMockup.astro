@@ -21,7 +21,7 @@ const projects = [
 		{
 			stats.map((s) => (
 				<div class="rounded-lg border border-blueprint-400/15 bg-ink-800 p-3">
-					<p class="font-display text-2xl font-bold sm:text-3xl">{s.value}</p>
+					<p class="font-display text-2xl font-bold tabular-nums sm:text-3xl" data-count={s.value}>{s.value}</p>
 					<p class="mt-1 text-[11px] text-paper-dim">{s.label}</p>
 				</div>
 			))
@@ -38,7 +38,7 @@ const projects = [
 					<div class="mt-2 h-1.5 overflow-hidden rounded-full bg-ink-600">
 						<div data-progress={p.progress} class="h-full origin-left rounded-full bg-safety-500" style={`width:${p.progress}%`} />
 					</div>
-					<p class="mt-1.5 text-right font-mono text-[10px] text-paper-dim">{p.progress}% {t.complete}</p>
+					<p class="mt-1.5 text-right font-mono text-[10px] text-paper-dim tabular-nums"><span data-count={p.progress}>{p.progress}</span>% {t.complete}</p>
 				</li>
 			))
 		}

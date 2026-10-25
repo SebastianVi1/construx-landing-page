@@ -59,6 +59,7 @@ const ogUrl = new URL(ogImage, Astro.site);
 		>
 			{t.skip}
 		</a>
+		<div id="scroll-progress" aria-hidden="true"></div>
 		<slot />
 		<script>
 			import '../scripts/animations';

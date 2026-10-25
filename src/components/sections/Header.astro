@@ -15,7 +15,7 @@ const t = useTranslations(Astro.currentLocale);
 		<nav aria-label={t.header.primaryNav} class="hidden items-center gap-6 lg:flex xl:gap-8">
 			{
 				navItems.map((item) => (
-					<a href={item.href} class="text-sm whitespace-nowrap text-paper-dim transition-colors hover:text-paper">
+					<a href={item.href} class="nav-link text-sm whitespace-nowrap text-paper-dim transition-colors hover:text-paper">
 						{t.nav[item.key]}
 					</a>
 				))
