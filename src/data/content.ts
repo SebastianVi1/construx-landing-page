@@ -1,4 +1,4 @@
-export type FeatureVisual = 'tasks' | 'plan' | 'gantt' | 'workforce' | 'finance' | 'none';
+export type FeatureVisual = 'tasks' | 'plan' | 'gantt' | 'workforce' | 'finance' | 'crm' | 'none';
 
 // Structure only. Titles and bullet points live in src/i18n/<locale>.ts under features.items[id].
 export const features: { id: string; visual: FeatureVisual; span: string }[] = [
@@ -8,5 +8,5 @@ export const features: { id: string; visual: FeatureVisual; span: string }[] = [
 	{ id: 'scheduling', visual: 'gantt', span: 'lg:col-span-3' },
 	{ id: 'workforce-management', visual: 'workforce', span: 'lg:col-span-2' },
 	{ id: 'financial-management', visual: 'finance', span: 'lg:col-span-2' },
-	{ id: 'crm', visual: 'none', span: 'lg:col-span-2' },
+	{ id: 'crm', visual: 'crm', span: 'lg:col-span-2' },
 ];

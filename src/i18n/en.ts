@@ -167,6 +167,10 @@ export const en = {
 			title: 'Team (sample)',
 			roles: ['Site engineer', 'Foreman', 'Safety officer', 'Surveyor'],
 		},
+		crm: {
+			title: 'Clients (sample)',
+			stages: ['Lead', 'Proposal', 'Client'],
+		},
 		finance: {
 			title: 'Expenses · Harbor Tower (sample)',
 			labels: ['Materials', 'Labor', 'Equipment', 'Permits'],

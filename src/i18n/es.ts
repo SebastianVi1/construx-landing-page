@@ -177,6 +177,10 @@ export const es: Dict = {
 			title: 'Equipo (ejemplo)',
 			roles: ['Ingeniera de obra', 'Capataz', 'Oficial de seguridad', 'Topógrafo'],
 		},
+		crm: {
+			title: 'Clientes (ejemplo)',
+			stages: ['Prospecto', 'Propuesta', 'Cliente'],
+		},
 		finance: {
 			title: 'Gastos · Harbor Tower (ejemplo)',
 			labels: ['Materiales', 'Mano de obra', 'Equipos', 'Permisos'],
