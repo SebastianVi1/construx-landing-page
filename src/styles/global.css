@@ -84,6 +84,144 @@
 		opacity: 1;
 	}
 
+	/* Plan-sheet corner marks: tighten onto the card when it is hovered or focused. */
+	.spotlight::after {
+		content: '';
+		position: absolute;
+		inset: 12px;
+		pointer-events: none;
+		opacity: 0;
+		--c: var(--color-safety-500);
+		background:
+			linear-gradient(var(--c), var(--c)) top left / 12px 1px,
+			linear-gradient(var(--c), var(--c)) top left / 1px 12px,
+			linear-gradient(var(--c), var(--c)) top right / 12px 1px,
+			linear-gradient(var(--c), var(--c)) top right / 1px 12px,
+			linear-gradient(var(--c), var(--c)) bottom left / 12px 1px,
+			linear-gradient(var(--c), var(--c)) bottom left / 1px 12px,
+			linear-gradient(var(--c), var(--c)) bottom right / 12px 1px,
+			linear-gradient(var(--c), var(--c)) bottom right / 1px 12px;
+		background-repeat: no-repeat;
+		transition:
+			opacity 0.3s,
+			inset 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+	}
+	.spotlight:hover::after,
+	.spotlight:focus-within::after {
+		opacity: 0.9;
+		inset: 5px;
+	}
+
+	/* Hero dimension lines: drawn by animations.ts, final state is the CSS default. */
+	.dim {
+		position: absolute;
+		color: rgb(111 168 255 / 0.6);
+		pointer-events: none;
+	}
+	.dim-line,
+	.dim-tick {
+		position: absolute;
+		display: block;
+		background: currentColor;
+	}
+	.dim-h {
+		inset: -1.75rem 0 auto 0;
+		height: 1px;
+	}
+	.dim-h .dim-line {
+		inset: 0;
+		transform-origin: left center;
+	}
+	.dim-h .dim-tick {
+		top: -4px;
+		width: 1px;
+		height: 9px;
+	}
+	.dim-tick-l {
+		left: 0;
+	}
+	.dim-tick-r {
+		right: 0;
+	}
+	.dim-v {
+		inset: 0 -2.25rem 0 auto;
+		width: 1px;
+	}
+	.dim-v .dim-line {
+		inset: 0;
+		transform-origin: center top;
+	}
+	.dim-v .dim-tick {
+		left: -4px;
+		width: 9px;
+		height: 1px;
+	}
+	.dim-tick-t {
+		top: 0;
+	}
+	.dim-tick-b {
+		bottom: 0;
+	}
+	.dim-label {
+		position: absolute;
+		font-family: var(--font-mono);
+		font-size: 10px;
+		letter-spacing: 0.06em;
+		color: var(--color-blueprint-300);
+		background: var(--color-ink-950);
+		padding: 0 0.5rem;
+	}
+	.dim-h .dim-label {
+		left: 50%;
+		top: 0;
+		transform: translate(-50%, -50%);
+	}
+	.dim-v .dim-label {
+		left: 0;
+		top: 50%;
+		transform: translate(-50%, -50%) rotate(90deg);
+		white-space: nowrap;
+	}
+
+	/* Drafting crosshair, hero only. Hidden until the pointer enters (fine pointer + motion allowed). */
+	#survey-cursor {
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		pointer-events: none;
+		opacity: 0;
+		display: none;
+	}
+	@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+		#survey-cursor {
+			display: block;
+		}
+	}
+	.survey-x,
+	.survey-y {
+		position: absolute;
+		display: block;
+		background: rgb(255 148 70 / 0.22);
+	}
+	.survey-x {
+		inset: 0 auto 0 0;
+		width: 1px;
+	}
+	.survey-y {
+		inset: 0 0 auto 0;
+		height: 1px;
+	}
+	.survey-readout {
+		position: absolute;
+		left: 0;
+		top: 0;
+		margin: 12px 0 0 12px;
+		font-size: 10px;
+		letter-spacing: 0.08em;
+		color: var(--color-safety-400);
+		white-space: nowrap;
+	}
+
 	.btn-primary {
 		box-shadow: 0 0 0 0 rgb(255 122 26 / 0);
 		transition:

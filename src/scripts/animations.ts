@@ -50,6 +50,31 @@ mm.add('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-prefe
 	const moveY = gsap.quickTo(visual, 'y', { duration: 0.8, ease: 'power3.out' });
 	const gridY = gsap.quickTo(heroSection, 'backgroundPositionY', { duration: 1.2, ease: 'power3.out' });
 	const gridX = gsap.quickTo(heroSection, 'backgroundPositionX', { duration: 1.2, ease: 'power3.out' });
+	// Drafting crosshair with live plan coordinates.
+	const survey = document.getElementById('survey-cursor');
+	const sx = survey?.querySelector<HTMLElement>('.survey-x');
+	const sy = survey?.querySelector<HTMLElement>('.survey-y');
+	const readout = survey?.querySelector<HTMLElement>('.survey-readout');
+	const surveyIn = () => survey && gsap.to(survey, { opacity: 1, duration: 0.3, overwrite: true });
+	const surveyOut = () => survey && gsap.to(survey, { opacity: 0, duration: 0.4, overwrite: true });
+	const surveyX = sx ? gsap.quickTo(sx, 'x', { duration: 0.18, ease: 'power3.out' }) : null;
+	const surveyY = sy ? gsap.quickTo(sy, 'y', { duration: 0.18, ease: 'power3.out' }) : null;
+	const readoutX = readout ? gsap.quickTo(readout, 'x', { duration: 0.18, ease: 'power3.out' }) : null;
+	const readoutY = readout ? gsap.quickTo(readout, 'y', { duration: 0.18, ease: 'power3.out' }) : null;
+	const onSurvey = (e: PointerEvent) => {
+		const r = heroSection.getBoundingClientRect();
+		const x = e.clientX - r.left;
+		const y = e.clientY - r.top;
+		surveyX?.(x);
+		surveyY?.(y);
+		readoutX?.(x);
+		readoutY?.(y);
+		if (readout) readout.innerHTML = `X ${String(Math.round(x)).padStart(4, '0')} &nbsp;Y ${String(Math.round(y)).padStart(4, '0')}`;
+	};
+	heroSection.addEventListener('pointerenter', surveyIn);
+	heroSection.addEventListener('pointerleave', surveyOut);
+	heroSection.addEventListener('pointermove', onSurvey);
+
 	const onHero = (e: PointerEvent) => {
 		const r = heroSection.getBoundingClientRect();
 		const nx = (e.clientX - r.left) / r.width - 0.5;
@@ -64,6 +89,9 @@ mm.add('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-prefe
 	return () => {
 		cards.forEach((c) => c.removeEventListener('pointermove', onMove));
 		heroSection.removeEventListener('pointermove', onHero);
+		heroSection.removeEventListener('pointerenter', surveyIn);
+		heroSection.removeEventListener('pointerleave', surveyOut);
+		heroSection.removeEventListener('pointermove', onSurvey);
 	};
 });
 
@@ -75,7 +103,29 @@ mm.add('(prefers-reduced-motion: no-preference)', () => {
 		.from('[data-hero-line]', { opacity: 0, y: 48, duration: 0.8, stagger: 0.12 }, '<0.1')
 		.from('[data-hero-in]:not(:first-child)', { opacity: 0, y: 20, duration: 0.6, stagger: 0.1 }, '-=0.5')
 		.from('[data-hero-visual]', { opacity: 0, y: 40, duration: 0.9 }, '-=0.8')
-		.from('[data-hero-visual] [data-progress]', { scaleX: 0, duration: 0.9, stagger: 0.12 }, '-=0.4');
+		.from('[data-hero-visual] [data-progress]', { scaleX: 0, duration: 0.9, stagger: 0.12 }, '-=0.4')
+		// Signature moment: the drawing is dimensioned. Lines draw, ticks snap in, measurements count up.
+		.from('.dim .dim-line', { scale: 0, duration: 1.1, ease: 'power2.inOut', stagger: 0.15 }, '-=0.9')
+		.from('.dim .dim-tick', { scale: 0, duration: 0.3, ease: 'back.out(3)', stagger: 0.08 }, '-=0.9')
+		.from('.dim .dim-label', { opacity: 0, duration: 0.4 }, '-=0.5');
+
+	gsap.utils.toArray<HTMLElement>('[data-dim]').forEach((el) => {
+		const target = Number(el.dataset.dim);
+		const decimals = Number(el.dataset.dimDecimals ?? 0);
+		const state = { value: 0 };
+		gsap.to(state, {
+			value: target,
+			duration: 1.6,
+			delay: 1.5,
+			ease: 'power2.out',
+			onUpdate: () => {
+				el.textContent = `${state.value.toFixed(decimals)} m`;
+			},
+			onComplete: () => {
+				el.textContent = `${target.toFixed(decimals)} m`;
+			},
+		});
+	});
 
 	// Dashboard numbers count up alongside the bars. Final text is already in the DOM for no-JS and reduced motion.
 	gsap.utils.toArray<HTMLElement>('[data-hero-visual] [data-count]').forEach((el) => {
@@ -123,11 +173,14 @@ mm.add('(prefers-reduced-motion: no-preference)', () => {
 
 	// Generic reveal for any block marked data-reveal.
 	gsap.utils.toArray<HTMLElement>('[data-reveal]').forEach((el) => {
+		// Unveiled like a plan sheet: a clip wipe from the left edge instead of a generic fade-up.
 		gsap.from(el, {
+			clipPath: 'inset(0 100% 0 0)',
 			opacity: 0,
-			y: 28,
-			duration: 0.7,
-			ease: 'power2.out',
+			x: -16,
+			duration: 0.9,
+			ease: 'power3.out',
+			clearProps: 'clipPath,opacity,transform',
 			scrollTrigger: { trigger: el, start: 'top 88%', once: true },
 		});
 	});

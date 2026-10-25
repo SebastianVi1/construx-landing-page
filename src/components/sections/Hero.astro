@@ -13,6 +13,9 @@ const t = useTranslations(Astro.currentLocale);
 		aria-hidden="true"
 	>
 	</div>
+	<div id="survey-cursor" aria-hidden="true">
+		<i class="survey-x"></i><i class="survey-y"></i><span class="survey-readout font-mono">X 0000 &nbsp;Y 0000</span>
+	</div>
 	<div class="relative mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-[1.05fr_1fr]">
 		<div>
 			<p data-hero-in class="font-mono text-xs tracking-[0.2em] text-safety-400 uppercase">{t.hero.eyebrow}</p>
@@ -28,8 +31,16 @@ const t = useTranslations(Astro.currentLocale);
 			</div>
 			<p data-hero-in class="mt-6 text-xs text-paper-dim">{t.hero.note}</p>
 		</div>
-		<div data-hero-visual>
+		<div data-hero-visual class="relative">
 			<DashboardMockup />
+			<div class="dim dim-h max-lg:hidden" aria-hidden="true">
+				<i class="dim-line"></i><i class="dim-tick dim-tick-l"></i><i class="dim-tick dim-tick-r"></i>
+				<span class="dim-label" data-dim="12.4" data-dim-decimals="2">12.40 m</span>
+			</div>
+			<div class="dim dim-v max-xl:hidden" aria-hidden="true">
+				<i class="dim-line"></i><i class="dim-tick dim-tick-t"></i><i class="dim-tick dim-tick-b"></i>
+				<span class="dim-label" data-dim="8.2" data-dim-decimals="2">8.20 m</span>
+			</div>
 		</div>
 	</div>
 </section>
