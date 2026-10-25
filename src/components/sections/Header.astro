@@ -1,0 +1,84 @@
+---
+import Logo from '../ui/Logo.astro';
+import Button from '../ui/Button.astro';
+import LanguageSwitcher from '../ui/LanguageSwitcher.astro';
+import { navItems, ctaHref } from '../../data/site';
+import { useTranslations } from '../../i18n';
+
+const t = useTranslations(Astro.currentLocale);
+---
+
+<header class="fixed inset-x-0 top-0 z-40 border-b border-blueprint-400/10 bg-ink-950/80 backdrop-blur">
+	<div class="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5">
+		<a href="#top" aria-label={t.header.home} class="shrink-0"><Logo /></a>
+
+		<nav aria-label={t.header.primaryNav} class="hidden items-center gap-6 lg:flex xl:gap-8">
+			{
+				navItems.map((item) => (
+					<a href={item.href} class="text-sm whitespace-nowrap text-paper-dim transition-colors hover:text-paper">
+						{t.nav[item.key]}
+					</a>
+				))
+			}
+		</nav>
+
+		<div class="flex items-center gap-3">
+			<LanguageSwitcher />
+			<Button href={ctaHref.primary} class="!py-2 whitespace-nowrap max-sm:hidden">{t.cta.primary}</Button>
+			<button
+				id="menu-toggle"
+				type="button"
+				class="inline-flex size-10 items-center justify-center rounded-md border border-blueprint-400/30 lg:hidden"
+				aria-expanded="false"
+				aria-controls="mobile-menu"
+				aria-label={t.header.openMenu}
+				data-open-label={t.header.openMenu}
+				data-close-label={t.header.closeMenu}
+			>
+				<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+					<path d="M4 7h16M4 12h16M4 17h16"></path>
+				</svg>
+			</button>
+		</div>
+	</div>
+
+	<nav id="mobile-menu" aria-label={t.header.mobileNav} hidden class="border-t border-blueprint-400/10 bg-ink-950 lg:hidden">
+		<ul class="mx-auto flex max-w-6xl flex-col px-5 py-3">
+			{
+				navItems.map((item) => (
+					<li>
+						<a href={item.href} class="block py-3 text-paper-dim hover:text-paper">
+							{t.nav[item.key]}
+						</a>
+					</li>
+				))
+			}
+			<li class="py-3">
+				<Button href={ctaHref.primary} class="w-full">{t.cta.primary}</Button>
+			</li>
+		</ul>
+	</nav>
+</header>
+
+<script>
+	const toggle = document.getElementById('menu-toggle');
+	const menu = document.getElementById('mobile-menu');
+
+	function setOpen(open: boolean) {
+		if (!toggle || !menu) return;
+		toggle.setAttribute('aria-expanded', String(open));
+		toggle.setAttribute('aria-label', (open ? toggle.dataset.closeLabel : toggle.dataset.openLabel) ?? '');
+		menu.hidden = !open;
+	}
+
+	toggle?.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+	menu?.addEventListener('click', (e) => {
+		if ((e.target as HTMLElement).closest('a')) setOpen(false);
+	});
+	document.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape') {
+			setOpen(false);
+			toggle?.focus();
+		}
+	});
+</script>

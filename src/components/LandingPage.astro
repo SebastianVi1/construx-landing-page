@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from './sections/Header.astro';
+import Hero from './sections/Hero.astro';
+import ProblemSolution from './sections/ProblemSolution.astro';
+import Features from './sections/Features.astro';
+import HowItWorks from './sections/HowItWorks.astro';
+import Benefits from './sections/Benefits.astro';
+import Contact from './sections/Contact.astro';
+import Footer from './sections/Footer.astro';
+import { site } from '../data/site';
+---
+
+<Layout>
+	{site.analyticsSrc && <script slot="head" defer src={site.analyticsSrc}></script>}
+	<Header />
+	<main id="main">
+		<Hero />
+		<ProblemSolution />
+		<Features />
+		<HowItWorks />
+		<Benefits />
+		<Contact />
+	</main>
+	<Footer />
+</Layout>

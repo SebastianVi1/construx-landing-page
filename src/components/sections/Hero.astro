@@ -1,0 +1,35 @@
+---
+import Button from '../ui/Button.astro';
+import DashboardMockup from '../mockups/DashboardMockup.astro';
+import { ctaHref } from '../../data/site';
+import { useTranslations } from '../../i18n';
+
+const t = useTranslations(Astro.currentLocale);
+---
+
+<section id="top" aria-labelledby="hero-title" class="bg-blueprint-grid relative overflow-hidden pt-28 pb-20 sm:pt-36">
+	<div
+		class="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ink-950 to-transparent"
+		aria-hidden="true"
+	>
+	</div>
+	<div class="relative mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-[1.05fr_1fr]">
+		<div>
+			<p data-hero-in class="font-mono text-xs tracking-[0.2em] text-safety-400 uppercase">{t.hero.eyebrow}</p>
+			<h1 id="hero-title" class="mt-4 text-4xl leading-[1.05] font-bold sm:text-5xl xl:text-6xl">
+				<span data-hero-line class="block">{t.hero.line1}</span>
+				<span data-hero-line class="block text-safety-500">{t.hero.line2}</span>
+				<span data-hero-line class="block">{t.hero.line3}</span>
+			</h1>
+			<p data-hero-in class="mt-6 max-w-xl text-lg text-paper-dim">{t.hero.text}</p>
+			<div data-hero-in class="mt-8 flex flex-wrap gap-3">
+				<Button href={ctaHref.primary}>{t.cta.primary}</Button>
+				<Button href={ctaHref.secondary} variant="secondary">{t.cta.secondary}</Button>
+			</div>
+			<p data-hero-in class="mt-6 text-xs text-paper-dim">{t.hero.note}</p>
+		</div>
+		<div data-hero-visual>
+			<DashboardMockup />
+		</div>
+	</div>
+</section>

@@ -1,0 +1,28 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+import { useTranslations } from '../../i18n';
+
+const t = useTranslations(Astro.currentLocale).problem;
+---
+
+<section id="product" aria-labelledby="product-title" class="py-24">
+	<div class="mx-auto max-w-6xl px-5">
+		<SectionHeading id="product-title" eyebrow={t.eyebrow} title={t.title} description={t.description} />
+		<ul class="mt-12 divide-y divide-blueprint-400/15 border-y border-blueprint-400/15">
+			{
+				t.items.map((item) => (
+					<li data-reveal class="grid gap-3 py-6 md:grid-cols-2 md:gap-12">
+						<p class="text-paper-dim">
+							<span class="mr-2 font-mono text-xs tracking-widest text-safety-400 uppercase">{t.today}</span>
+							{item.problem}
+						</p>
+						<p class="font-medium">
+							<span class="mr-2 font-mono text-xs tracking-widest text-ok uppercase">{t.withConstrux}</span>
+							{item.solution}
+						</p>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</section>

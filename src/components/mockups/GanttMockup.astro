@@ -1,0 +1,43 @@
+---
+import MockupFrame from './MockupFrame.astro';
+import { useTranslations } from '../../i18n';
+
+const t = useTranslations(Astro.currentLocale).mockup.gantt;
+
+const weeks = Array.from({ length: 8 }, (_, i) => `${t.week}${i + 1}`);
+// start/span in week columns (0-based start, 8 total)
+const timing = [
+	{ start: 0, span: 2, done: 100 },
+	{ start: 1.5, span: 2.5, done: 80 },
+	{ start: 3.5, span: 3, done: 35 },
+	{ start: 5, span: 2, done: 10 },
+	{ start: 6, span: 2, done: 0 },
+];
+const rows = timing.map((row, i) => ({ ...row, name: t.rows[i] }));
+---
+
+<MockupFrame title={t.title}>
+	<div class="grid grid-cols-[7.5rem_1fr] gap-x-3 text-[11px] sm:grid-cols-[10rem_1fr]">
+		<div></div>
+		<div class="grid grid-cols-8 border-b border-blueprint-400/15 pb-2 font-mono text-paper-dim" aria-hidden="true">
+			{weeks.map((w) => <span>{w}</span>)}
+		</div>
+		{
+			rows.map((row) => (
+				<>
+					<div class="truncate border-b border-blueprint-400/10 py-3 text-paper">{row.name}</div>
+					<div class="relative border-b border-blueprint-400/10 py-3">
+						<div
+							data-gantt-bar
+							class="h-4 origin-left overflow-hidden rounded-sm bg-blueprint-400/25"
+							style={`margin-left:${(row.start / 8) * 100}%;width:${(row.span / 8) * 100}%`}
+						>
+							<div class="h-full bg-safety-500" style={`width:${row.done}%`} />
+						</div>
+					</div>
+				</>
+			))
+		}
+	</div>
+	<p class="mt-3 text-[11px] text-paper-dim">{t.legend}</p>
+</MockupFrame>

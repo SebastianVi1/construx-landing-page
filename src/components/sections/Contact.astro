@@ -1,0 +1,57 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+import { site } from '../../data/site';
+import { useTranslations } from '../../i18n';
+
+const t = useTranslations(Astro.currentLocale).contact;
+
+const connected = site.formEndpoint !== '';
+const field =
+	'mt-2 w-full rounded-md border border-blueprint-400/30 bg-ink-900 px-4 py-3 text-paper placeholder:text-paper-dim/60 disabled:opacity-60';
+---
+
+<section id="contact" aria-labelledby="contact-title" class="bg-blueprint-grid border-t border-blueprint-400/10 py-24">
+	<div class="mx-auto grid max-w-6xl gap-12 px-5 lg:grid-cols-2">
+		<SectionHeading id="contact-title" eyebrow={t.eyebrow} title={t.title} description={t.description} />
+
+		<form
+			action={connected ? site.formEndpoint : undefined}
+			method="post"
+			class="rounded-xl border border-blueprint-400/20 bg-ink-900/80 p-6 sm:p-8"
+			data-reveal
+		>
+			<fieldset disabled={!connected} class="space-y-5">
+				<legend class="sr-only">{t.legend}</legend>
+				<div>
+					<label for="name" class="text-sm font-medium">{t.name}</label>
+					<input id="name" name="name" type="text" autocomplete="name" required class={field} />
+				</div>
+				<div>
+					<label for="email" class="text-sm font-medium">{t.email}</label>
+					<input id="email" name="email" type="email" autocomplete="email" required class={field} />
+				</div>
+				<div>
+					<label for="company" class="text-sm font-medium">{t.company}</label>
+					<input id="company" name="company" type="text" autocomplete="organization" class={field} />
+				</div>
+				<div>
+					<label for="message" class="text-sm font-medium">{t.message}</label>
+					<textarea id="message" name="message" rows="3" class={field}></textarea>
+				</div>
+				<button
+					type="submit"
+					class="w-full rounded-md bg-safety-500 px-6 py-3 text-sm font-semibold text-ink-950 transition-colors hover:bg-safety-400 disabled:cursor-not-allowed disabled:opacity-50"
+				>
+					{t.submit}
+				</button>
+			</fieldset>
+			{
+				!connected && (
+					<p role="status" class="mt-4 text-sm text-paper-dim">
+						{t.notConnected}
+					</p>
+				)
+			}
+		</form>
+	</div>
+</section>

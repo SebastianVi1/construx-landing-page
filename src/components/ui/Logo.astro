@@ -1,0 +1,14 @@
+---
+interface Props {
+	class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+
+<span class:list={['inline-flex items-center gap-2.5', className]}>
+	<svg viewBox="0 0 32 32" width="28" height="28" aria-hidden="true" focusable="false">
+		<rect x="1" y="1" width="30" height="30" rx="6" fill="none" stroke="currentColor" stroke-width="2"></rect>
+		<path d="M8 8l16 16M24 8L8 24" stroke="var(--color-safety-500)" stroke-width="3" stroke-linecap="square"></path>
+	</svg>
+	<span class="font-display text-lg font-bold tracking-[0.18em]">CONSTRUX</span>
+</span>
