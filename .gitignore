@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Agent tooling: skills are tracked; the generated skill registry is not.
+.atl/
