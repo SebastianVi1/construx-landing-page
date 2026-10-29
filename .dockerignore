@@ -1,0 +1,15 @@
+node_modules
+dist
+.astro
+.git
+.env
+.env.*
+.idea
+.vscode
+.claude
+.agents
+.atl
+odd
+*.md
+Dockerfile
+.dockerignore
