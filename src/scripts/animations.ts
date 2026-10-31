@@ -3,6 +3,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Webfonts change the layout after first paint; recalculate trigger positions.
+document.fonts?.ready.then(() => ScrollTrigger.refresh());
+
 const mm = gsap.matchMedia();
 
 // Scroll-state UI that stays useful with reduced motion: progress bar, header, active nav link.
@@ -146,21 +149,29 @@ mm.add('(prefers-reduced-motion: no-preference)', () => {
 		});
 	});
 
-	// Metrics strip numbers count up when the band scrolls into view.
+	// Metrics strip numbers count up when the band scrolls into view. The real
+	// value stays in the DOM until the animation starts, so a band that never
+	// enters the viewport (or a failed trigger) never shows a placeholder zero.
 	gsap.utils.toArray<HTMLElement>('[data-metrics] [data-count]').forEach((el) => {
 		const target = Number(el.dataset.count);
-		const state = { value: 0 };
-		el.textContent = '0';
-		gsap.to(state, {
-			value: target,
-			duration: 1.2,
-			ease: 'power2.out',
-			scrollTrigger: { trigger: el, start: 'top 85%', once: true },
-			onUpdate: () => {
-				el.textContent = String(Math.round(state.value));
-			},
-			onComplete: () => {
-				el.textContent = String(target);
+		ScrollTrigger.create({
+			trigger: el,
+			start: 'top bottom-=60',
+			once: true,
+			onEnter: () => {
+				const state = { value: 0 };
+				el.textContent = '0';
+				gsap.to(state, {
+					value: target,
+					duration: 1.2,
+					ease: 'power2.out',
+					onUpdate: () => {
+						el.textContent = String(Math.round(state.value));
+					},
+					onComplete: () => {
+						el.textContent = String(target);
+					},
+				});
 			},
 		});
 	});
