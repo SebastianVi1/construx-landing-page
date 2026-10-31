@@ -1,0 +1,33 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+import { useTranslations } from '../../i18n';
+
+const t = useTranslations(Astro.currentLocale).modules;
+---
+
+<section id="modules" aria-labelledby="modules-title" class="py-24">
+	<div class="mx-auto max-w-6xl px-5">
+		<SectionHeading id="modules-title" eyebrow={t.eyebrow} title={t.title} description={t.description} />
+		<ol class="mt-12 divide-y divide-blueprint-400/10 border-y border-blueprint-400/10">
+			{
+				t.items.map((m, i) => (
+					<li data-reveal class="grid gap-3 py-6 md:grid-cols-[3rem_1fr_1fr] md:gap-8">
+						<span class="font-mono text-xs text-safety-400">{String(i + 1).padStart(2, '0')}</span>
+						<div>
+							<h3 class="text-lg font-bold">{m.title}</h3>
+							<p class="mt-1 text-sm text-paper-dim">{m.description}</p>
+						</div>
+						<ul class="space-y-1.5 text-sm text-paper-dim">
+							{m.points.map((p) => (
+								<li class="flex gap-2">
+									<span class="mt-2 size-1.5 shrink-0 rounded-full bg-safety-500" aria-hidden="true" />
+									{p}
+								</li>
+							))}
+						</ul>
+					</li>
+				))
+			}
+		</ol>
+	</div>
+</section>

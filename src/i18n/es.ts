@@ -14,6 +14,7 @@ export const es: Dict = {
 		benefits: 'Beneficios',
 		about: 'Cómo funciona',
 		contact: 'Contacto',
+		faq: 'FAQ',
 	},
 	cta: { primary: 'Solicitar acceso', secondary: 'Explorar funciones' },
 	header: {
@@ -132,6 +133,88 @@ export const es: Dict = {
 			'Facilita un monitoreo de proyectos más consistente',
 			'Sienta las bases para gestionar múltiples obras',
 			'Controla el presupuesto y los gastos junto al cronograma',
+		],
+	},
+	metrics: {
+		eyebrow: 'Medido y unificado',
+		items: [
+			{ value: 7, label: 'Módulos del workspace', detail: 'Obras · Tareas · Planos · Cronograma · Precios · Gastos' },
+			{ value: 8, label: 'Roles', detail: 'Propietario · Administrador · Miembro · Trabajador · Finanzas · Líder · Maestro de obra · Cuadrilla' },
+			{ value: 3, label: 'Estados de tarea', detail: 'Por hacer · En curso · Hecho' },
+			{ value: 2, label: 'Idiomas', detail: 'Español · English' },
+		],
+	},
+	modules: {
+		eyebrow: 'Módulos',
+		title: 'Dentro del workspace',
+		description: 'Siete módulos cubren el día a día de una constructora, de la planificación de obras al presupuesto.',
+		items: [
+			{
+				title: 'Obras',
+				description: 'Un proyecto de construcción con su propio equipo, fases, presupuesto y gastos.',
+				points: ['Crea y archiva obras', 'Define el presupuesto de la obra', 'Asigna personas a la obra'],
+			},
+			{
+				title: 'Tareas',
+				description: 'Una pieza de trabajo dentro de una fase, con fechas, estado y un equipo.',
+				points: ['Asigna un equipo con roles', 'Sigue pendiente, en curso y hecha', 'Registra gastos por tarea'],
+			},
+			{
+				title: 'Planos de construcción',
+				description: 'Los archivos de planos guardados con la obra a la que pertenecen.',
+				points: ['Carga planos por obra', 'Consulta planos y abre los originales'],
+			},
+			{
+				title: 'Programación',
+				description: 'Cronogramas de fases y tareas en un diagrama de Gantt compartido.',
+				points: ['Fechas de fases y tareas', 'Barras con colores', 'Seguimiento del avance'],
+			},
+			{
+				title: 'Personal',
+				description: 'Las personas de la empresa, con roles y responsabilidades.',
+				points: ['Invita a miembros', 'Asigna roles y permisos', 'Asigna personas a obras'],
+			},
+			{
+				title: 'Catálogo de precios de materiales',
+				description: 'Materiales, proveedores y los precios que observaste, con historial.',
+				points: ['Organiza por categoría y unidad', 'Registra precios e historial de proveedores', 'Importa precios desde un CSV exportado de Excel'],
+			},
+			{
+				title: 'Presupuesto y gastos',
+				description: 'Presupuestos de obra frente a los gastos registrados, con ahorro y sobrecoste.',
+				points: ['Registra gastos por obra y tarea', 'Compara presupuesto vs. gasto', 'Ve el ahorro o sobrecoste'],
+			},
+		],
+	},
+	faq: {
+		eyebrow: 'FAQ',
+		title: 'Preguntas frecuentes',
+		description: 'Lo esencial antes de solicitar acceso.',
+		items: [
+			{
+				q: '¿Para quién es Construx?',
+				a: 'Para empresas constructoras y sus equipos de proyecto, en oficina y en obra. Los dueños ven todas las obras; los líderes y la cuadrilla ven sus tareas y registran gastos.',
+			},
+			{
+				q: '¿Cuánto cuesta?',
+				a: 'Construx está en acceso anticipado y el precio aún no se anuncia. Solicita acceso y te contactaremos cuando abra.',
+			},
+			{
+				q: '¿Qué idiomas soporta?',
+				a: 'Español e inglés.',
+			},
+			{
+				q: '¿Puedo importar mis precios de materiales?',
+				a: 'Sí. El catálogo registra precios de proveedores con su historial y puedes importar precios desde un CSV (exportado de Excel).',
+			},
+			{
+				q: '¿Quién ve qué?',
+				a: 'El acceso se define por rol. Los administradores gestionan la empresa, finanzas ve presupuestos y gastos, y los miembros y trabajadores ven sus obras y tareas asignadas.',
+			},
+			{
+				q: '¿Reemplaza a Excel?',
+				a: 'Construx centraliza obras, fases, tareas, planos, precios y gastos en un solo workspace con roles claros, en lugar de archivos y chats dispersos.',
+			},
 		],
 	},
 	contact: {

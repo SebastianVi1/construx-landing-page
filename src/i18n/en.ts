@@ -12,6 +12,7 @@ export const en = {
 		benefits: 'Benefits',
 		about: 'How it works',
 		contact: 'Contact',
+		faq: 'FAQ',
 	},
 	cta: { primary: 'Request access', secondary: 'Explore Features' },
 	header: {
@@ -123,6 +124,88 @@ export const en = {
 			'Support more consistent project monitoring',
 			'Build a foundation for managing multiple construction sites',
 			'Track budget and expenses alongside the schedule',
+		],
+	},
+	metrics: {
+		eyebrow: 'Measured and unified',
+		items: [
+			{ value: 7, label: 'Workspace modules', detail: 'Sites · Tasks · Plans · Schedule · Prices · Expenses' },
+			{ value: 8, label: 'Roles', detail: 'Owner · Admin · Member · Worker · Finance · Lead · Foreman · Crew' },
+			{ value: 3, label: 'Task statuses', detail: 'To do · In progress · Done' },
+			{ value: 2, label: 'Languages', detail: 'English · Spanish' },
+		],
+	},
+	modules: {
+		eyebrow: 'Modules',
+		title: 'Inside the workspace',
+		description: 'Seven modules cover the day-to-day of a construction company, from site planning to budgets.',
+		items: [
+			{
+				title: 'Sites',
+				description: 'One construction project with its own people, phases, budget and expenses.',
+				points: ['Create and archive sites', 'Set a site budget', 'Assign people to a site'],
+			},
+			{
+				title: 'Tasks',
+				description: 'A piece of work inside a phase, with dates, a status and a team.',
+				points: ['Assign a team with roles', 'Track to do, in progress, done', 'Record expenses on a task'],
+			},
+			{
+				title: 'Construction plans',
+				description: 'Plan files stored with the site they belong to.',
+				points: ['Upload plan files per site', 'View plans and open originals'],
+			},
+			{
+				title: 'Scheduling',
+				description: 'Phase and task timelines on a shared Gantt chart.',
+				points: ['Phase and task dates', 'Color-coded bars', 'Track progress'],
+			},
+			{
+				title: 'Workforce',
+				description: 'The people of the company, with roles and responsibilities.',
+				points: ['Invite members', 'Assign roles and permissions', 'Assign people to sites'],
+			},
+			{
+				title: 'Materials price catalog',
+				description: 'Materials, suppliers and the prices you observed, with history.',
+				points: ['Organize by category and unit', 'Record supplier prices and history', 'Import prices from a CSV exported from Excel'],
+			},
+			{
+				title: 'Budget & expenses',
+				description: 'Site budgets against recorded expenses, with savings and overruns.',
+				points: ['Record expenses on sites and tasks', 'Compare budget vs. spending', 'See savings or overrun'],
+			},
+		],
+	},
+	faq: {
+		eyebrow: 'FAQ',
+		title: 'Questions, answered',
+		description: 'The essentials before you request access.',
+		items: [
+			{
+				q: 'Who is Construx for?',
+				a: 'Construction companies and their project teams, in the office and on site. Owners see every site; leads and crews see their tasks and record expenses.',
+			},
+			{
+				q: 'How much does it cost?',
+				a: "Construx is in early access and pricing has not been announced. Request access and we'll reach out as it opens.",
+			},
+			{
+				q: 'Which languages are supported?',
+				a: 'Spanish and English.',
+			},
+			{
+				q: 'Can I import my material prices?',
+				a: 'Yes. The price catalog records supplier prices with their history, and you can import prices from a CSV (exported from Excel).',
+			},
+			{
+				q: 'Who can see what?',
+				a: 'Access is set by role. Administrators manage the company, finance sees budgets and expenses, and members and workers see their assigned sites and tasks.',
+			},
+			{
+				q: 'Does it replace Excel?',
+				a: 'Construx centralizes sites, phases, tasks, plans, prices and expenses in one workspace with clear roles — instead of files and chats scattered across tools.',
+			},
 		],
 	},
 	contact: {

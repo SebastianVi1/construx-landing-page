@@ -146,6 +146,25 @@ mm.add('(prefers-reduced-motion: no-preference)', () => {
 		});
 	});
 
+	// Metrics strip numbers count up when the band scrolls into view.
+	gsap.utils.toArray<HTMLElement>('[data-metrics] [data-count]').forEach((el) => {
+		const target = Number(el.dataset.count);
+		const state = { value: 0 };
+		el.textContent = '0';
+		gsap.to(state, {
+			value: target,
+			duration: 1.2,
+			ease: 'power2.out',
+			scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+			onUpdate: () => {
+				el.textContent = String(Math.round(state.value));
+			},
+			onComplete: () => {
+				el.textContent = String(target);
+			},
+		});
+	});
+
 	// Section headings: each word rises out of a clip mask. Text stays in one heading for assistive tech.
 	gsap.utils.toArray<HTMLElement>('main h2, section h2').forEach((h2) => {
 		if (h2.dataset.split) return;

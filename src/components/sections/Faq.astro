@@ -1,0 +1,25 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+import { useTranslations } from '../../i18n';
+
+const t = useTranslations(Astro.currentLocale).faq;
+---
+
+<section id="faq" aria-labelledby="faq-title" class="border-t border-blueprint-400/10 py-24">
+	<div class="mx-auto max-w-3xl px-5">
+		<SectionHeading id="faq-title" eyebrow={t.eyebrow} title={t.title} description={t.description} />
+		<div data-reveal class="mt-10 divide-y divide-blueprint-400/10 border-y border-blueprint-400/10">
+			{
+				t.items.map((item) => (
+					<details class="group">
+						<summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-left font-medium marker:hidden">
+							<span>{item.q}</span>
+							<span aria-hidden="true" class="shrink-0 font-mono text-xl leading-none text-safety-400 transition-transform duration-300 group-open:rotate-45">+</span>
+						</summary>
+						<p class="pb-5 text-sm text-paper-dim">{item.a}</p>
+					</details>
+				))
+			}
+		</div>
+	</div>
+</section>

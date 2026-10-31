@@ -13,6 +13,7 @@ export const navItems = [
 	{ key: 'features', href: '#features' },
 	{ key: 'benefits', href: '#benefits' },
 	{ key: 'about', href: '#how-it-works' },
+	{ key: 'faq', href: '#faq' },
 	{ key: 'contact', href: '#contact' },
 ] as const;
 
