@@ -10,10 +10,10 @@ export const en = {
 		product: 'Product',
 		features: 'Features',
 		benefits: 'Benefits',
-		about: 'About',
+		about: 'How it works',
 		contact: 'Contact',
 	},
-	cta: { primary: 'Get Early Access', secondary: 'Explore Features' },
+	cta: { primary: 'Request access', secondary: 'Explore Features' },
 	header: {
 		home: 'Construx home',
 		primaryNav: 'Primary',
@@ -27,20 +27,20 @@ export const en = {
 		line1: 'Take Control of',
 		line2: 'Every Construction',
 		line3: 'Project.',
-		text: 'Manage projects, coordinate your workforce, track activities, and organize construction operations in one centralized platform.',
-		note: 'Construx is built for teams across Windows, macOS, iOS, and Android. Platform availability is still being decided.',
+		text: 'Organize sites into phases, assign tasks and teams, upload plans, follow the Gantt schedule, and track material prices and expenses in one workspace.',
+		note: 'An operations workspace for construction companies and their project teams.',
 	},
 	problem: {
 		eyebrow: 'The problem',
 		title: 'Construction runs on coordination. Most tools break it apart.',
 		description:
-			'Construx connects the people, plans, and activities of each project so everyone works from the same picture.',
+			'Bring site information, phase schedules, plan files, and team assignments into one workspace.',
 		today: 'Today',
 		withConstrux: 'With Construx',
 		items: [
 			{
 				problem: 'Project information lives in scattered files and chats.',
-				solution: 'One workspace holds every project, site, and document.',
+				solution: 'Keep site details, project phases, and uploaded plan files together.',
 			},
 			{
 				problem: 'It is hard to know who is assigned where.',
@@ -48,22 +48,26 @@ export const en = {
 			},
 			{
 				problem: 'Pending tasks and owners are unclear.',
-				solution: 'Every task has an owner, a priority, and a deadline.',
+				solution: 'Assign a team, set dates, and track each task from to do to done.',
 			},
 			{
-				problem: 'Plans and daily activities are disconnected.',
-				solution: 'Link activities to the exact area of a construction plan.',
+				problem: 'Project plans are difficult to find when the team needs them.',
+				solution: 'Upload and view plan files within the relevant construction site.',
 			},
 			{
 				problem: 'Managing several sites multiplies the complexity.',
 				solution: 'See all your sites side by side, from the same place.',
 			},
+			{
+				problem: 'Costs and budgets are tracked separately from the work.',
+				solution: 'Record expenses against each site and task, and watch budget versus spending.',
+			},
 		],
 	},
 	features: {
 		eyebrow: 'Features',
-		title: 'Everything a construction team needs to stay aligned.',
-		description: 'Product previews below use demo data to show the intended experience.',
+		title: 'Keep your sites, schedules, and teams aligned.',
+		description: 'Explore the tools in the Construx workspace. Illustrations use sample data and are not live dashboard screenshots.',
 		items: {
 			'project-management': {
 				title: 'Project Management',
@@ -71,39 +75,39 @@ export const en = {
 			},
 			'task-management': {
 				title: 'Task Management',
-				points: ['Task assignment', 'Priorities and deadlines', 'Progress tracking'],
+				points: ['Assigned teams and responsibilities', 'Start and end dates', 'To do, in progress, and done statuses'],
 			},
 			'construction-plans': {
 				title: 'Construction Plans',
-				points: ['Visual representation of construction areas', 'Association between plans, locations, and activities'],
+				points: ['Upload plan files to each site', 'View plans and open original files'],
 			},
 			scheduling: {
 				title: 'Scheduling',
-				points: ['Project timelines', 'Gantt chart visualization', 'Task dependencies and deadlines'],
+				points: ['Phase and task timelines', 'Gantt chart visualization', 'Schedule dates and track progress'],
 			},
 			'workforce-management': {
 				title: 'Workforce Management',
-				points: ['Employee organization', 'Project assignments', 'Roles and responsibilities'],
+				points: ['Member invitations', 'Project assignments', 'Roles and responsibilities'],
 			},
-			'financial-management': {
-				title: 'Financial Management',
-				points: ['Expense and purchase organization', 'Project-related financial visibility'],
+			'materials-catalog': {
+				title: 'Materials Price Catalog',
+				points: ['Organize materials by category and unit', 'Record supplier prices and review price history'],
 			},
-			crm: {
-				title: 'CRM',
-				points: ['Customer and business relationship organization'],
+			finance: {
+				title: 'Budget & Expenses',
+				points: ['Site budgets and recorded expenses', 'Savings vs. overrun tracking', 'Expenses linked to tasks'],
 			},
 		} as Record<string, { title: string; points: string[] }>,
 	},
 	how: {
 		eyebrow: 'How it works',
-		title: 'From company workspace to full site visibility in five steps.',
+		title: 'From your company workspace to day-to-day project tracking.',
 		steps: [
 			{ title: 'Create Your Organization', text: "Establish your company's workspace." },
-			{ title: 'Organize Your Projects', text: 'Create and manage construction projects.' },
-			{ title: 'Coordinate Your Team', text: 'Organize workers and assign responsibilities.' },
-			{ title: 'Track Activities', text: 'Monitor tasks, schedules, and progress.' },
-			{ title: 'Improve Visibility', text: 'Review relevant operational information in one place.' },
+			{ title: 'Organize Your Projects', text: 'Create construction sites and organize the work into phases.' },
+			{ title: 'Coordinate Your Team', text: 'Invite members, set project roles, and assign task teams.' },
+			{ title: 'Track Activities', text: 'Update task statuses and follow phase and task dates on the Gantt schedule.' },
+			{ title: 'Improve Visibility', text: 'Review site progress, plan files, recorded material prices, and budget versus spending.' },
 		],
 	},
 	benefits: {
@@ -118,18 +122,19 @@ export const en = {
 			'Centralize operational information',
 			'Support more consistent project monitoring',
 			'Build a foundation for managing multiple construction sites',
+			'Track budget and expenses alongside the schedule',
 		],
 	},
 	contact: {
 		eyebrow: 'Early access',
-		title: 'Be first on site when Construx opens.',
+		title: 'Bring your construction projects into focus.',
 		description: 'Tell us about your company and the projects you run. We will reach out as early access opens.',
 		legend: 'Early access request',
 		name: 'Full name',
 		email: 'Work email',
 		company: 'Company',
 		message: 'What would you like to manage with Construx?',
-		submit: 'Get Early Access',
+		submit: 'Request access',
 		notConnected: 'Sign-ups are not open yet. This form is not connected to a service.',
 	},
 	footer: {
@@ -141,7 +146,7 @@ export const en = {
 		demo: 'Demo data',
 		dashboard: {
 			title: 'Overview · Acme Builders (sample)',
-			stats: ['Active sites', 'Crew on site', 'Open tasks'],
+			stats: ['Active sites', 'Team members', 'Open tasks'],
 			sites: ['Block A', 'Phase 2', 'Warehouse'],
 			complete: 'complete',
 		},
@@ -149,7 +154,7 @@ export const en = {
 			title: 'Schedule · Harbor Tower (sample)',
 			week: 'W',
 			rows: ['Site preparation', 'Foundations', 'Structure, levels 1-3', 'MEP rough-in', 'Facade and finishes'],
-			legend: 'Orange shows completed work. Dependencies and deadlines stay in one timeline.',
+			legend: 'This illustration shows phase dates and progress. Track phases and tasks together in the Gantt schedule.',
 		},
 		tasks: {
 			title: 'Tasks · Harbor Tower (sample)',
@@ -166,10 +171,6 @@ export const en = {
 		team: {
 			title: 'Team (sample)',
 			roles: ['Site engineer', 'Foreman', 'Safety officer', 'Surveyor'],
-		},
-		crm: {
-			title: 'Clients (sample)',
-			stages: ['Lead', 'Proposal', 'Client'],
 		},
 		finance: {
 			title: 'Expenses · Harbor Tower (sample)',
