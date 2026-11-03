@@ -4,17 +4,16 @@ import { useTranslations } from '../../i18n';
 
 const t = useTranslations(Astro.currentLocale).mockup.tasks;
 
-type Level = 'high' | 'med' | 'low';
-const columns: { title: string; tasks: { t: string; who: string; p: Level }[] }[] = [
-	{ title: t.columns[0], tasks: [{ t: t.items[0], who: 'LM', p: 'high' }] },
+const columns: { title: string; tasks: { t: string; who: string }[] }[] = [
+	{ title: t.columns[0], tasks: [{ t: t.items[0], who: 'LM' }] },
 	{
 		title: t.columns[1],
 		tasks: [
-			{ t: t.items[1], who: 'JR', p: 'high' },
-			{ t: t.items[2], who: 'AK', p: 'med' },
+			{ t: t.items[1], who: 'JR' },
+			{ t: t.items[2], who: 'AK' },
 		],
 	},
-	{ title: t.columns[2], tasks: [{ t: t.items[3], who: 'DP', p: 'low' }] },
+	{ title: t.columns[2], tasks: [{ t: t.items[3], who: 'DP' }] },
 ];
 ---
 
@@ -30,14 +29,6 @@ const columns: { title: string; tasks: { t: string; who: string; p: Level }[] }[
 								<p class="text-[11px] leading-snug">{task.t}</p>
 								<div class="mt-2 flex items-center justify-between">
 									<span class="grid size-5 place-items-center rounded-full bg-ink-600 font-mono text-[9px]">{task.who}</span>
-									<span
-										class:list={[
-											'rounded px-1 font-mono text-[9px]',
-											task.p === 'high' ? 'bg-safety-500/20 text-safety-400' : 'bg-blueprint-400/15 text-blueprint-300',
-										]}
-									>
-										{t.priority[task.p]}
-									</span>
 								</div>
 							</li>
 						))}
