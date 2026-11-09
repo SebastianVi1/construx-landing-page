@@ -9,7 +9,7 @@ RUN bun install --frozen-lockfile
 # Dev stage: Astro dev server with hot reload; compose bind-mounts the source
 FROM deps AS dev
 EXPOSE 4321
-CMD ["bunx", "astro", "dev", "--host", "0.0.0.0"]
+CMD ["bunx", "astro", "dev", "--host", "0.0.0.0", "--force"]
 
 # Build stage: render the static site
 FROM deps AS build
