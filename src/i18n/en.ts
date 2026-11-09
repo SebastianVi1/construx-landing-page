@@ -1,8 +1,10 @@
 export const en = {
 	meta: {
-		title: 'Construx | Construction project management in one platform',
+		title: 'Construction Management Software for Contractors | Construx',
 		description:
-			'Construx helps construction companies manage projects, coordinate their workforce, track activities, and organize operations across every site.',
+			'Construction management software for contractors and civil engineering firms: organize sites into phases, assign crews, share plans and track budgets.',
+		ogImageAlt: 'Construx construction project management workspace',
+		appDescription: 'Construction management software for contractors and civil engineering firms: sites, tasks, plans, schedules, material prices and budgets.',
 		ogLocale: 'en_US',
 	},
 	skip: 'Skip to content',
@@ -24,12 +26,12 @@ export const en = {
 		language: 'Language',
 	},
 	hero: {
-		eyebrow: 'Construction management platform',
+		eyebrow: 'Software for contractors and civil engineering',
 		line1: 'Take Control of',
 		line2: 'Every Construction',
 		line3: 'Project.',
 		text: 'Organize sites into phases, assign tasks and teams, upload plans, follow the Gantt schedule, and track material prices and expenses in one workspace.',
-		note: 'An operations workspace for construction companies and their project teams.',
+		note: 'For contractors, builders and civil engineering firms, from the office to the job site.',
 	},
 	problem: {
 		eyebrow: 'The problem',
@@ -184,7 +186,11 @@ export const en = {
 		items: [
 			{
 				q: 'Who is Construx for?',
-				a: 'Construction companies and their project teams, in the office and on site. Owners see every site; leads and crews see their tasks and record expenses.',
+				a: 'Contractors, builders and civil engineering firms in Latin America, and their teams in the office and on site. Owners see every site; leads, foremen and crews see their tasks and record expenses.',
+			},
+			{
+				q: 'Does it work for civil engineering and infrastructure?',
+				a: 'Yes. Construx organizes any project into sites, phases and tasks, whether building construction, civil works or infrastructure such as roads, utilities or land development.',
 			},
 			{
 				q: 'How much does it cost?',

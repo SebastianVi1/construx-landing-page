@@ -2,10 +2,12 @@ import type { Dict } from './en';
 
 export const es: Dict = {
 	meta: {
-		title: 'Construx | Gestión de proyectos de construcción en una sola plataforma',
+		title: 'Software para constructoras y control de obra | Construx',
 		description:
-			'Construx ayuda a las empresas constructoras a gestionar proyectos, coordinar a su personal, dar seguimiento a las actividades y organizar la operación de cada obra.',
-		ogLocale: 'es_ES',
+			'Software de control de obra para constructoras, contratistas e ingeniería civil: organiza obras, asigna cuadrillas, comparte planos y controla costos.',
+		ogImageAlt: 'Espacio de trabajo de Construx para la gestión de proyectos de construcción',
+		appDescription: 'Software de gestión de obras para constructoras, contratistas y empresas de ingeniería civil: obras, tareas, planos, cronogramas, precios de materiales y presupuestos.',
+		ogLocale: 'es_LA',
 	},
 	skip: 'Saltar al contenido',
 	nav: {
@@ -26,12 +28,12 @@ export const es: Dict = {
 		language: 'Idioma',
 	},
 	hero: {
-		eyebrow: 'Plataforma de gestión de construcción',
+		eyebrow: 'Software para constructoras e ingeniería civil',
 		line1: 'Toma el control',
 		line2: 'de cada proyecto',
 		line3: 'de construcción.',
 		text: 'Organiza tus obras por fases, asigna tareas y equipos, sube planos, sigue el cronograma de Gantt y controla precios y gastos en un solo espacio de trabajo.',
-		note: 'Un espacio de trabajo de operaciones para empresas constructoras y sus equipos de proyecto.',
+		note: 'Para constructoras, contratistas y empresas de ingeniería civil, desde la oficina hasta la obra.',
 	},
 	problem: {
 		eyebrow: 'El problema',
@@ -105,7 +107,7 @@ export const es: Dict = {
 			},
 			finance: {
 				title: 'Presupuesto y gastos',
-				points: ['Presupuestos de obra y gastos registrados', 'Seguimiento de ahorro vs. sobrecoste', 'Gastos asociados a tareas'],
+				points: ['Presupuestos de obra y gastos registrados', 'Seguimiento de ahorro vs. sobrecosto', 'Gastos asociados a tareas'],
 			},
 		},
 	},
@@ -181,8 +183,8 @@ export const es: Dict = {
 			},
 			{
 				title: 'Presupuesto y gastos',
-				description: 'Presupuestos de obra frente a los gastos registrados, con ahorro y sobrecoste.',
-				points: ['Registra gastos por obra y tarea', 'Compara presupuesto vs. gasto', 'Ve el ahorro o sobrecoste'],
+				description: 'Presupuestos de obra frente a los gastos registrados, con ahorro y sobrecosto.',
+				points: ['Registra gastos por obra y tarea', 'Compara presupuesto vs. gasto', 'Ve el ahorro o sobrecosto'],
 			},
 		],
 	},
@@ -193,7 +195,11 @@ export const es: Dict = {
 		items: [
 			{
 				q: '¿Para quién es Construx?',
-				a: 'Para empresas constructoras y sus equipos de proyecto, en oficina y en obra. Los dueños ven todas las obras; los líderes y la cuadrilla ven sus tareas y registran gastos.',
+				a: 'Para constructoras, contratistas y empresas de ingeniería civil en Latinoamérica, y para sus equipos en oficina y en obra. Los dueños ven todas las obras; los líderes, el maestro de obra y la cuadrilla ven sus tareas y registran gastos.',
+			},
+			{
+				q: '¿Sirve para obra civil e infraestructura?',
+				a: 'Sí. Construx organiza cualquier proyecto en obras, fases y tareas, ya sea edificación, obra civil o infraestructura como caminos, redes o urbanización.',
 			},
 			{
 				q: '¿Cuánto cuesta?',

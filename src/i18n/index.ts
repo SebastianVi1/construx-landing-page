@@ -1,9 +1,9 @@
 import { en, type Dict } from './en';
 import { es } from './es';
 
-export const locales = ['en', 'es'] as const;
+export const locales = ['es', 'en'] as const;
 export type Locale = (typeof locales)[number];
-export const defaultLocale: Locale = 'en';
+export const defaultLocale: Locale = 'es';
 
 export const localeMeta: Record<Locale, { label: string; name: string; hreflang: string }> = {
 	en: { label: 'EN', name: 'English', hreflang: 'en' },
@@ -20,7 +20,7 @@ export function useTranslations(value: string | undefined): Dict {
 	return dictionaries[getLocale(value)];
 }
 
-/** Home path for a locale: `/` for the default locale, `/es/` for the others. */
+/** Home path for a locale: `/` for the default locale, `/en/` for the others. */
 export function localeHome(locale: Locale): string {
 	return locale === defaultLocale ? '/' : `/${locale}/`;
 }

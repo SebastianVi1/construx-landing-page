@@ -103,7 +103,8 @@ mm.add('(prefers-reduced-motion: no-preference)', () => {
 	const hero = gsap.timeline({ defaults: { ease: 'power3.out' } });
 	hero
 		.from('[data-hero-in]:first-child', { opacity: 0, y: 12, duration: 0.5 })
-		.from('[data-hero-line]', { opacity: 0, y: 48, duration: 0.8, stagger: 0.12 }, '<0.1')
+		// Position only: hiding the headline would delay Largest Contentful Paint.
+		.from('[data-hero-line]', { y: 48, duration: 0.8, stagger: 0.12 }, '<0.1')
 		.from('[data-hero-in]:not(:first-child)', { opacity: 0, y: 20, duration: 0.6, stagger: 0.1 }, '-=0.5')
 		.from('[data-hero-visual]', { opacity: 0, y: 40, duration: 0.9 }, '-=0.8')
 		.from('[data-hero-visual] [data-progress]', { scaleX: 0, duration: 0.9, stagger: 0.12 }, '-=0.4')

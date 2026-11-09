@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { locales, localeMeta, localeHome, getLocale, useTranslations } from '../i18n';
+import { locales, localeMeta, localeHome, defaultLocale, getLocale, useTranslations } from '../i18n';
 
 const locale = getLocale(Astro.currentLocale);
 const t = useTranslations(locale);
@@ -14,6 +14,48 @@ const { title, description, ogLocale } = t.meta;
 
 const canonical = new URL(localeHome(locale), Astro.site);
 const ogUrl = new URL(ogImage, Astro.site);
+const siteUrl = new URL('/', Astro.site).href;
+
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@graph': [
+		{
+			'@type': 'Organization',
+			'@id': `${siteUrl}#organization`,
+			name: 'Construx',
+			url: siteUrl,
+			logo: new URL('/icon-512.png', Astro.site).href,
+		},
+		{
+			'@type': 'WebSite',
+			'@id': `${siteUrl}#website`,
+			name: 'Construx',
+			url: siteUrl,
+			inLanguage: locales.map((l) => localeMeta[l].hreflang),
+			publisher: { '@id': `${siteUrl}#organization` },
+		},
+		{
+			'@type': 'SoftwareApplication',
+			name: 'Construx',
+			url: canonical.href,
+			description: t.meta.appDescription,
+			applicationCategory: 'BusinessApplication',
+			operatingSystem: 'Web',
+			inLanguage: localeMeta[locale].hreflang,
+			publisher: { '@id': `${siteUrl}#organization` },
+		},
+		{
+			'@type': 'FAQPage',
+			url: canonical.href,
+			inLanguage: localeMeta[locale].hreflang,
+			mainEntity: t.faq.items.map((item) => ({
+				'@type': 'Question',
+				name: item.q,
+				acceptedAnswer: { '@type': 'Answer', text: item.a },
+			})),
+		},
+	],
+};
 ---
 
 <!doctype html>
@@ -32,7 +74,7 @@ const ogUrl = new URL(ogImage, Astro.site);
 				<link rel="alternate" hreflang={localeMeta[l].hreflang} href={new URL(localeHome(l), Astro.site)} />
 			))
 		}
-		<link rel="alternate" hreflang="x-default" href={new URL(localeHome('en'), Astro.site)} />
+		<link rel="alternate" hreflang="x-default" href={new URL(localeHome(defaultLocale), Astro.site)} />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
 		<link rel="icon" href="/favicon.ico?v=2" sizes="48x48" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
@@ -47,10 +89,15 @@ const ogUrl = new URL(ogImage, Astro.site);
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={canonical} />
 		<meta property="og:image" content={ogUrl} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content={t.meta.ogImageAlt} />
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={ogUrl} />
+		<meta name="twitter:image:alt" content={t.meta.ogImageAlt} />
+		<script type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
 
 		<slot name="head" />
 	</head>
