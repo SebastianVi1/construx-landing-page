@@ -6,8 +6,11 @@ import { useTranslations } from '../../i18n';
 const t = useTranslations(Astro.currentLocale).contact;
 
 const connected = site.formEndpoint !== '';
+// Realistic limits, the same the dashboard uses for people, emails, companies and long text.
+const limits = { name: 80, email: 254, company: 100, message: 500 };
 const field =
-	'mt-2 w-full rounded-md border border-blueprint-400/30 bg-ink-900 px-4 py-3 text-paper placeholder:text-paper-dim/60 disabled:opacity-60';
+	'mt-2 w-full rounded-md border border-blueprint-400/30 bg-ink-900 px-4 py-3 text-paper placeholder:text-paper-dim/60 transition-colors disabled:opacity-60 group-data-[state=valid]:border-ok/70 group-data-[state=invalid]:border-danger';
+const error = 'mt-1.5 text-sm text-danger';
 ---
 
 <section id="contact" aria-labelledby="contact-title" class="bg-blueprint-grid border-t border-blueprint-400/10 py-24">
@@ -15,32 +18,80 @@ const field =
 		<SectionHeading id="contact-title" eyebrow={t.eyebrow} title={t.title} description={t.description} />
 
 		<form
+			id="contact-form"
 			action={connected ? site.formEndpoint : undefined}
 			method="post"
+			novalidate
 			class="rounded-xl border border-blueprint-400/20 bg-ink-900/80 p-6 sm:p-8"
 			data-reveal
+			data-submitting={t.submitting}
 		>
 			<fieldset disabled={!connected} class="space-y-5">
 				<legend class="sr-only">{t.legend}</legend>
-				<div>
+				<div class="group" data-field>
 					<label for="name" class="text-sm font-medium">{t.name}</label>
-					<input id="name" name="name" type="text" autocomplete="name" required class={field} />
+					<input
+						id="name"
+						name="name"
+						type="text"
+						autocomplete="name"
+						required
+						maxlength={limits.name}
+						aria-describedby="name-error"
+						data-required={t.errors.nameRequired}
+						data-too-long={t.errors.nameMax}
+						class={field}
+					/>
+					<p id="name-error" class={error} hidden></p>
 				</div>
-				<div>
+				<div class="group" data-field>
 					<label for="email" class="text-sm font-medium">{t.email}</label>
-					<input id="email" name="email" type="email" autocomplete="email" required class={field} />
+					<input
+						id="email"
+						name="email"
+						type="email"
+						autocomplete="email"
+						required
+						maxlength={limits.email}
+						aria-describedby="email-error"
+						data-required={t.errors.emailRequired}
+						data-invalid={t.errors.emailInvalid}
+						class={field}
+					/>
+					<p id="email-error" class={error} hidden></p>
 				</div>
-				<div>
+				<div class="group" data-field>
 					<label for="company" class="text-sm font-medium">{t.company}</label>
-					<input id="company" name="company" type="text" autocomplete="organization" class={field} />
+					<input
+						id="company"
+						name="company"
+						type="text"
+						autocomplete="organization"
+						maxlength={limits.company}
+						aria-describedby="company-error"
+						data-too-long={t.errors.companyMax}
+						class={field}
+					/>
+					<p id="company-error" class={error} hidden></p>
 				</div>
-				<div>
+				<div class="group" data-field>
 					<label for="message" class="text-sm font-medium">{t.message}</label>
-					<textarea id="message" name="message" rows="3" class={field}></textarea>
+					<textarea
+						id="message"
+						name="message"
+						rows="3"
+						maxlength={limits.message}
+						aria-describedby="message-error"
+						data-too-long={t.errors.messageMax}
+						class={field}></textarea>
+					<div class="mt-1.5 flex justify-between gap-3">
+						<p id="message-error" class="text-sm text-danger" hidden></p>
+						<span class="ml-auto font-mono text-xs text-paper-dim" aria-hidden="true" data-counter>0/{limits.message}</span>
+					</div>
 				</div>
 				<button
 					type="submit"
-					class="w-full rounded-md bg-safety-500 px-6 py-3 text-sm font-semibold text-ink-950 transition-colors hover:bg-safety-400 disabled:cursor-not-allowed disabled:opacity-50"
+					class="inline-flex w-full items-center justify-center gap-2 rounded-md bg-safety-500 px-6 py-3 text-sm font-semibold text-ink-950 transition-colors hover:bg-safety-400 disabled:cursor-not-allowed disabled:opacity-50 aria-busy:before:size-3.5 aria-busy:before:animate-spin aria-busy:before:rounded-full aria-busy:before:border-2 aria-busy:before:border-current aria-busy:before:border-r-transparent aria-busy:before:content-['']"
 				>
 					{t.submit}
 				</button>
@@ -55,3 +106,62 @@ const field =
 		</form>
 	</div>
 </section>
+
+<script>
+	type Control = HTMLInputElement | HTMLTextAreaElement;
+
+	const form = document.getElementById('contact-form') as HTMLFormElement | null;
+
+	/** The message for what is wrong, or '' when the value is fine. */
+	function problem(control: Control): string {
+		const value = control.value.trim();
+		if (control.required && !value) return control.dataset.required ?? '';
+		if (control.maxLength > 0 && value.length > control.maxLength) return control.dataset.tooLong ?? '';
+		if (value && control.type === 'email' && !control.checkValidity()) return control.dataset.invalid ?? '';
+		return '';
+	}
+
+	/** Marks a field right or wrong; an empty optional field stays neutral. */
+	function show(control: Control): boolean {
+		const wrapper = control.closest<HTMLElement>('[data-field]');
+		const message = document.getElementById(`${control.id}-error`);
+		const issue = problem(control);
+		if (wrapper) wrapper.dataset.state = issue ? 'invalid' : control.value.trim() ? 'valid' : '';
+		control.setAttribute('aria-invalid', String(Boolean(issue)));
+		if (message) {
+			message.textContent = issue;
+			message.hidden = !issue;
+		}
+		return !issue;
+	}
+
+	if (form) {
+		const controls = [...form.querySelectorAll<Control>('input, textarea')];
+		const counter = form.querySelector<HTMLElement>('[data-counter]');
+		const message = form.querySelector<HTMLTextAreaElement>('#message');
+
+		for (const control of controls) {
+			control.addEventListener('input', () => {
+				show(control);
+				if (control === message && counter) counter.textContent = `${message.value.length}/${message.maxLength}`;
+			});
+			control.addEventListener('blur', () => show(control));
+		}
+
+		form.addEventListener('submit', (event) => {
+			const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+			// Check every field so all problems show at once, and send only once.
+			const valid = controls.map(show).every(Boolean);
+			if (!valid || button?.disabled) {
+				event.preventDefault();
+				controls.find((control) => control.getAttribute('aria-invalid') === 'true')?.focus();
+				return;
+			}
+			if (button) {
+				button.disabled = true;
+				button.setAttribute('aria-busy', 'true');
+				button.textContent = form.dataset.submitting ?? button.textContent;
+			}
+		});
+	}
+</script>

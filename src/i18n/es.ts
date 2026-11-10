@@ -234,6 +234,15 @@ export const es: Dict = {
 		company: 'Empresa',
 		message: '¿Qué te gustaría gestionar con Construx?',
 		submit: 'Solicitar acceso',
+		submitting: 'Enviando…',
+		errors: {
+			nameRequired: 'Escribe tu nombre.',
+			nameMax: 'Usa como máximo 80 caracteres.',
+			emailRequired: 'Escribe tu correo de trabajo.',
+			emailInvalid: 'Escribe un correo electrónico válido.',
+			companyMax: 'Usa como máximo 100 caracteres.',
+			messageMax: 'Usa como máximo 500 caracteres.',
+		},
 		notConnected: 'Las inscripciones aún no están abiertas. Este formulario no está conectado a ningún servicio.',
 	},
 	footer: {

@@ -224,6 +224,15 @@ export const en = {
 		company: 'Company',
 		message: 'What would you like to manage with Construx?',
 		submit: 'Request access',
+		submitting: 'Sending…',
+		errors: {
+			nameRequired: 'Enter your name.',
+			nameMax: 'Use at most 80 characters.',
+			emailRequired: 'Enter your work email.',
+			emailInvalid: 'Enter a valid email address.',
+			companyMax: 'Use at most 100 characters.',
+			messageMax: 'Use at most 500 characters.',
+		},
 		notConnected: 'Sign-ups are not open yet. This form is not connected to a service.',
 	},
 	footer: {
