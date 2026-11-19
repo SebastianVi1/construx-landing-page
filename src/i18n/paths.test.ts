@@ -3,8 +3,8 @@ import { pageFromPath, pagePath, sectionHref } from './paths';
 
 describe('pagePath', () => {
 	test('maps the guide to a localized route per locale', () => {
-		expect(pagePath('es', 'guide')).toBe('/guia');
-		expect(pagePath('en', 'guide')).toBe('/en/guide');
+		expect(pagePath('es', 'guide')).toBe('/guia/');
+		expect(pagePath('en', 'guide')).toBe('/en/guide/');
 	});
 
 	test('maps home to the locale home', () => {

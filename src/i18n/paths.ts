@@ -2,7 +2,8 @@ import { localeHome, type Locale } from './index';
 
 export type Page = 'home' | 'guide';
 
-const guidePaths: Record<Locale, string> = { es: '/guia', en: '/en/guide' };
+// Trailing slash: the built pages are directories, which is how nginx and the sitemap serve them.
+const guidePaths: Record<Locale, string> = { es: '/guia/', en: '/en/guide/' };
 
 /** Path of a page in a locale. */
 export function pagePath(locale: Locale, page: Page): string {
@@ -11,7 +12,7 @@ export function pagePath(locale: Locale, page: Page): string {
 
 /** Which page a request path belongs to. */
 export function pageFromPath(pathname: string): Page {
-	const path = pathname.replace(/\/+$/, '');
+	const path = pathname.replace(/\/*$/, '/');
 	return Object.values(guidePaths).includes(path) ? 'guide' : 'home';
 }
 
