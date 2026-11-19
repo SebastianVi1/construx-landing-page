@@ -241,6 +241,133 @@ export const en = {
 		nav: 'Footer',
 		rights: 'All rights reserved.',
 	},
+	guide: {
+		meta: {
+			title: 'User guide: how Construx works | Construx',
+			description:
+				'A general walkthrough of Construx: set up your company, create sites, plan phases and tasks, assign people on the floor plan, take attendance and track budgets.',
+		},
+		eyebrow: 'User guide',
+		title: 'How Construx works, from your first site to the site report.',
+		intro: 'A general walkthrough of the workspace. Each chapter explains what a module is for, the steps to use it and who can do it. Start with the one-minute video for the big picture.',
+		video: {
+			label: 'Construx promo video',
+			play: 'Play video',
+			note: '59 seconds · no sound needed',
+			unsupported: 'Your browser cannot play this video.',
+		},
+		tocLabel: 'Chapters',
+		whoLabel: 'Who',
+		tipLabel: 'Tip',
+		chapters: {
+			start: {
+				title: 'Get started',
+				summary: 'Create your account and enter your company workspace.',
+				steps: [
+					'Sign up with your email and open the verification link, or continue with Google.',
+					'Answer two quick questions: what you want to manage and your type of business.',
+					'Create your company. You become its Owner, with access to everything.',
+					'If someone invited you, accept the invitation instead: you join their company with the role they chose.',
+				],
+				who: 'Anyone with an email address.',
+				tip: 'Add your photo and trade to your profile so your team recognizes you on sites and tasks.',
+			},
+			company: {
+				title: 'Your company and team',
+				summary: 'Bring your people in and decide what each one can see and do.',
+				steps: [
+					'Invite members by email and choose their role. You can send them straight to a site.',
+					'Change roles, suspend or remove members whenever you need to.',
+					'Group people into crews, each with a leader, to assign them and take roll faster.',
+					'Register your equipment and machinery so it can be assigned on the plan like people.',
+				],
+				who: 'Owner and Administrator. Built-in roles: Owner, Administrator, Member, Worker, Finance, Resident, Site Manager and Superintendent.',
+				tip: 'Roles decide what each person sees: a Worker only sees the sites they have access to and edits only their own tasks.',
+			},
+			sites: {
+				title: 'Sites',
+				summary: 'Each construction site gets its own team, phases, plans, budget and documents.',
+				steps: [
+					'Create a site with its address, start and end dates and status.',
+					'Set the site budget to compare it later against what you spend.',
+					'Give access to the people who work there.',
+					'Follow all your sites from one list and archive the ones you finish.',
+				],
+				who: 'Owner, Administrator and the Site Manager of each site.',
+			},
+			tasks: {
+				title: 'Phases and tasks',
+				summary: 'Break the work into phases and tasks, assign who does what and follow progress.',
+				steps: [
+					'Split each site into phases, such as foundations, structure and finishes, with dates and a budget.',
+					'Add tasks to each phase and assign a team: one Lead, plus Foreman and Crew.',
+					'Move each task from To do to In progress to Done.',
+					'Everyone sees their own work in My tasks, and the Gantt chart lays phases and tasks on a timeline.',
+				],
+				who: 'Owner, Administrator, Superintendent, Site Manager, Resident and Member plan the work; Workers update their own tasks.',
+				tip: 'Filter tasks by status or by person to see what is stuck.',
+			},
+			plans: {
+				title: 'Plans and zones',
+				summary: "The heart of Construx: put people and work on the site's own floor plans.",
+				steps: [
+					'Upload your plans to the library and sort them into folders.',
+					'Open a floor plan, calibrate its scale and draw zones as rectangles or polygons.',
+					'Drag people, crews or equipment onto a zone to assign them.',
+					'Drop pins to flag issues or notes, with photos and a status.',
+				],
+				who: 'Roles that manage plans edit zones and assignments; everyone with access to the site can view them.',
+			},
+			attendance: {
+				title: 'Attendance',
+				summary: 'Know who is on site today and whether they are where they were planned.',
+				steps: [
+					'Each person checks in on arrival, optionally in a zone of the floor plan.',
+					'Crew leaders take roll for their whole crew in one step.',
+					'Construx compares check-ins with zone assignments: present, absent or unplanned.',
+					'Check-ins feed the daily labor cost and the site report.',
+				],
+				who: 'Everyone on the site checks in; crew leaders and plan managers can check others in.',
+				tip: 'There is no check-out: a new check-in in another zone simply moves the person.',
+			},
+			finance: {
+				title: 'Finance',
+				summary: 'Compare budget against spending per site, phase and task.',
+				steps: [
+					'Set budgets for the site, its phases and its tasks.',
+					'Record expenses by category and date, on the site or on a specific task.',
+					'See savings or overruns as soon as an expense is recorded.',
+					'Follow the whole company in the finance summary, with monthly spending across sites.',
+				],
+				who: 'Owner and Finance manage budgets; Administrator and Superintendent can review them.',
+				tip: 'Only sites with a budget count in the company summary, so set one when you create the site.',
+			},
+			docs: {
+				title: 'Documents and reports',
+				summary: 'Keep every site file in one place and share progress in a PDF.',
+				steps: [
+					'Create folders per site and upload contracts, permits, photos or any other file.',
+					'Find any file with search.',
+					'Generate the site report: a PDF with tasks, attendance, expenses and staff.',
+					'Download it and send it to your client or management.',
+				],
+				who: 'Everyone with access to the site views documents; roles that manage the site upload files and generate reports.',
+			},
+			soon: {
+				title: 'Coming soon',
+				summary: 'What we are building next.',
+				steps: [
+					'Price catalog: import your own material and labor costs to budget faster. It is being rebuilt.',
+					'Shared workbooks: the built-in spreadsheets already work in your browser and will be shared across your company.',
+				],
+				who: 'Early access companies get each one as it lands.',
+			},
+		},
+		cta: {
+			title: 'Want to see it with your own sites?',
+			text: 'Construx is in early access. Tell us about your company and we will get in touch.',
+		},
+	},
 	mockup: {
 		demo: 'Demo data',
 		dashboard: {

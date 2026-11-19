@@ -1,0 +1,84 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from './sections/Header.astro';
+import Footer from './sections/Footer.astro';
+import Button from './ui/Button.astro';
+import GuideVideo from './guide/GuideVideo.astro';
+import GuideChapter from './guide/GuideChapter.astro';
+import { chapters } from '../data/guide';
+import { ctaHref, site } from '../data/site';
+import { getLocale, useTranslations } from '../i18n';
+import { sectionHref } from '../i18n/paths';
+
+const locale = getLocale(Astro.currentLocale);
+const dict = useTranslations(locale);
+const t = dict.guide;
+---
+
+<Layout title={t.meta.title} description={t.meta.description}>
+	{site.analyticsSrc && <script slot="head" defer src={site.analyticsSrc}></script>}
+	<Header />
+	<main id="main">
+		<section id="top" aria-labelledby="guide-title" class="bg-blueprint-grid border-b border-blueprint-400/10 pt-28 pb-20 sm:pt-36">
+			<div class="mx-auto max-w-6xl px-5">
+				<div data-reveal class="max-w-3xl">
+					<p class="font-mono text-xs tracking-[0.2em] text-safety-400 uppercase">{t.eyebrow}</p>
+					<h1 id="guide-title" class="mt-4 text-4xl leading-[1.1] font-bold sm:text-5xl">{t.title}</h1>
+					<p class="mt-5 text-lg text-paper-dim">{t.intro}</p>
+				</div>
+				<GuideVideo />
+			</div>
+		</section>
+
+		<div class="mx-auto max-w-6xl px-5 py-20 lg:grid lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-12">
+			<nav data-guide-toc aria-labelledby="guide-toc" class="mb-14 lg:sticky lg:top-24 lg:mb-0 lg:self-start">
+				<p id="guide-toc" class="font-mono text-xs tracking-[0.2em] text-safety-400 uppercase">{t.tocLabel}</p>
+				<ol class="mt-4 grid gap-x-6 gap-y-2 sm:grid-cols-2 lg:grid-cols-1">
+					{
+						chapters.map((c, i) => (
+							<li>
+								<a
+									href={`#${c.id}`}
+									class="flex gap-3 border-l-2 border-transparent py-1 pl-3 text-sm text-paper-dim transition-colors hover:text-paper aria-[current=true]:border-safety-500 aria-[current=true]:text-paper"
+								>
+									<span class="font-mono text-xs leading-5 text-safety-400">{String(i + 1).padStart(2, '0')}</span>
+									{t.chapters[c.id].title}
+								</a>
+							</li>
+						))
+					}
+				</ol>
+			</nav>
+			<div class="min-w-0 divide-y divide-blueprint-400/10">
+				{chapters.map((c, i) => <GuideChapter id={c.id} index={i} visual={c.visual} />)}
+			</div>
+		</div>
+
+		<section aria-labelledby="guide-cta-title" class="border-t border-blueprint-400/10 bg-ink-900/60 py-20">
+			<div data-reveal class="mx-auto max-w-3xl px-5 text-center">
+				<h2 id="guide-cta-title" class="text-3xl font-bold sm:text-4xl">{t.cta.title}</h2>
+				<p class="mt-4 text-lg text-paper-dim">{t.cta.text}</p>
+				<Button href={sectionHref(locale, 'guide', ctaHref.primary)} class="mt-8">{dict.cta.primary}</Button>
+			</div>
+		</section>
+	</main>
+	<Footer />
+</Layout>
+
+<script>
+	// Highlight the chapter being read in the table of contents.
+	const tocLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('[data-guide-toc] a'));
+	const tocSpy = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((entry) => {
+				if (!entry.isIntersecting) return;
+				tocLinks.forEach((a) => a.setAttribute('aria-current', String(a.hash === `#${entry.target.id}`)));
+			});
+		},
+		{ rootMargin: '-30% 0px -60% 0px' },
+	);
+	tocLinks.forEach((a) => {
+		const chapter = document.getElementById(a.hash.slice(1));
+		if (chapter) tocSpy.observe(chapter);
+	});
+</script>

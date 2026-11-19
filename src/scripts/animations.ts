@@ -100,19 +100,21 @@ mm.add('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-prefe
 });
 
 mm.add('(prefers-reduced-motion: no-preference)', () => {
-	// Hero: headline lines rise in, then supporting content and the dashboard.
-	const hero = gsap.timeline({ defaults: { ease: 'power3.out' } });
-	hero
-		.from('[data-hero-in]:first-child', { opacity: 0, y: 12, duration: 0.5 })
-		// Position only: hiding the headline would delay Largest Contentful Paint.
-		.from('[data-hero-line]', { y: 48, duration: 0.8, stagger: 0.12 }, '<0.1')
-		.from('[data-hero-in]:not(:first-child)', { opacity: 0, y: 20, duration: 0.6, stagger: 0.1 }, '-=0.5')
-		.from('[data-hero-visual]', { opacity: 0, y: 40, duration: 0.9 }, '-=0.8')
-		.from('[data-hero-visual] [data-progress]', { scaleX: 0, duration: 0.9, stagger: 0.12 }, '-=0.4')
-		// Signature moment: the drawing is dimensioned. Lines draw, ticks snap in, measurements count up.
-		.from('.dim .dim-line', { scale: 0, duration: 1.1, ease: 'power2.inOut', stagger: 0.15 }, '-=0.9')
-		.from('.dim .dim-tick', { scale: 0, duration: 0.3, ease: 'back.out(3)', stagger: 0.08 }, '-=0.9')
-		.from('.dim .dim-label', { opacity: 0, duration: 0.4 }, '-=0.5');
+	// Hero: headline lines rise in, then supporting content and the dashboard. Home page only.
+	if (document.querySelector('[data-hero-visual]')) {
+		const hero = gsap.timeline({ defaults: { ease: 'power3.out' } });
+		hero
+			.from('[data-hero-in]:first-child', { opacity: 0, y: 12, duration: 0.5 })
+			// Position only: hiding the headline would delay Largest Contentful Paint.
+			.from('[data-hero-line]', { y: 48, duration: 0.8, stagger: 0.12 }, '<0.1')
+			.from('[data-hero-in]:not(:first-child)', { opacity: 0, y: 20, duration: 0.6, stagger: 0.1 }, '-=0.5')
+			.from('[data-hero-visual]', { opacity: 0, y: 40, duration: 0.9 }, '-=0.8')
+			.from('[data-hero-visual] [data-progress]', { scaleX: 0, duration: 0.9, stagger: 0.12 }, '-=0.4')
+			// Signature moment: the drawing is dimensioned. Lines draw, ticks snap in, measurements count up.
+			.from('.dim .dim-line', { scale: 0, duration: 1.1, ease: 'power2.inOut', stagger: 0.15 }, '-=0.9')
+			.from('.dim .dim-tick', { scale: 0, duration: 0.3, ease: 'back.out(3)', stagger: 0.08 }, '-=0.9')
+			.from('.dim .dim-label', { opacity: 0, duration: 0.4 }, '-=0.5');
+	}
 
 	gsap.utils.toArray<HTMLElement>('[data-dim]').forEach((el) => {
 		const target = Number(el.dataset.dim);

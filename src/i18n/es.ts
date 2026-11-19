@@ -251,6 +251,133 @@ export const es: Dict = {
 		nav: 'Pie de página',
 		rights: 'Todos los derechos reservados.',
 	},
+	guide: {
+		meta: {
+			title: 'Guía de uso: cómo funciona Construx | Construx',
+			description:
+				'Un recorrido general por Construx: configura tu empresa, crea obras, planea fases y tareas, asigna personal sobre el plano, toma asistencia y controla presupuestos.',
+		},
+		eyebrow: 'Guía de uso',
+		title: 'Cómo funciona Construx, de tu primera obra al reporte de obra.',
+		intro: 'Un recorrido general por el espacio de trabajo. Cada capítulo explica para qué sirve un módulo, los pasos para usarlo y quién puede hacerlo. Empieza por el video de un minuto para tener el panorama completo.',
+		video: {
+			label: 'Video promocional de Construx',
+			play: 'Reproducir video',
+			note: '59 segundos · no necesita sonido',
+			unsupported: 'Tu navegador no puede reproducir este video.',
+		},
+		tocLabel: 'Capítulos',
+		whoLabel: 'Quién',
+		tipLabel: 'Consejo',
+		chapters: {
+			start: {
+				title: 'Primeros pasos',
+				summary: 'Crea tu cuenta y entra al espacio de trabajo de tu empresa.',
+				steps: [
+					'Regístrate con tu correo y abre el enlace de verificación, o continúa con Google.',
+					'Responde dos preguntas rápidas: qué quieres gestionar y tu tipo de negocio.',
+					'Crea tu empresa. Quedas como Propietario, con acceso a todo.',
+					'Si alguien te invitó, acepta la invitación: entras a su empresa con el rol que eligió.',
+				],
+				who: 'Cualquier persona con un correo electrónico.',
+				tip: 'Agrega tu foto y tu oficio al perfil para que tu equipo te reconozca en obras y tareas.',
+			},
+			company: {
+				title: 'Tu empresa y tu equipo',
+				summary: 'Suma a tu gente y decide qué puede ver y hacer cada quien.',
+				steps: [
+					'Invita miembros por correo y elige su rol. Puedes enviarlos directo a una obra.',
+					'Cambia roles, suspende o elimina miembros cuando lo necesites.',
+					'Agrupa a las personas en cuadrillas, cada una con un líder, para asignarlas y pasar lista más rápido.',
+					'Registra tu equipo y maquinaria para asignarlos sobre el plano igual que a las personas.',
+				],
+				who: 'Propietario y Administrador. Roles incluidos: Propietario, Administrador, Miembro, Trabajador, Finanzas, Residente, Jefe de Obra y Superintendente.',
+				tip: 'El rol define qué ve cada persona: un Trabajador solo ve las obras a las que tiene acceso y edita solo sus propias tareas.',
+			},
+			sites: {
+				title: 'Obras',
+				summary: 'Cada obra tiene su propio equipo, fases, planos, presupuesto y documentos.',
+				steps: [
+					'Crea una obra con su dirección, fechas de inicio y fin y estado.',
+					'Define el presupuesto de la obra para compararlo después con lo que gastas.',
+					'Da acceso a las personas que trabajan en ella.',
+					'Sigue todas tus obras desde una sola lista y archiva las que terminas.',
+				],
+				who: 'Propietario, Administrador y el Jefe de Obra de cada obra.',
+			},
+			tasks: {
+				title: 'Fases y tareas',
+				summary: 'Divide el trabajo en fases y tareas, asigna quién hace qué y sigue el avance.',
+				steps: [
+					'Divide cada obra en fases, como cimentación, estructura y acabados, con fechas y presupuesto.',
+					'Agrega tareas a cada fase y asigna un equipo: un Líder, más Maestro de obra y Cuadrilla.',
+					'Mueve cada tarea de Por hacer a En curso y a Hecho.',
+					'Cada persona ve su trabajo en Mis tareas, y el diagrama de Gantt ordena fases y tareas en el tiempo.',
+				],
+				who: 'Propietario, Administrador, Superintendente, Jefe de Obra, Residente y Miembro planean el trabajo; los Trabajadores actualizan sus propias tareas.',
+				tip: 'Filtra las tareas por estado o por persona para ver qué está detenido.',
+			},
+			plans: {
+				title: 'Planos y zonas',
+				summary: 'El corazón de Construx: ubica a la gente y el trabajo sobre los planos de la obra.',
+				steps: [
+					'Sube tus planos a la biblioteca y ordénalos en carpetas.',
+					'Abre un plano, calibra su escala y dibuja zonas como rectángulos o polígonos.',
+					'Arrastra personas, cuadrillas o equipo sobre una zona para asignarlos.',
+					'Coloca pines para marcar incidencias o notas, con fotos y estado.',
+				],
+				who: 'Los roles que gestionan planos editan zonas y asignaciones; todos los que tienen acceso a la obra pueden verlas.',
+			},
+			attendance: {
+				title: 'Asistencia',
+				summary: 'Sabe quién está hoy en la obra y si está donde se planeó.',
+				steps: [
+					'Cada persona registra su llegada, opcionalmente en una zona del plano.',
+					'Los líderes de cuadrilla pasan lista a toda su cuadrilla en un solo paso.',
+					'Construx compara las llegadas con las asignaciones por zona: presente, ausente o no planeado.',
+					'Las llegadas alimentan el costo diario de mano de obra y el reporte de obra.',
+				],
+				who: 'Todos en la obra registran su llegada; los líderes de cuadrilla y quienes gestionan planos pueden registrar a otros.',
+				tip: 'No hay registro de salida: una nueva llegada en otra zona simplemente mueve a la persona.',
+			},
+			finance: {
+				title: 'Finanzas',
+				summary: 'Compara presupuesto contra gasto por obra, fase y tarea.',
+				steps: [
+					'Define presupuestos para la obra, sus fases y sus tareas.',
+					'Registra gastos por categoría y fecha, en la obra o en una tarea concreta.',
+					'Ve el ahorro o el sobrecosto en cuanto se registra un gasto.',
+					'Sigue a toda la empresa en el resumen financiero, con el gasto mensual de todas las obras.',
+				],
+				who: 'Propietario y Finanzas gestionan presupuestos; Administrador y Superintendente pueden consultarlos.',
+				tip: 'Solo las obras con presupuesto cuentan en el resumen de la empresa: defínelo al crear la obra.',
+			},
+			docs: {
+				title: 'Documentos y reportes',
+				summary: 'Guarda cada archivo de la obra en un solo lugar y comparte el avance en PDF.',
+				steps: [
+					'Crea carpetas por obra y sube contratos, permisos, fotos o cualquier otro archivo.',
+					'Encuentra cualquier archivo con el buscador.',
+					'Genera el reporte de obra: un PDF con tareas, asistencia, gastos y personal.',
+					'Descárgalo y envíalo a tu cliente o a la dirección.',
+				],
+				who: 'Todos los que tienen acceso a la obra ven los documentos; los roles que gestionan la obra suben archivos y generan reportes.',
+			},
+			soon: {
+				title: 'Próximamente',
+				summary: 'Lo que estamos construyendo ahora.',
+				steps: [
+					'Catálogo de precios: importa tus propios costos de materiales y mano de obra para presupuestar más rápido. Está en reconstrucción.',
+					'Libros compartidos: las hojas de cálculo integradas ya funcionan en tu navegador y se compartirán con toda tu empresa.',
+				],
+				who: 'Las empresas en acceso anticipado reciben cada función en cuanto está lista.',
+			},
+		},
+		cta: {
+			title: '¿Quieres verlo con tus propias obras?',
+			text: 'Construx está en acceso anticipado. Cuéntanos sobre tu empresa y nos pondremos en contacto.',
+		},
+	},
 	mockup: {
 		demo: 'Datos demo',
 		dashboard: {
