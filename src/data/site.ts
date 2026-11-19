@@ -24,14 +24,16 @@ export const ctaHref = { primary: '#contact', secondary: '#features' };
 
 type NavKey = (typeof navItems)[number]['key'] | 'guide';
 
-/** Header and footer links for the current page; the guide link sits after "How it works". */
+/**
+ * Header and footer links for the current page. The guide link goes last so the
+ * scroll-spy highlight moves through the section links without skipping over it.
+ */
 export function navLinks(locale: Locale, page: Page): { key: NavKey; href: string; current: boolean }[] {
 	const links: { key: NavKey; href: string; current: boolean }[] = navItems.map((item) => ({
 		key: item.key,
 		href: sectionHref(locale, page, item.href),
 		current: false,
 	}));
-	const at = links.findIndex((l) => l.key === 'about') + 1;
-	links.splice(at, 0, { key: 'guide', href: pagePath(locale, 'guide'), current: page === 'guide' });
+	links.push({ key: 'guide', href: pagePath(locale, 'guide'), current: page === 'guide' });
 	return links;
 }
