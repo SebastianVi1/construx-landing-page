@@ -292,7 +292,7 @@ export const es: Dict = {
 					'Registra tu equipo y maquinaria para asignarlos sobre el plano igual que a las personas.',
 				],
 				who: 'Propietario y Administrador. Roles incluidos: Propietario, Administrador, Miembro, Trabajador, Finanzas, Residente, Jefe de Obra y Superintendente.',
-				tip: 'El rol define qué ve cada persona: un Trabajador solo ve las obras a las que tiene acceso y edita solo sus propias tareas.',
+				tip: 'El rol define qué ve cada persona: un Trabajador solo ve las obras a las que tiene acceso y solo actualiza el estado de sus propias tareas.',
 			},
 			sites: {
 				title: 'Obras',
@@ -303,13 +303,13 @@ export const es: Dict = {
 					'Da acceso a las personas que trabajan en ella.',
 					'Sigue todas tus obras desde una sola lista y archiva las que terminas.',
 				],
-				who: 'Propietario, Administrador y el Jefe de Obra de cada obra.',
+				who: 'Propietario y Administrador crean obras; el Jefe de Obra edita su obra y su personal; Propietario y Finanzas definen el presupuesto.',
 			},
 			tasks: {
 				title: 'Fases y tareas',
 				summary: 'Divide el trabajo en fases y tareas, asigna quién hace qué y sigue el avance.',
 				steps: [
-					'Divide cada obra en fases, como cimentación, estructura y acabados, con fechas y presupuesto.',
+					'Divide cada obra en fases, como cimentación, estructura y acabados, con sus fechas.',
 					'Agrega tareas a cada fase y asigna un equipo: un Líder, más Maestro de obra y Cuadrilla.',
 					'Mueve cada tarea de Por hacer a En curso y a Hecho.',
 					'Cada persona ve su trabajo en Mis tareas, y el diagrama de Gantt ordena fases y tareas en el tiempo.',
@@ -326,7 +326,7 @@ export const es: Dict = {
 					'Arrastra personas, cuadrillas o equipo sobre una zona para asignarlos.',
 					'Coloca pines para marcar incidencias o notas, con fotos y estado.',
 				],
-				who: 'Los roles que gestionan planos editan zonas y asignaciones; todos los que tienen acceso a la obra pueden verlas.',
+				who: 'Los roles que gestionan planos editan zonas y asignaciones; los demás roles con acceso a los planos de la obra pueden verlas.',
 			},
 			attendance: {
 				title: 'Asistencia',
@@ -350,7 +350,7 @@ export const es: Dict = {
 					'Sigue a toda la empresa en el resumen financiero, con el gasto mensual de todas las obras.',
 				],
 				who: 'Propietario y Finanzas gestionan presupuestos; Administrador y Superintendente pueden consultarlos.',
-				tip: 'Solo las obras con presupuesto cuentan en el resumen de la empresa: defínelo al crear la obra.',
+				tip: 'Solo las obras con presupuesto cuentan en el resumen de la empresa: define uno para cada obra.',
 			},
 			docs: {
 				title: 'Documentos y reportes',

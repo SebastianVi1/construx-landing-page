@@ -282,7 +282,7 @@ export const en = {
 					'Register your equipment and machinery so it can be assigned on the plan like people.',
 				],
 				who: 'Owner and Administrator. Built-in roles: Owner, Administrator, Member, Worker, Finance, Resident, Site Manager and Superintendent.',
-				tip: 'Roles decide what each person sees: a Worker only sees the sites they have access to and edits only their own tasks.',
+				tip: 'Roles decide what each person sees: a Worker only sees the sites they have access to and only updates the status of their own tasks.',
 			},
 			sites: {
 				title: 'Sites',
@@ -293,13 +293,13 @@ export const en = {
 					'Give access to the people who work there.',
 					'Follow all your sites from one list and archive the ones you finish.',
 				],
-				who: 'Owner, Administrator and the Site Manager of each site.',
+				who: 'Owner and Administrator create sites; the Site Manager edits their own site and its staff; Owner and Finance set the budget.',
 			},
 			tasks: {
 				title: 'Phases and tasks',
 				summary: 'Break the work into phases and tasks, assign who does what and follow progress.',
 				steps: [
-					'Split each site into phases, such as foundations, structure and finishes, with dates and a budget.',
+					'Split each site into phases, such as foundations, structure and finishes, with their dates.',
 					'Add tasks to each phase and assign a team: one Lead, plus Foreman and Crew.',
 					'Move each task from To do to In progress to Done.',
 					'Everyone sees their own work in My tasks, and the Gantt chart lays phases and tasks on a timeline.',
@@ -316,7 +316,7 @@ export const en = {
 					'Drag people, crews or equipment onto a zone to assign them.',
 					'Drop pins to flag issues or notes, with photos and a status.',
 				],
-				who: 'Roles that manage plans edit zones and assignments; everyone with access to the site can view them.',
+				who: 'Roles that manage plans edit zones and assignments; other roles with access to the site\'s plans can view them.',
 			},
 			attendance: {
 				title: 'Attendance',
@@ -340,7 +340,7 @@ export const en = {
 					'Follow the whole company in the finance summary, with monthly spending across sites.',
 				],
 				who: 'Owner and Finance manage budgets; Administrator and Superintendent can review them.',
-				tip: 'Only sites with a budget count in the company summary, so set one when you create the site.',
+				tip: 'Only sites with a budget count in the company summary, so set one for each site.',
 			},
 			docs: {
 				title: 'Documents and reports',

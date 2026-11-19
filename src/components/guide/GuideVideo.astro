@@ -13,7 +13,7 @@ const { src, poster } = guideVideo(locale);
 			<source src={src} type="video/mp4" />
 			{t.unsupported}
 		</video>
-		<button type="button" data-guide-play aria-label={t.play} class="group absolute inset-0 grid cursor-pointer place-items-center">
+		<button type="button" data-guide-play hidden aria-label={t.play} class="group absolute inset-0 grid cursor-pointer place-items-center">
 			<span class="grid size-16 place-items-center rounded-full bg-safety-500 text-ink-950 shadow-xl shadow-black/40 transition-transform group-hover:scale-105 sm:size-20">
 				<svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
 			</span>
@@ -27,9 +27,12 @@ const { src, poster } = guideVideo(locale);
 	document.querySelectorAll<HTMLButtonElement>('[data-guide-play]').forEach((button) => {
 		const video = button.parentElement?.querySelector('video');
 		if (!video) return;
+		// Starts hidden so the native controls work without JS; shown only once this script runs.
+		button.hidden = false;
 		button.addEventListener('click', () => {
 			button.hidden = true;
-			video.play();
+			// A missing or blocked file leaves the native controls and their error state in view.
+			video.play().catch(() => {});
 		});
 		video.addEventListener('play', () => (button.hidden = true));
 	});
