@@ -1,9 +1,12 @@
 ---
 import Logo from '../ui/Logo.astro';
-import { navItems, site } from '../../data/site';
-import { useTranslations } from '../../i18n';
+import { navLinks, site } from '../../data/site';
+import { getLocale, useTranslations } from '../../i18n';
+import { pageFromPath } from '../../i18n/paths';
 
-const t = useTranslations(Astro.currentLocale);
+const locale = getLocale(Astro.currentLocale);
+const t = useTranslations(locale);
+const links = navLinks(locale, pageFromPath(Astro.url.pathname));
 ---
 
 <footer class="border-t border-blueprint-400/10 bg-ink-950">
@@ -15,9 +18,9 @@ const t = useTranslations(Astro.currentLocale);
 		<nav aria-label={t.footer.nav}>
 			<ul class="flex flex-wrap gap-x-8 gap-y-3">
 				{
-					navItems.map((item) => (
+					links.map((item) => (
 						<li>
-							<a href={item.href} class="text-sm text-paper-dim hover:text-paper">
+							<a href={item.href} aria-current={item.current ? 'page' : undefined} class="text-sm text-paper-dim hover:text-paper">
 								{t.nav[item.key]}
 							</a>
 						</li>

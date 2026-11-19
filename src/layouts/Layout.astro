@@ -1,18 +1,24 @@
 ---
 import '../styles/global.css';
 import { locales, localeMeta, localeHome, defaultLocale, getLocale, useTranslations } from '../i18n';
+import { pageFromPath, pagePath } from '../i18n/paths';
 
 const locale = getLocale(Astro.currentLocale);
 const t = useTranslations(locale);
 
+const page = pageFromPath(Astro.url.pathname);
+
 interface Props {
 	ogImage?: string;
+	title?: string;
+	description?: string;
 }
 
-const { ogImage = '/og-image.png' } = Astro.props;
-const { title, description, ogLocale } = t.meta;
+const { ogImage = '/og-image.png', title = t.meta.title, description = t.meta.description } = Astro.props;
+const { ogLocale } = t.meta;
 
-const canonical = new URL(localeHome(locale), Astro.site);
+const canonical = new URL(pagePath(locale, page), Astro.site);
+const home = new URL(localeHome(locale), Astro.site);
 const ogUrl = new URL(ogImage, Astro.site);
 const siteUrl = new URL('/', Astro.site).href;
 
@@ -37,23 +43,27 @@ const structuredData = {
 		{
 			'@type': 'SoftwareApplication',
 			name: 'Construx',
-			url: canonical.href,
+			url: home.href,
 			description: t.meta.appDescription,
 			applicationCategory: 'BusinessApplication',
 			operatingSystem: 'Web',
 			inLanguage: localeMeta[locale].hreflang,
 			publisher: { '@id': `${siteUrl}#organization` },
 		},
-		{
-			'@type': 'FAQPage',
-			url: canonical.href,
-			inLanguage: localeMeta[locale].hreflang,
-			mainEntity: t.faq.items.map((item) => ({
-				'@type': 'Question',
-				name: item.q,
-				acceptedAnswer: { '@type': 'Answer', text: item.a },
-			})),
-		},
+		...(page === 'home'
+			? [
+					{
+						'@type': 'FAQPage',
+						url: canonical.href,
+						inLanguage: localeMeta[locale].hreflang,
+						mainEntity: t.faq.items.map((item) => ({
+							'@type': 'Question',
+							name: item.q,
+							acceptedAnswer: { '@type': 'Answer', text: item.a },
+						})),
+					},
+				]
+			: []),
 	],
 };
 ---
@@ -71,10 +81,10 @@ const structuredData = {
 		<link rel="canonical" href={canonical} />
 		{
 			locales.map((l) => (
-				<link rel="alternate" hreflang={localeMeta[l].hreflang} href={new URL(localeHome(l), Astro.site)} />
+				<link rel="alternate" hreflang={localeMeta[l].hreflang} href={new URL(pagePath(l, page), Astro.site)} />
 			))
 		}
-		<link rel="alternate" hreflang="x-default" href={new URL(localeHome(defaultLocale), Astro.site)} />
+		<link rel="alternate" hreflang="x-default" href={new URL(pagePath(defaultLocale, page), Astro.site)} />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg?v=2" />
 		<link rel="icon" href="/favicon.ico?v=2" sizes="48x48" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />

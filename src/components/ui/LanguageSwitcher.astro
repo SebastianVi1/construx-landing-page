@@ -1,15 +1,17 @@
 ---
-import { locales, localeMeta, localeHome, getLocale, useTranslations } from '../../i18n';
+import { locales, localeMeta, getLocale, useTranslations } from '../../i18n';
+import { pageFromPath, pagePath } from '../../i18n/paths';
 
 const current = getLocale(Astro.currentLocale);
 const t = useTranslations(current);
+const page = pageFromPath(Astro.url.pathname);
 ---
 
 <nav aria-label={t.header.language} class="flex items-center rounded-md border border-blueprint-400/30 p-0.5 text-xs font-semibold">
 	{
 		locales.map((l) => (
 			<a
-				href={localeHome(l)}
+				href={pagePath(l, page)}
 				lang={localeMeta[l].hreflang}
 				hreflang={localeMeta[l].hreflang}
 				aria-label={localeMeta[l].name}

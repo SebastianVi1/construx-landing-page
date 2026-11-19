@@ -1,0 +1,39 @@
+---
+import { getLocale, useTranslations } from '../../i18n';
+import { guideVideo } from '../../data/guide';
+
+const locale = getLocale(Astro.currentLocale);
+const t = useTranslations(locale).guide.video;
+const { src, poster } = guideVideo(locale);
+---
+
+<figure data-reveal class="mt-12">
+	<div class="relative overflow-hidden rounded-xl border border-blueprint-400/25 bg-ink-900 shadow-2xl shadow-black/40">
+		<video class="block aspect-video w-full bg-ink-950" controls playsinline preload="none" poster={poster} aria-label={t.label}>
+			<source src={src} type="video/mp4" />
+			{t.unsupported}
+		</video>
+		<button type="button" data-guide-play hidden aria-label={t.play} class="group absolute inset-0 grid cursor-pointer place-items-center">
+			<span class="grid size-16 place-items-center rounded-full bg-safety-500 text-ink-950 shadow-xl shadow-black/40 transition-transform group-hover:scale-105 sm:size-20">
+				<svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+			</span>
+		</button>
+	</div>
+	<figcaption class="mt-3 font-mono text-xs text-paper-dim">{t.note}</figcaption>
+</figure>
+
+<script>
+	// The big play button only covers the poster; once playing, the native controls take over.
+	document.querySelectorAll<HTMLButtonElement>('[data-guide-play]').forEach((button) => {
+		const video = button.parentElement?.querySelector('video');
+		if (!video) return;
+		// Starts hidden so the native controls work without JS; shown only once this script runs.
+		button.hidden = false;
+		button.addEventListener('click', () => {
+			button.hidden = true;
+			// A missing or blocked file leaves the native controls and their error state in view.
+			video.play().catch(() => {});
+		});
+		video.addEventListener('play', () => (button.hidden = true));
+	});
+</script>
