@@ -13,6 +13,7 @@ export const en = {
 		features: 'Features',
 		benefits: 'Benefits',
 		about: 'How it works',
+		guide: 'Guide',
 		contact: 'Contact',
 		faq: 'FAQ',
 	},

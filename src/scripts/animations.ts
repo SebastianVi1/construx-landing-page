@@ -19,7 +19,8 @@ const updateScrollState = () => {
 updateScrollState();
 window.addEventListener('scroll', updateScrollState, { passive: true });
 
-const navLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('nav .nav-link'));
+// Only in-page anchors take part; links to other pages are not selectors.
+const navLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('nav .nav-link[href^="#"]'));
 const sections = navLinks
 	.map((a) => document.querySelector<HTMLElement>(a.getAttribute('href') ?? ''))
 	.filter((s): s is HTMLElement => !!s);
