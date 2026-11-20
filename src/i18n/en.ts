@@ -14,6 +14,7 @@ export const en = {
 		benefits: 'Benefits',
 		about: 'How it works',
 		guide: 'Guide',
+		mcp: 'AI assistant',
 		contact: 'Contact',
 		faq: 'FAQ',
 	},
@@ -366,6 +367,119 @@ export const en = {
 		cta: {
 			title: 'Want to see it with your own sites?',
 			text: 'Construx is in early access. Tell us about your company and we will get in touch.',
+		},
+	},
+	mcp: {
+		meta: {
+			title: 'AI assistant integration via MCP (coming soon) | Construx',
+			description:
+				'Coming soon: connect Claude, ChatGPT, Cursor or any MCP client to Construx to look up your sites, tasks and expenses with your own permissions. In design, not available yet.',
+		},
+		eyebrow: 'Coming soon',
+		status: 'In design. Not available yet.',
+		title: 'Ask your AI assistant about your sites.',
+		mcpDefinition:
+			'MCP (Model Context Protocol) is an open standard that lets an AI assistant connect to other apps and work with their data.',
+		intro:
+			'We are designing a Construx MCP server. Once it exists, Claude, ChatGPT, Cursor or any MCP-compatible client will be able to look up your sites, tasks and expenses and help with the daily paperwork, always with your own permissions.',
+		secondaryCta: 'See what it will do',
+		diagram: {
+			label: 'How the connection is planned',
+			assistant: { title: 'Your AI assistant', text: 'Claude, ChatGPT, Cursor or another MCP client' },
+			link: 'MCP',
+			server: { title: 'Construx MCP server', tag: 'Planned' },
+			scope: 'with your permissions',
+			company: { title: 'Your company in Construx', text: 'Sites, phases, tasks, team, expenses and prices' },
+			legend: 'Solid line: exists today. Dashed line: planned, not built yet.',
+		},
+		capabilities: {
+			eyebrow: 'Capabilities',
+			title: 'What your assistant will be able to do',
+			description: 'A first list grouped by what the assistant does with your data. It may change as we design it.',
+			groups: [
+				{
+					title: 'Look up',
+					text: 'Answers from your own data, without opening the app.',
+					items: [
+						'The status of a site: progress by phase, open tasks and budget',
+						'Overdue or pending tasks, by site or by assignee',
+						'Who has access to a site and with which role',
+						'Recorded material prices and their history',
+					],
+				},
+				{
+					title: 'Act',
+					text: 'Day-to-day changes, asked for in plain words.',
+					items: [
+						'Create tasks inside a phase and assign the team',
+						'Move a task to in progress or done',
+						'Record an expense on a site or a task',
+					],
+				},
+				{
+					title: 'Analyse',
+					text: 'Summaries that usually take an afternoon of spreadsheets.',
+					items: [
+						'Site expenses against budget, by phase or category',
+						'A draft of the daily or weekly site report',
+						'Progress compared across all your sites',
+					],
+				},
+			],
+		},
+		examples: {
+			eyebrow: 'Examples',
+			title: 'What it could look like in a conversation',
+			description: 'Illustrative conversations with sample data. Tool names are provisional.',
+			frameTitle: 'Assistant + Construx',
+			you: 'You',
+			tool: 'Construx tool',
+			assistant: 'Assistant',
+			items: [
+				{
+					prompt: 'Which tasks are overdue at Harbor Tower?',
+					calls: ['list_tasks(site: "Harbor Tower", status: "overdue")'],
+					answer: 'Three tasks are overdue. The oldest is "Pour slab, grid C", due Nov 12, led by the Ramirez crew. Want me to list the other two by phase?',
+				},
+				{
+					prompt: 'Create a task to check the level 2 rebar in the Structure phase, assign it to Luis and make it due Friday.',
+					calls: ['find_member(site: "Harbor Tower", name: "Luis")', 'create_task(phase: "Structure", name: "Check level 2 rebar", lead: "Luis Ortega", due: "Fri, Nov 20")'],
+					answer: 'Done. "Check level 2 rebar" is in Structure, To do, led by Luis Ortega and due Friday, Nov 20.',
+				},
+				{
+					prompt: 'How is North Warehouse doing against its budget this month?',
+					calls: ['get_budget(site: "North Warehouse")', 'list_expenses(site: "North Warehouse", month: "2026-11")'],
+					answer: 'You have spent 68% of the site budget. Materials is the largest category this month, and the Foundations phase is 6% over its own budget.',
+				},
+			],
+		},
+		security: {
+			eyebrow: 'Security and control',
+			title: 'Your permissions, nothing more.',
+			description: 'The assistant will not get a back door. It will go through the same rules as you do in the app.',
+			items: [
+				{
+					title: 'It acts as you',
+					text: 'It will connect with your account and only see the companies and sites you already have access to.',
+				},
+				{
+					title: 'Same roles for every change',
+					text: 'Creating or changing anything will require the same role as in the app. If you are a Worker, it will only update your own tasks.',
+				},
+				{
+					title: 'You can disconnect it',
+					text: 'You will be able to revoke the assistant at any time, and its access will end right away.',
+				},
+				{
+					title: 'Every action recorded',
+					text: 'Each change will be audited with your name and a note that it came from the assistant.',
+				},
+			],
+		},
+		cta: {
+			title: 'Not available yet. Want it first?',
+			text: 'The MCP server is in design and has no release date. Early access companies will get it first when it is ready.',
+			secondary: 'Read the user guide',
 		},
 	},
 	mockup: {

@@ -1,0 +1,39 @@
+---
+import MockupFrame from '../mockups/MockupFrame.astro';
+import { useTranslations } from '../../i18n';
+
+interface Props {
+	prompt: string;
+	calls: string[];
+	answer: string;
+}
+const { prompt, calls, answer } = Astro.props;
+const t = useTranslations(Astro.currentLocale).mcp.examples;
+---
+
+<MockupFrame title={t.frameTitle} class="h-full">
+	<div class="space-y-4 text-sm">
+		<div class="ml-6">
+			<p class="text-right font-mono text-[11px] text-paper-dim">{t.you}</p>
+			<p class="mt-1 rounded-lg rounded-tr-sm bg-ink-700 px-3.5 py-2.5 text-paper">{prompt}</p>
+		</div>
+
+		<div class="border-l-2 border-dashed border-safety-400/70 pl-3">
+			<p class="font-mono text-[11px] text-safety-400">{t.tool}</p>
+			<ul class="mt-1.5 space-y-1.5">
+				{
+					calls.map((call) => (
+						<li>
+							<code class="block font-mono text-xs break-words text-blueprint-300">{call}</code>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+
+		<div>
+			<p class="font-mono text-[11px] text-paper-dim">{t.assistant}</p>
+			<p class="mt-1 text-paper">{answer}</p>
+		</div>
+	</div>
+</MockupFrame>

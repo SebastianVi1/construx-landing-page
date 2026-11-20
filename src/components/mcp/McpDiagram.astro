@@ -1,0 +1,45 @@
+---
+import { useTranslations } from '../../i18n';
+
+// Drafting convention: solid outlines exist today, dashed outlines are planned and not built yet.
+const t = useTranslations(Astro.currentLocale).mcp.diagram;
+---
+
+<figure aria-labelledby="mcp-diagram-label" class="rounded-xl border border-blueprint-400/20 bg-ink-950/80 p-5 sm:p-7">
+	<p id="mcp-diagram-label" class="font-mono text-[11px] tracking-wide text-paper-dim">{t.label}</p>
+
+	<div class="mt-5">
+		<div class="rounded-lg border border-blueprint-400/50 bg-ink-900 px-4 py-3.5">
+			<p class="font-display font-semibold">{t.assistant.title}</p>
+			<p class="mt-1 text-sm text-paper-dim">{t.assistant.text}</p>
+		</div>
+
+		<div class="flex items-center gap-3 pl-6">
+			<span class="h-12 border-l-2 border-dashed border-safety-400/80" aria-hidden="true"></span>
+			<span class="font-mono text-xs text-safety-400">{t.link}</span>
+		</div>
+
+		<div class="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 rounded-lg border-2 border-dashed border-safety-400/80 bg-safety-500/5 px-4 py-3.5">
+			<p class="font-display font-semibold">{t.server.title}</p>
+			<p class="rounded border border-safety-400/50 px-1.5 py-0.5 font-mono text-[11px] text-safety-400">{t.server.tag}</p>
+		</div>
+
+		<div class="flex items-center gap-3 pl-6">
+			<span class="h-12 border-l-2 border-dashed border-safety-400/80" aria-hidden="true"></span>
+			<span class="font-mono text-xs text-safety-400">{t.scope}</span>
+		</div>
+
+		<div class="rounded-lg border border-blueprint-400/50 bg-ink-900 px-4 py-3.5">
+			<p class="font-display font-semibold">{t.company.title}</p>
+			<p class="mt-1 text-sm text-paper-dim">{t.company.text}</p>
+		</div>
+	</div>
+
+	<figcaption class="mt-6 flex items-start gap-3 border-t border-blueprint-400/15 pt-4 text-xs text-paper-dim">
+		<span class="mt-1.5 flex shrink-0 flex-col gap-1" aria-hidden="true">
+			<span class="block w-6 border-t border-blueprint-300"></span>
+			<span class="block w-6 border-t-2 border-dashed border-safety-400"></span>
+		</span>
+		{t.legend}
+	</figcaption>
+</figure>

@@ -16,6 +16,7 @@ export const es: Dict = {
 		benefits: 'Beneficios',
 		about: 'Cómo funciona',
 		guide: 'Guía',
+		mcp: 'Asistente IA',
 		contact: 'Contacto',
 		faq: 'FAQ',
 	},
@@ -376,6 +377,119 @@ export const es: Dict = {
 		cta: {
 			title: '¿Quieres verlo con tus propias obras?',
 			text: 'Construx está en acceso anticipado. Cuéntanos sobre tu empresa y nos pondremos en contacto.',
+		},
+	},
+	mcp: {
+		meta: {
+			title: 'Integración con asistentes de IA mediante MCP (próximamente) | Construx',
+			description:
+				'Próximamente: conecta Claude, ChatGPT, Cursor o cualquier cliente MCP a Construx para consultar tus obras, tareas y gastos con tus propios permisos. En diseño, aún no disponible.',
+		},
+		eyebrow: 'Próximamente',
+		status: 'En diseño. Aún no está disponible.',
+		title: 'Pregúntale a tu asistente de IA por tus obras.',
+		mcpDefinition:
+			'MCP (Model Context Protocol) es un estándar abierto que permite a un asistente de IA conectarse a otras aplicaciones y trabajar con sus datos.',
+		intro:
+			'Estamos diseñando un servidor MCP para Construx. Cuando exista, Claude, ChatGPT, Cursor o cualquier cliente compatible con MCP podrá consultar tus obras, tareas y gastos y ayudarte con el papeleo diario, siempre con tus propios permisos.',
+		secondaryCta: 'Ver qué podrá hacer',
+		diagram: {
+			label: 'Cómo está planeada la conexión',
+			assistant: { title: 'Tu asistente de IA', text: 'Claude, ChatGPT, Cursor u otro cliente MCP' },
+			link: 'MCP',
+			server: { title: 'Servidor MCP de Construx', tag: 'Proyectado' },
+			scope: 'con tus permisos',
+			company: { title: 'Tu empresa en Construx', text: 'Obras, fases, tareas, equipo, gastos y precios' },
+			legend: 'Línea continua: existe hoy. Línea discontinua: proyectado, aún no construido.',
+		},
+		capabilities: {
+			eyebrow: 'Capacidades',
+			title: 'Lo que tu asistente podrá hacer',
+			description: 'Una primera lista agrupada por lo que el asistente hace con tus datos. Puede cambiar mientras lo diseñamos.',
+			groups: [
+				{
+					title: 'Consultar',
+					text: 'Respuestas a partir de tus propios datos, sin abrir la app.',
+					items: [
+						'El estado de una obra: avance por fase, tareas abiertas y presupuesto',
+						'Tareas atrasadas o pendientes, por obra o por responsable',
+						'Quién tiene acceso a una obra y con qué rol',
+						'Precios de materiales registrados y su historial',
+					],
+				},
+				{
+					title: 'Actuar',
+					text: 'Cambios del día a día, pedidos con tus propias palabras.',
+					items: [
+						'Crear tareas dentro de una fase y asignar el equipo',
+						'Pasar una tarea a en curso o terminada',
+						'Registrar un gasto en una obra o en una tarea',
+					],
+				},
+				{
+					title: 'Analizar',
+					text: 'Resúmenes que normalmente cuestan una tarde de hojas de cálculo.',
+					items: [
+						'Gastos de la obra contra presupuesto, por fase o categoría',
+						'Un borrador del reporte diario o semanal de obra',
+						'El avance comparado entre todas tus obras',
+					],
+				},
+			],
+		},
+		examples: {
+			eyebrow: 'Ejemplos',
+			title: 'Cómo se vería en una conversación',
+			description: 'Conversaciones ilustrativas con datos de muestra. Los nombres de las herramientas son provisionales.',
+			frameTitle: 'Asistente + Construx',
+			you: 'Tú',
+			tool: 'Herramienta de Construx',
+			assistant: 'Asistente',
+			items: [
+				{
+					prompt: '¿Qué tareas están atrasadas en Torre Bahía?',
+					calls: ['list_tasks(site: "Torre Bahía", status: "overdue")'],
+					answer: 'Hay tres tareas atrasadas. La más antigua es "Colado de losa, eje C", vencida el 12 de noviembre, a cargo de la cuadrilla Ramírez. ¿Te muestro las otras dos por fase?',
+				},
+				{
+					prompt: 'Crea una tarea para revisar el acero del nivel 2 en la fase Estructura, asígnala a Luis y que venza el viernes.',
+					calls: ['find_member(site: "Torre Bahía", name: "Luis")', 'create_task(phase: "Estructura", name: "Revisar acero del nivel 2", lead: "Luis Ortega", due: "vie 20 nov")'],
+					answer: 'Listo. "Revisar acero del nivel 2" quedó en Estructura, Por hacer, a cargo de Luis Ortega y con vencimiento el viernes 20 de noviembre.',
+				},
+				{
+					prompt: '¿Cómo va Bodega Norte contra su presupuesto este mes?',
+					calls: ['get_budget(site: "Bodega Norte")', 'list_expenses(site: "Bodega Norte", month: "2026-11")'],
+					answer: 'Llevas gastado el 68 % del presupuesto de la obra. Materiales es la categoría más alta este mes, y la fase Cimentación va 6 % por encima de su propio presupuesto.',
+				},
+			],
+		},
+		security: {
+			eyebrow: 'Seguridad y control',
+			title: 'Tus permisos, nada más.',
+			description: 'El asistente no tendrá una puerta trasera. Pasará por las mismas reglas que tú en la app.',
+			items: [
+				{
+					title: 'Actúa como tú',
+					text: 'Se conectará con tu cuenta y solo verá las empresas y obras a las que ya tienes acceso.',
+				},
+				{
+					title: 'Los mismos roles para cada cambio',
+					text: 'Crear o cambiar algo exigirá el mismo rol que en la app. Si eres Trabajador, solo actualizará tus propias tareas.',
+				},
+				{
+					title: 'Puedes desconectarlo',
+					text: 'Podrás revocar el acceso del asistente en cualquier momento y terminará de inmediato.',
+				},
+				{
+					title: 'Cada acción queda registrada',
+					text: 'Cada cambio quedará auditado con tu nombre y una nota de que lo hizo el asistente.',
+				},
+			],
+		},
+		cta: {
+			title: 'Aún no está disponible. ¿Lo quieres primero?',
+			text: 'El servidor MCP está en diseño y no tiene fecha de lanzamiento. Las empresas con acceso anticipado lo recibirán primero cuando esté listo.',
+			secondary: 'Leer la guía de uso',
 		},
 	},
 	mockup: {
