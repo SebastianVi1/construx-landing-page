@@ -1,19 +1,25 @@
 import { localeHome, type Locale } from './index';
 
-export type Page = 'home' | 'guide';
+export type Page = 'home' | 'guide' | 'mcp';
 
 // Trailing slash: the built pages are directories, which is how nginx and the sitemap serve them.
-const guidePaths: Record<Locale, string> = { es: '/guia/', en: '/en/guide/' };
+const pagePaths: Record<Exclude<Page, 'home'>, Record<Locale, string>> = {
+	guide: { es: '/guia/', en: '/en/guide/' },
+	mcp: { es: '/mcp/', en: '/en/mcp/' },
+};
 
 /** Path of a page in a locale. */
 export function pagePath(locale: Locale, page: Page): string {
-	return page === 'guide' ? guidePaths[locale] : localeHome(locale);
+	return page === 'home' ? localeHome(locale) : pagePaths[page][locale];
 }
 
 /** Which page a request path belongs to. */
 export function pageFromPath(pathname: string): Page {
 	const path = pathname.replace(/\/*$/, '/');
-	return Object.values(guidePaths).includes(path) ? 'guide' : 'home';
+	const match = (Object.keys(pagePaths) as Exclude<Page, 'home'>[]).find((page) =>
+		Object.values(pagePaths[page]).includes(path),
+	);
+	return match ?? 'home';
 }
 
 /** Link to a home-page section: an in-page anchor on home, the locale home plus the anchor elsewhere. */
