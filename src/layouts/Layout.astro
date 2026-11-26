@@ -22,6 +22,9 @@ const home = new URL(localeHome(locale), Astro.site);
 const ogUrl = new URL(ogImage, Astro.site);
 const siteUrl = new URL('/', Astro.site).href;
 
+// Each page with an FAQ section publishes it as FAQPage structured data.
+const faqItems = page === 'home' ? t.faq.items : page === 'whatsapp' ? t.whatsappPage.faq.items : null;
+
 const structuredData = {
 	'@context': 'https://schema.org',
 	'@graph': [
@@ -50,13 +53,13 @@ const structuredData = {
 			inLanguage: localeMeta[locale].hreflang,
 			publisher: { '@id': `${siteUrl}#organization` },
 		},
-		...(page === 'home'
+		...(faqItems
 			? [
 					{
 						'@type': 'FAQPage',
 						url: canonical.href,
 						inLanguage: localeMeta[locale].hreflang,
-						mainEntity: t.faq.items.map((item) => ({
+						mainEntity: faqItems.map((item) => ({
 							'@type': 'Question',
 							name: item.q,
 							acceptedAnswer: { '@type': 'Answer', text: item.a },
