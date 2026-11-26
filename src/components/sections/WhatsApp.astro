@@ -13,7 +13,7 @@ const t = dict.whatsapp;
 
 <section id="whatsapp" aria-labelledby="whatsapp-title" class="border-t border-blueprint-400/10 bg-ink-900/40 py-24">
 	<div class="mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-2">
-		<div>
+		<div class="min-w-0">
 			<SectionHeading id="whatsapp-title" eyebrow={t.eyebrow} title={t.title} description={t.description} />
 			<ul class="mt-8 grid gap-3">
 				{
@@ -32,7 +32,7 @@ const t = dict.whatsapp;
 				<Button href={pagePath(locale, 'whatsapp')} variant="secondary">{t.more}</Button>
 			</div>
 		</div>
-		<div data-reveal>
+		<div data-reveal class="min-w-0">
 			<WhatsAppMockup />
 		</div>
 	</div>

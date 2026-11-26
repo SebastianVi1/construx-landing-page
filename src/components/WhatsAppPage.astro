@@ -21,7 +21,7 @@ const t = dict.whatsappPage;
 	<main id="main">
 		<section id="top" aria-labelledby="whatsapp-page-title" class="bg-blueprint-grid border-b border-blueprint-400/10 pt-28 pb-20 sm:pt-36">
 			<div class="mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-2">
-				<div data-reveal class="max-w-xl">
+				<div data-reveal class="min-w-0 max-w-xl">
 					<p class="font-mono text-xs tracking-[0.2em] text-safety-400 uppercase">{t.eyebrow}</p>
 					<h1 id="whatsapp-page-title" class="mt-4 text-4xl leading-[1.1] font-bold sm:text-5xl">{t.title}</h1>
 					<p class="mt-5 text-lg text-paper-dim">{t.intro}</p>
@@ -29,7 +29,7 @@ const t = dict.whatsappPage;
 						<Button href={sectionHref(locale, 'whatsapp', ctaHref.primary)}>{dict.cta.primary}</Button>
 					</div>
 				</div>
-				<div data-reveal>
+				<div data-reveal class="min-w-0">
 					<WhatsAppMockup />
 				</div>
 			</div>
@@ -97,7 +97,7 @@ const t = dict.whatsappPage;
 						}
 					</ul>
 				</div>
-				<div data-reveal>
+				<div data-reveal class="min-w-0">
 					<ProgressNoteMockup />
 				</div>
 			</div>
