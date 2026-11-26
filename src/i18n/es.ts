@@ -392,8 +392,118 @@ export const es: Dict = {
 			text: 'Construx está en acceso anticipado. Cuéntanos sobre tu empresa y nos pondremos en contacto.',
 		},
 	},
+	whatsappPage: {
+		meta: {
+			title: 'Avances desde WhatsApp para cuadrillas de obra | Construx',
+			description:
+				'Inicia, termina y registra avances de tareas de obra desde WhatsApp, con fotos. Construx guarda cada actualización confirmada en la obra y la tarea correctas.',
+		},
+		eyebrow: 'WhatsApp',
+		title: 'Reporta el avance desde la obra, sin abrir la app.',
+		intro: 'Tu cuadrilla vincula su WhatsApp una sola vez. Después, inicia o termina una tarea, o envía una nota de avance con fotos, y Construx lo guarda en la obra y la tarea correctas.',
+		steps: {
+			eyebrow: 'Cómo funciona',
+			title: 'Cuatro pasos desde la obra.',
+			items: [
+				{ title: 'Vincula tu número', text: 'Obtén un código de un solo uso en tu perfil de Construx y envíalo desde WhatsApp.' },
+				{ title: 'Elige la obra y la tarea', text: 'Selecciona entre las tareas que tu rol te permite cambiar.' },
+				{ title: 'Escribe y agrega fotos', text: 'Inicia, termina o escribe una nota, con hasta cinco fotos.' },
+				{ title: 'Confirma', text: 'Revisa el resumen y toca Sí. Nada se guarda antes de eso.' },
+			],
+		},
+		actions: {
+			eyebrow: 'Qué puedes hacer',
+			title: 'Tres formas de reportar el avance.',
+			items: [
+				{ title: 'Iniciar una tarea', text: 'Marca la tarea en curso cuando empieza el trabajo.' },
+				{ title: 'Terminar una tarea', text: 'Márcala como hecha al completar el trabajo, con una nota breve si hace falta.' },
+				{ title: 'Agregar una nota de avance', text: 'Describe lo que pasó y adjunta hasta cinco fotos en JPEG o PNG.' },
+			],
+		},
+		panel: {
+			eyebrow: 'En el panel',
+			title: 'Cada actualización llega a su tarea.',
+			text: 'Las notas enviadas desde WhatsApp aparecen en la tarea junto a las escritas en la app, con su origen y la hora en que se guardaron.',
+			points: [
+				'Cada nota tiene fecha y el nombre de quien la envió.',
+				'Las notas quedan en el historial de la tarea y no se editan después.',
+				'Las fotos van adjuntas a la nota, no a un pin del plano.',
+			],
+		},
+		security: {
+			eyebrow: 'Control y seguridad',
+			title: 'Reglas claras, integradas.',
+			items: [
+				'Los códigos de vinculación son de un solo uso y caducan a los 10 minutos.',
+				'Solo el número que vinculas puede enviar actualizaciones a tu nombre.',
+				'Los permisos se revisan otra vez al confirmar. Si la tarea cambió mientras tanto, nada se guarda.',
+				'Después de demasiados códigos incorrectos, el número se bloquea durante una hora.',
+				'Las sesiones se cierran tras 30 minutos sin actividad.',
+				'Desvincula cuando quieras desde tu perfil, o envía BAJA o STOP desde WhatsApp.',
+				'Construx guarda la nota y las fotos confirmadas, no el chat completo.',
+			],
+		},
+		audience: {
+			eyebrow: 'Para quién es',
+			title: 'Todos en la obra, con el rol que tienen.',
+			items: [
+				{ role: 'Trabajadores', text: 'Inician, terminan y anotan las tareas asignadas a su equipo.' },
+				{ role: 'Residentes y jefes de obra', text: 'Registran avances en las tareas de las obras a las que están asignados.' },
+				{ role: 'Propietarios y administradores', text: 'Leen todas las notas de obra en el panel, con el origen de cada una.' },
+			],
+		},
+		faq: {
+			eyebrow: 'FAQ',
+			title: 'Preguntas sobre los avances por WhatsApp',
+			items: [
+				{
+					q: '¿Necesito instalar algo?',
+					a: 'No. Usa el WhatsApp que ya tienes. Vincula tu número una vez desde tu perfil de Construx con un código de un solo uso.',
+				},
+				{
+					q: '¿Puedo mandar por WhatsApp el reporte de obra en PDF?',
+					a: 'Todavía no. WhatsApp es para avances de campo: iniciar, terminar y anotar tareas, con fotos. El reporte de obra en PDF se genera desde el panel.',
+				},
+				{
+					q: '¿Cuántas fotos puedo adjuntar?',
+					a: 'Hasta cinco por nota, en imágenes JPEG o PNG de hasta 5 MB cada una.',
+				},
+				{
+					q: '¿Qué hago si cambio de número?',
+					a: 'Desvincula el número anterior desde tu perfil, o envía BAJA desde ese número. Luego vincula el nuevo con un código nuevo.',
+				},
+				{
+					q: '¿En qué idioma responde el bot?',
+					a: 'En español o inglés, según el idioma de tu perfil. Puedes cambiarlo en cualquier momento.',
+				},
+				{
+					q: '¿Construx guarda mis chats?',
+					a: 'No. Guarda solo la nota y las fotos que confirmas, con un registro de auditoría del cambio. Los mensajes siguen pasando por WhatsApp y por los servidores de Meta.',
+				},
+				{
+					q: '¿Quién puede usarlo?',
+					a: 'Cualquier persona con cuenta en Construx y un número vinculado. Solo ves las obras y tareas que tu rol te permite cambiar.',
+				},
+			],
+		},
+		cta: {
+			title: '¿Listo para reportar desde la obra?',
+			text: 'Construx está en acceso anticipado. Solicita acceso y te mostraremos el flujo de WhatsApp con tus propias obras.',
+		},
+		legal: 'WhatsApp es una marca de Meta. Construx no tiene afiliación con Meta ni cuenta con su respaldo.',
+	},
 	mockup: {
 		demo: 'Datos demo',
+		progressNote: {
+			title: 'Tarea · Vaciar losa, eje C (ejemplo)',
+			history: 'Notas de avance',
+			status: 'En curso',
+			started: 'Iniciada por LM · 07:12',
+			author: 'LM',
+			text: 'Armado revisado en eje C, listo para vaciar.',
+			meta: 'Hoy · 07:40 · 2 fotos',
+			source: 'WhatsApp',
+		},
 		whatsapp: {
 			title: 'WhatsApp · Avance de campo (ejemplo)',
 			pickSite: 'Elige una obra',

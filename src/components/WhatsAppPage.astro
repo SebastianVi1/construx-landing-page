@@ -1,0 +1,171 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from './sections/Header.astro';
+import Footer from './sections/Footer.astro';
+import SectionHeading from './ui/SectionHeading.astro';
+import Button from './ui/Button.astro';
+import WhatsAppMockup from './mockups/WhatsAppMockup.astro';
+import ProgressNoteMockup from './mockups/ProgressNoteMockup.astro';
+import { ctaHref, site } from '../data/site';
+import { getLocale, useTranslations } from '../i18n';
+import { sectionHref } from '../i18n/paths';
+
+const locale = getLocale(Astro.currentLocale);
+const dict = useTranslations(locale);
+const t = dict.whatsappPage;
+---
+
+<Layout title={t.meta.title} description={t.meta.description}>
+	{site.analyticsSrc && <script slot="head" defer src={site.analyticsSrc}></script>}
+	<Header />
+	<main id="main">
+		<section id="top" aria-labelledby="whatsapp-page-title" class="bg-blueprint-grid border-b border-blueprint-400/10 pt-28 pb-20 sm:pt-36">
+			<div class="mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-2">
+				<div data-reveal class="max-w-xl">
+					<p class="font-mono text-xs tracking-[0.2em] text-safety-400 uppercase">{t.eyebrow}</p>
+					<h1 id="whatsapp-page-title" class="mt-4 text-4xl leading-[1.1] font-bold sm:text-5xl">{t.title}</h1>
+					<p class="mt-5 text-lg text-paper-dim">{t.intro}</p>
+					<div class="mt-8 flex flex-wrap gap-3">
+						<Button href={sectionHref(locale, 'whatsapp', ctaHref.primary)}>{dict.cta.primary}</Button>
+					</div>
+				</div>
+				<div data-reveal>
+					<WhatsAppMockup />
+				</div>
+			</div>
+		</section>
+
+		<section id="steps" aria-labelledby="steps-title" class="py-24">
+			<div class="mx-auto max-w-6xl px-5">
+				<SectionHeading id="steps-title" eyebrow={t.steps.eyebrow} title={t.steps.title} />
+				<div class="relative mt-14">
+					<div
+						data-steps-line
+						class="absolute top-5 right-[12%] left-[12%] hidden h-px origin-left bg-safety-500/60 md:block"
+						aria-hidden="true"
+					></div>
+					<ol class="relative grid gap-8 md:grid-cols-4 md:gap-6">
+						{
+							t.steps.items.map((s, i) => (
+								<li data-reveal class="relative flex gap-4 md:flex-col md:gap-0">
+									<span class="relative z-10 grid size-10 shrink-0 place-items-center rounded-full border border-safety-500 bg-ink-950 font-mono text-sm text-safety-400">
+										{i + 1}
+									</span>
+									<div class="md:mt-5">
+										<h3 class="text-lg font-bold">{s.title}</h3>
+										<p class="mt-1 text-sm text-paper-dim">{s.text}</p>
+									</div>
+								</li>
+							))
+						}
+					</ol>
+				</div>
+			</div>
+		</section>
+
+		<section id="actions" aria-labelledby="actions-title" class="border-t border-blueprint-400/10 bg-ink-900/40 py-24">
+			<div class="mx-auto max-w-6xl px-5">
+				<SectionHeading id="actions-title" eyebrow={t.actions.eyebrow} title={t.actions.title} />
+				<div class="mt-12 grid gap-5 md:grid-cols-3">
+					{
+						t.actions.items.map((a, i) => (
+							<article data-reveal class="spotlight flex flex-col rounded-xl border border-blueprint-400/20 bg-ink-950/70 p-6">
+								<span class="font-mono text-xs text-safety-400">{String(i + 1).padStart(2, '0')}</span>
+								<h3 class="mt-3 text-xl font-bold">{a.title}</h3>
+								<p class="mt-2 text-sm text-paper-dim">{a.text}</p>
+							</article>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section id="panel" aria-labelledby="panel-title" class="py-24">
+			<div class="mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-2">
+				<div>
+					<SectionHeading id="panel-title" eyebrow={t.panel.eyebrow} title={t.panel.title} description={t.panel.text} />
+					<ul class="mt-8 grid gap-3">
+						{
+							t.panel.points.map((p) => (
+								<li data-reveal class="flex gap-3 text-sm">
+									<svg viewBox="0 0 20 20" class="mt-0.5 size-5 shrink-0 text-ok" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+										<path d="M4 10.5l4 4 8-9"></path>
+									</svg>
+									{p}
+								</li>
+							))
+						}
+					</ul>
+				</div>
+				<div data-reveal>
+					<ProgressNoteMockup />
+				</div>
+			</div>
+		</section>
+
+		<section id="security" aria-labelledby="security-title" class="border-t border-blueprint-400/10 py-24">
+			<div class="mx-auto grid max-w-6xl gap-12 px-5 lg:grid-cols-[1fr_1.2fr]">
+				<div>
+					<SectionHeading id="security-title" eyebrow={t.security.eyebrow} title={t.security.title} />
+				</div>
+				<ul class="grid gap-3 sm:grid-cols-2">
+					{
+						t.security.items.map((item) => (
+							<li data-reveal class="spotlight flex gap-3 rounded-lg border border-blueprint-400/15 bg-ink-900/60 p-4 text-sm">
+								<svg viewBox="0 0 20 20" class="mt-0.5 size-5 shrink-0 text-ok" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+									<path d="M4 10.5l4 4 8-9"></path>
+								</svg>
+								{item}
+							</li>
+						))
+					}
+				</ul>
+			</div>
+		</section>
+
+		<section id="audience" aria-labelledby="audience-title" class="border-t border-blueprint-400/10 bg-ink-900/40 py-24">
+			<div class="mx-auto max-w-6xl px-5">
+				<SectionHeading id="audience-title" eyebrow={t.audience.eyebrow} title={t.audience.title} />
+				<div class="mt-12 grid gap-5 md:grid-cols-3">
+					{
+						t.audience.items.map((a) => (
+							<article data-reveal class="rounded-xl border border-blueprint-400/20 bg-ink-950/70 p-6">
+								<h3 class="text-lg font-bold">{a.role}</h3>
+								<p class="mt-2 text-sm text-paper-dim">{a.text}</p>
+							</article>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section id="faq" aria-labelledby="faq-title" class="border-t border-blueprint-400/10 py-24">
+			<div class="mx-auto max-w-3xl px-5">
+				<SectionHeading id="faq-title" eyebrow={t.faq.eyebrow} title={t.faq.title} />
+				<div data-reveal class="mt-10 divide-y divide-blueprint-400/10 border-y border-blueprint-400/10">
+					{
+						t.faq.items.map((item) => (
+							<details class="group">
+								<summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-left font-medium marker:hidden">
+									<span>{item.q}</span>
+									<span aria-hidden="true" class="shrink-0 font-mono text-xl leading-none text-safety-400 transition-transform duration-300 group-open:rotate-45">+</span>
+								</summary>
+								<p class="pb-5 text-sm text-paper-dim">{item.a}</p>
+							</details>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section aria-labelledby="whatsapp-cta-title" class="border-t border-blueprint-400/10 bg-ink-900/60 py-20">
+			<div data-reveal class="mx-auto max-w-3xl px-5 text-center">
+				<h2 id="whatsapp-cta-title" class="text-3xl font-bold sm:text-4xl">{t.cta.title}</h2>
+				<p class="mt-4 text-lg text-paper-dim">{t.cta.text}</p>
+				<Button href={sectionHref(locale, 'whatsapp', ctaHref.primary)} class="mt-8">{dict.cta.primary}</Button>
+				<p class="mt-8 text-xs text-paper-dim">{t.legal}</p>
+			</div>
+		</section>
+	</main>
+	<Footer />
+</Layout>
