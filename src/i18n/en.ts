@@ -13,6 +13,7 @@ export const en = {
 		features: 'Features',
 		benefits: 'Benefits',
 		about: 'How it works',
+		whatsapp: 'WhatsApp',
 		guide: 'Guide',
 		mcp: 'AI assistant',
 		contact: 'Contact',
@@ -138,6 +139,19 @@ export const en = {
 			{ value: 3, label: 'Task statuses', detail: 'To do · In progress · Done' },
 			{ value: 2, label: 'Languages', detail: 'English · Spanish' },
 		],
+	},
+	whatsapp: {
+		eyebrow: 'WhatsApp',
+		title: 'Report site progress from WhatsApp.',
+		description:
+			'Your crew already lives on WhatsApp. Start or finish a task, or send a progress note with photos, in under a minute. Construx saves it to the right site and task.',
+		points: [
+			'No app or login: link your number once.',
+			'Progress notes with up to five photos, attached to their task.',
+			'Nothing is saved until you confirm.',
+			'Everyone sees only what their role allows.',
+		],
+		more: 'See how it works',
 	},
 	modules: {
 		eyebrow: 'Modules',
@@ -369,6 +383,106 @@ export const en = {
 			text: 'Construx is in early access. Tell us about your company and we will get in touch.',
 		},
 	},
+	whatsappPage: {
+		meta: {
+			title: 'WhatsApp progress updates for construction crews | Construx',
+			description:
+				'Start, finish and note construction tasks from WhatsApp, with photos. Construx saves every confirmed update to the right site and task.',
+		},
+		eyebrow: 'WhatsApp',
+		title: 'Report progress from the job site, without opening the app.',
+		intro: 'Your crew links their WhatsApp once. After that they start or finish a task, or send a progress note with photos, and Construx saves it to the right site and task.',
+		steps: {
+			eyebrow: 'How it works',
+			title: 'Four steps from the job site.',
+			items: [
+				{ title: 'Link your number', text: 'Get a one-time code in your Construx profile and send it from WhatsApp.' },
+				{ title: 'Pick the site and task', text: 'Choose from the tasks your role lets you change.' },
+				{ title: 'Write and add photos', text: 'Start, finish or write a note, with up to five photos.' },
+				{ title: 'Confirm', text: 'Review the summary and tap Yes. Nothing is saved before that.' },
+			],
+		},
+		actions: {
+			eyebrow: 'What you can do',
+			title: 'Three ways to report progress.',
+			items: [
+				{ title: 'Start a task', text: 'Mark a task in progress when the work begins.' },
+				{ title: 'Finish a task', text: 'Mark it done when the work is complete, with a short note if needed.' },
+				{ title: 'Add a progress note', text: 'Describe what happened and attach up to five JPEG or PNG photos.' },
+			],
+		},
+		panel: {
+			eyebrow: 'In the dashboard',
+			title: 'Every update lands on its task.',
+			text: 'Notes sent from WhatsApp appear on the task next to notes written in the app, with their source and the time they were saved.',
+			points: [
+				'Each note is dated and attributed to the person who sent it.',
+				'Notes stay in the task history and are not edited afterwards.',
+				'Photos are attached to the note, not to a pin on the floor plan.',
+			],
+		},
+		security: {
+			eyebrow: 'Control and security',
+			title: 'Clear rules, built in.',
+			items: [
+				'Link codes are one-time and expire after 10 minutes.',
+				'Only the number you link can send updates on your behalf.',
+				'Permissions are checked again when you confirm. If the task changed in the meantime, nothing is saved.',
+				'After too many wrong codes, the number is blocked for an hour.',
+				'Sessions close after 30 minutes without activity.',
+				'Unlink at any time from your profile, or send BAJA or STOP from WhatsApp.',
+				'Construx keeps the confirmed note and photos, not the raw chat.',
+			],
+		},
+		audience: {
+			eyebrow: 'Who it is for',
+			title: 'Everyone on site, with the role they have.',
+			items: [
+				{ role: 'Workers', text: 'Start, finish and note the tasks assigned to their team.' },
+				{ role: 'Residents and site managers', text: 'Record progress on the tasks of the sites they are assigned to.' },
+				{ role: 'Owners and administrators', text: 'Read every site note in the dashboard, with the source of each one.' },
+			],
+		},
+		faq: {
+			eyebrow: 'FAQ',
+			title: 'Questions about WhatsApp updates',
+			items: [
+				{
+					q: 'Do I need to install anything?',
+					a: 'No. Use the WhatsApp you already have. Link your number once from your Construx profile with a one-time code.',
+				},
+				{
+					q: 'Can I send the site report PDF through WhatsApp?',
+					a: 'Not yet. WhatsApp is for field updates: starting, finishing and noting tasks, with photos. The site report PDF is generated from the dashboard.',
+				},
+				{
+					q: 'How many photos can I attach?',
+					a: 'Up to five per note, as JPEG or PNG images of up to 5 MB each.',
+				},
+				{
+					q: 'What if I change my number?',
+					a: 'Unlink the old number from your profile, or send BAJA from that number. Then link the new number with a new code.',
+				},
+				{
+					q: 'Which language does the bot use?',
+					a: 'Spanish or English, the language set in your profile. You can change it at any time.',
+				},
+				{
+					q: 'Does Construx save my chats?',
+					a: "No. It keeps only the note and photos you confirm, with an audit record of the change. Messages still travel through WhatsApp and Meta's servers.",
+				},
+				{
+					q: 'Who can use it?',
+					a: 'Anyone with a Construx account and a linked number. You only see the sites and tasks your role lets you change.',
+				},
+			],
+		},
+		cta: {
+			title: 'Ready to report from the field?',
+			text: 'Construx is in early access. Request access and we will show you the WhatsApp flow with your own sites.',
+		},
+		legal: 'WhatsApp is a trademark of Meta. Construx has no affiliation with Meta and is not endorsed by it.',
+	},
 	mcp: {
 		meta: {
 			title: 'AI assistant integration via MCP (coming soon) | Construx',
@@ -484,6 +598,33 @@ export const en = {
 	},
 	mockup: {
 		demo: 'Demo data',
+		progressNote: {
+			title: 'Task · Pour slab, grid C (sample)',
+			history: 'Progress notes',
+			status: 'In progress',
+			started: 'Started by LM · 07:12',
+			author: 'LM',
+			text: 'Rebar checked on grid C, ready to pour.',
+			meta: 'Today · 07:40 · 2 photos',
+			source: 'WhatsApp',
+		},
+		whatsapp: {
+			title: 'WhatsApp · Field update (sample)',
+			pickSite: 'Choose a site',
+			pickTask: 'Choose a task',
+			pickAction: 'What do you want to record?',
+			save: 'Save it?',
+			saved: 'Saved to Construx',
+			site: 'Harbor Tower',
+			task: 'Pour slab, grid C',
+			note: 'Rebar checked on grid C, ready to pour.',
+			photos: '2 photos',
+			start: 'Start',
+			finish: 'Finish',
+			noteAction: 'Note',
+			yes: 'Yes',
+			no: 'No',
+		},
 		dashboard: {
 			title: 'Overview · Acme Builders (sample)',
 			stats: ['Active sites', 'Team members', 'Open tasks'],

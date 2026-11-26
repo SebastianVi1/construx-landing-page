@@ -1,0 +1,39 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+import Button from '../ui/Button.astro';
+import WhatsAppMockup from '../mockups/WhatsAppMockup.astro';
+import { ctaHref } from '../../data/site';
+import { getLocale, useTranslations } from '../../i18n';
+import { pagePath } from '../../i18n/paths';
+
+const locale = getLocale(Astro.currentLocale);
+const dict = useTranslations(locale);
+const t = dict.whatsapp;
+---
+
+<section id="whatsapp" aria-labelledby="whatsapp-title" class="border-t border-blueprint-400/10 bg-ink-900/40 py-24">
+	<div class="mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-2">
+		<div class="min-w-0">
+			<SectionHeading id="whatsapp-title" eyebrow={t.eyebrow} title={t.title} description={t.description} />
+			<ul class="mt-8 grid gap-3">
+				{
+					t.points.map((p) => (
+						<li data-reveal class="flex gap-3 text-sm">
+							<svg viewBox="0 0 20 20" class="mt-0.5 size-5 shrink-0 text-ok" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+								<path d="M4 10.5l4 4 8-9"></path>
+							</svg>
+							{p}
+						</li>
+					))
+				}
+			</ul>
+			<div class="mt-8 flex flex-wrap gap-3">
+				<Button href={ctaHref.primary}>{dict.cta.primary}</Button>
+				<Button href={pagePath(locale, 'whatsapp')} variant="secondary">{t.more}</Button>
+			</div>
+		</div>
+		<div data-reveal class="min-w-0">
+			<WhatsAppMockup />
+		</div>
+	</div>
+</section>

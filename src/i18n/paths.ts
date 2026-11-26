@@ -1,10 +1,11 @@
 import { localeHome, type Locale } from './index';
 
-export type Page = 'home' | 'guide' | 'mcp';
+export type Page = 'home' | 'guide' | 'whatsapp' | 'mcp';
 
 // Trailing slash: the built pages are directories, which is how nginx and the sitemap serve them.
 const pagePaths: Record<Exclude<Page, 'home'>, Record<Locale, string>> = {
 	guide: { es: '/guia/', en: '/en/guide/' },
+	whatsapp: { es: '/whatsapp/', en: '/en/whatsapp/' },
 	mcp: { es: '/mcp/', en: '/en/mcp/' },
 };
 
