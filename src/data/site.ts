@@ -22,11 +22,11 @@ export const navItems = [
 
 export const ctaHref = { primary: '#contact', secondary: '#features' };
 
-type NavKey = (typeof navItems)[number]['key'] | 'whatsapp' | 'guide';
+type NavKey = (typeof navItems)[number]['key'] | 'whatsapp' | 'guide' | 'mcp';
 
 /**
- * Header and footer links for the current page. The page links go last so the
- * scroll-spy highlight moves through the section links without skipping over them.
+ * Header and footer links for the current page. The page links (WhatsApp, guide, MCP) go last so
+ * the scroll-spy highlight moves through the section links without skipping over them.
  */
 export function navLinks(locale: Locale, page: Page): { key: NavKey; href: string; current: boolean }[] {
 	const links: { key: NavKey; href: string; current: boolean }[] = navItems.map((item) => ({
@@ -37,6 +37,7 @@ export function navLinks(locale: Locale, page: Page): { key: NavKey; href: strin
 	links.push(
 		{ key: 'whatsapp', href: pagePath(locale, 'whatsapp'), current: page === 'whatsapp' },
 		{ key: 'guide', href: pagePath(locale, 'guide'), current: page === 'guide' },
+		{ key: 'mcp', href: pagePath(locale, 'mcp'), current: page === 'mcp' },
 	);
 	return links;
 }

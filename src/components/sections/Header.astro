@@ -18,10 +18,18 @@ const homeHref = sectionHref(locale, page, '#top');
 	<div class="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5">
 		<a href={homeHref} aria-label={t.header.home} class="shrink-0"><Logo /></a>
 
-		<nav aria-label={t.header.primaryNav} class="hidden items-center gap-6 lg:flex xl:gap-8">
+		<nav aria-label={t.header.primaryNav} class="hidden items-center gap-6 lg:flex xl:gap-7">
 			{
 				links.map((item) => (
-					<a href={item.href} aria-current={item.current ? 'page' : undefined} class="nav-link text-sm whitespace-nowrap text-paper-dim transition-colors hover:text-paper">
+					<a
+						href={item.href}
+						aria-current={item.current ? 'page' : undefined}
+						class:list={[
+							'nav-link text-sm whitespace-nowrap text-paper-dim transition-colors hover:text-paper',
+							// The desktop bar only fits the MCP link from xl up; the footer and mobile menu always list it.
+							item.key === 'mcp' && 'max-xl:hidden',
+						]}
+					>
 						{t.nav[item.key]}
 					</a>
 				))

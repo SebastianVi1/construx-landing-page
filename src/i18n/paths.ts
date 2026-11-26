@@ -1,24 +1,26 @@
 import { localeHome, type Locale } from './index';
 
-export type Page = 'home' | 'guide' | 'whatsapp';
+export type Page = 'home' | 'guide' | 'whatsapp' | 'mcp';
 
 // Trailing slash: the built pages are directories, which is how nginx and the sitemap serve them.
-const guidePaths: Record<Locale, string> = { es: '/guia/', en: '/en/guide/' };
-const whatsappPaths: Record<Locale, string> = { es: '/whatsapp/', en: '/en/whatsapp/' };
+const pagePaths: Record<Exclude<Page, 'home'>, Record<Locale, string>> = {
+	guide: { es: '/guia/', en: '/en/guide/' },
+	whatsapp: { es: '/whatsapp/', en: '/en/whatsapp/' },
+	mcp: { es: '/mcp/', en: '/en/mcp/' },
+};
 
 /** Path of a page in a locale. */
 export function pagePath(locale: Locale, page: Page): string {
-	if (page === 'guide') return guidePaths[locale];
-	if (page === 'whatsapp') return whatsappPaths[locale];
-	return localeHome(locale);
+	return page === 'home' ? localeHome(locale) : pagePaths[page][locale];
 }
 
 /** Which page a request path belongs to. */
 export function pageFromPath(pathname: string): Page {
 	const path = pathname.replace(/\/*$/, '/');
-	if (Object.values(guidePaths).includes(path)) return 'guide';
-	if (Object.values(whatsappPaths).includes(path)) return 'whatsapp';
-	return 'home';
+	const match = (Object.keys(pagePaths) as Exclude<Page, 'home'>[]).find((page) =>
+		Object.values(pagePaths[page]).includes(path),
+	);
+	return match ?? 'home';
 }
 
 /** Link to a home-page section: an in-page anchor on home, the locale home plus the anchor elsewhere. */

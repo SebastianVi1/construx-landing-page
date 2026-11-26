@@ -7,14 +7,19 @@ describe('pagePath', () => {
 		expect(pagePath('en', 'guide')).toBe('/en/guide/');
 	});
 
-	test('maps home to the locale home', () => {
-		expect(pagePath('es', 'home')).toBe('/');
-		expect(pagePath('en', 'home')).toBe('/en/');
+	test('maps the MCP page to a localized route per locale', () => {
+		expect(pagePath('es', 'mcp')).toBe('/mcp/');
+		expect(pagePath('en', 'mcp')).toBe('/en/mcp/');
 	});
 
 	test('maps the WhatsApp page to a localized route per locale', () => {
 		expect(pagePath('es', 'whatsapp')).toBe('/whatsapp/');
 		expect(pagePath('en', 'whatsapp')).toBe('/en/whatsapp/');
+	});
+
+	test('maps home to the locale home', () => {
+		expect(pagePath('es', 'home')).toBe('/');
+		expect(pagePath('en', 'home')).toBe('/en/');
 	});
 });
 
@@ -23,6 +28,13 @@ describe('pageFromPath', () => {
 		expect(pageFromPath('/guia')).toBe('guide');
 		expect(pageFromPath('/guia/')).toBe('guide');
 		expect(pageFromPath('/en/guide/')).toBe('guide');
+	});
+
+	test('recognizes both MCP routes, with or without a trailing slash', () => {
+		expect(pageFromPath('/mcp')).toBe('mcp');
+		expect(pageFromPath('/mcp/')).toBe('mcp');
+		expect(pageFromPath('/en/mcp')).toBe('mcp');
+		expect(pageFromPath('/en/mcp/')).toBe('mcp');
 	});
 
 	test('recognizes both WhatsApp routes, with or without a trailing slash', () => {
@@ -45,5 +57,8 @@ describe('sectionHref', () => {
 	test('points anchors back to the locale home from other pages', () => {
 		expect(sectionHref('es', 'guide', '#features')).toBe('/#features');
 		expect(sectionHref('en', 'guide', '#contact')).toBe('/en/#contact');
+		expect(sectionHref('es', 'mcp', '#contact')).toBe('/#contact');
+		expect(sectionHref('en', 'mcp', '#contact')).toBe('/en/#contact');
+		expect(sectionHref('en', 'whatsapp', '#contact')).toBe('/en/#contact');
 	});
 });

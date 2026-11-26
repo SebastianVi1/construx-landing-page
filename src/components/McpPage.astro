@@ -1,0 +1,123 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from './sections/Header.astro';
+import Footer from './sections/Footer.astro';
+import Button from './ui/Button.astro';
+import SectionHeading from './ui/SectionHeading.astro';
+import McpDiagram from './mcp/McpDiagram.astro';
+import McpExample from './mcp/McpExample.astro';
+import { ctaHref, site } from '../data/site';
+import { getLocale, useTranslations } from '../i18n';
+import { pagePath, sectionHref } from '../i18n/paths';
+
+const locale = getLocale(Astro.currentLocale);
+const dict = useTranslations(locale);
+const t = dict.mcp;
+const requestAccess = sectionHref(locale, 'mcp', ctaHref.primary);
+---
+
+<Layout title={t.meta.title} description={t.meta.description}>
+	{site.analyticsSrc && <script slot="head" defer src={site.analyticsSrc}></script>}
+	<Header />
+	<main id="main">
+		<section id="top" aria-labelledby="mcp-title" class="bg-blueprint-grid border-b border-blueprint-400/10 pt-28 pb-20 sm:pt-36">
+			<div class="mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-16">
+				<div data-reveal class="min-w-0">
+					<p class="font-mono text-xs tracking-[0.2em] text-safety-400 uppercase">{t.eyebrow}</p>
+					<p class="mt-4 inline-flex items-center gap-2.5 rounded-md border border-dashed border-safety-400/70 bg-ink-950/80 px-3 py-1.5 text-sm font-medium text-paper">
+						<span class="size-2 shrink-0 rounded-full bg-safety-400" aria-hidden="true"></span>
+						{t.status}
+					</p>
+					<h1 id="mcp-title" class="mt-5 text-4xl leading-[1.1] font-bold sm:text-5xl">{t.title}</h1>
+					<p class="mt-6 max-w-xl text-lg text-paper">{t.mcpDefinition}</p>
+					<p class="mt-4 max-w-xl text-paper-dim">{t.intro}</p>
+					<div class="mt-8 flex flex-wrap gap-3">
+						<Button href={requestAccess}>{dict.cta.primary}</Button>
+						<Button href="#capabilities" variant="secondary">{t.secondaryCta}</Button>
+					</div>
+				</div>
+				<div data-reveal class="min-w-0">
+					<McpDiagram />
+				</div>
+			</div>
+		</section>
+
+		<section id="capabilities" aria-labelledby="mcp-capabilities-title" class="scroll-mt-20 py-24">
+			<div class="mx-auto max-w-6xl px-5">
+				<SectionHeading
+					id="mcp-capabilities-title"
+					eyebrow={t.capabilities.eyebrow}
+					title={t.capabilities.title}
+					description={t.capabilities.description}
+				/>
+				<div class="mt-12 grid border-t border-blueprint-400/20 md:grid-cols-3">
+					{
+						t.capabilities.groups.map((group, i) => (
+							<div
+								data-reveal
+								class:list={[
+									'min-w-0 py-8 md:px-8 md:first:pl-0 md:last:pr-0',
+									i > 0 && 'border-t border-blueprint-400/20 md:border-t-0 md:border-l',
+								]}
+							>
+								<h3 class="text-xl font-bold">{group.title}</h3>
+								<p class="mt-2 text-sm text-paper-dim">{group.text}</p>
+								<ul class="mt-6 space-y-3.5">
+									{group.items.map((item) => (
+										<li class="flex gap-3 text-paper">
+											<span class="mt-2.5 size-1.5 shrink-0 bg-safety-400" aria-hidden="true" />
+											{item}
+										</li>
+									))}
+								</ul>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<section id="examples" aria-labelledby="mcp-examples-title" class="border-y border-blueprint-400/10 bg-ink-900/40 py-24">
+			<div class="mx-auto max-w-6xl px-5">
+				<SectionHeading id="mcp-examples-title" eyebrow={t.examples.eyebrow} title={t.examples.title} description={t.examples.description} />
+				<ul class="mt-12 grid gap-6 lg:grid-cols-3">
+					{
+						t.examples.items.map((example) => (
+							<li data-reveal class="min-w-0">
+								<McpExample {...example} />
+							</li>
+						))
+					}
+				</ul>
+			</div>
+		</section>
+
+		<section id="security" aria-labelledby="mcp-security-title" class="py-24">
+			<div class="mx-auto grid max-w-6xl gap-12 px-5 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-16">
+				<SectionHeading id="mcp-security-title" eyebrow={t.security.eyebrow} title={t.security.title} description={t.security.description} />
+				<ul class="grid gap-x-10 gap-y-8 sm:grid-cols-2">
+					{
+						t.security.items.map((item) => (
+							<li data-reveal class="border-t border-blueprint-400/20 pt-5">
+								<h3 class="text-lg font-bold">{item.title}</h3>
+								<p class="mt-2 text-sm text-paper-dim">{item.text}</p>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+		</section>
+
+		<section aria-labelledby="mcp-cta-title" class="border-t border-blueprint-400/10 bg-ink-900/60 py-20">
+			<div data-reveal class="mx-auto max-w-3xl px-5 text-center">
+				<h2 id="mcp-cta-title" class="text-3xl font-bold sm:text-4xl">{t.cta.title}</h2>
+				<p class="mt-4 text-lg text-paper-dim">{t.cta.text}</p>
+				<div class="mt-8 flex flex-wrap justify-center gap-3">
+					<Button href={requestAccess}>{dict.cta.primary}</Button>
+					<Button href={pagePath(locale, 'guide')} variant="secondary">{t.cta.secondary}</Button>
+				</div>
+			</div>
+		</section>
+	</main>
+	<Footer />
+</Layout>
