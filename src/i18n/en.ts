@@ -13,6 +13,7 @@ export const en = {
 		features: 'Features',
 		benefits: 'Benefits',
 		about: 'How it works',
+		whatsapp: 'WhatsApp',
 		guide: 'Guide',
 		contact: 'Contact',
 		faq: 'FAQ',

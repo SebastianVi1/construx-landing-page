@@ -15,6 +15,7 @@ export const es: Dict = {
 		features: 'Funciones',
 		benefits: 'Beneficios',
 		about: 'Cómo funciona',
+		whatsapp: 'WhatsApp',
 		guide: 'Guía',
 		contact: 'Contacto',
 		faq: 'FAQ',
