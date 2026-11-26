@@ -139,6 +139,19 @@ export const en = {
 			{ value: 2, label: 'Languages', detail: 'English · Spanish' },
 		],
 	},
+	whatsapp: {
+		eyebrow: 'WhatsApp',
+		title: 'Report site progress from WhatsApp.',
+		description:
+			'Your crew already lives on WhatsApp. Start or finish a task, or send a progress note with photos, in under a minute. Construx saves it to the right site and task.',
+		points: [
+			'No app or login: link your number once.',
+			'Progress notes with up to five photos, attached to their task.',
+			'Nothing is saved until you confirm.',
+			'Everyone sees only what their role allows.',
+		],
+		more: 'See how it works',
+	},
 	modules: {
 		eyebrow: 'Modules',
 		title: 'Inside the workspace',
@@ -371,6 +384,23 @@ export const en = {
 	},
 	mockup: {
 		demo: 'Demo data',
+		whatsapp: {
+			title: 'WhatsApp · Field update (sample)',
+			pickSite: 'Choose a site',
+			pickTask: 'Choose a task',
+			pickAction: 'What do you want to record?',
+			save: 'Save it?',
+			saved: 'Saved to Construx',
+			site: 'Harbor Tower',
+			task: 'Pour slab, grid C',
+			note: 'Rebar checked on grid C, ready to pour.',
+			photos: '2 photos',
+			start: 'Start',
+			finish: 'Finish',
+			noteAction: 'Note',
+			yes: 'Yes',
+			no: 'No',
+		},
 		dashboard: {
 			title: 'Overview · Acme Builders (sample)',
 			stats: ['Active sites', 'Team members', 'Open tasks'],

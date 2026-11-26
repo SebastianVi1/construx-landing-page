@@ -148,6 +148,19 @@ export const es: Dict = {
 			{ value: 2, label: 'Idiomas', detail: 'Español · English' },
 		],
 	},
+	whatsapp: {
+		eyebrow: 'WhatsApp',
+		title: 'Reporta el avance de la obra desde WhatsApp.',
+		description:
+			'Tu equipo ya vive en WhatsApp. Inicia o termina una tarea, o envía una nota de avance con fotos, en menos de un minuto. Construx la guarda en la obra y la tarea correctas.',
+		points: [
+			'Sin app ni login: vincula tu número una sola vez.',
+			'Notas de avance con hasta cinco fotos, ligadas a su tarea.',
+			'Nada se guarda hasta que confirmas.',
+			'Cada persona ve solo lo que su rol permite.',
+		],
+		more: 'Ver cómo funciona',
+	},
 	modules: {
 		eyebrow: 'Módulos',
 		title: 'Dentro del workspace',
@@ -381,6 +394,23 @@ export const es: Dict = {
 	},
 	mockup: {
 		demo: 'Datos demo',
+		whatsapp: {
+			title: 'WhatsApp · Avance de campo (ejemplo)',
+			pickSite: 'Elige una obra',
+			pickTask: 'Elige una tarea',
+			pickAction: '¿Qué quieres registrar?',
+			save: '¿Guardar?',
+			saved: 'Guardado en Construx',
+			site: 'Harbor Tower',
+			task: 'Vaciar losa, eje C',
+			note: 'Armado revisado en eje C, listo para vaciar.',
+			photos: '2 fotos',
+			start: 'Iniciar',
+			finish: 'Terminar',
+			noteAction: 'Nota',
+			yes: 'Sí',
+			no: 'No',
+		},
 		dashboard: {
 			title: 'Resumen · Acme Builders (ejemplo)',
 			stats: ['Obras activas', 'Miembros del equipo', 'Tareas abiertas'],

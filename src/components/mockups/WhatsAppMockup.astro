@@ -1,0 +1,40 @@
+---
+import MockupFrame from './MockupFrame.astro';
+import { useTranslations } from '../../i18n';
+
+const m = useTranslations(Astro.currentLocale).mockup.whatsapp;
+
+// Chat bubbles are illustrative: no WhatsApp logo or brand colors, only the flow of the real bot.
+const bot = 'self-start max-w-[85%] rounded-lg rounded-tl-sm border border-blueprint-400/15 bg-ink-800 px-3 py-2 text-[11px] leading-snug';
+const user = 'self-end max-w-[85%] rounded-lg rounded-tr-sm border border-safety-500/30 bg-safety-500/15 px-3 py-2 text-[11px] leading-snug';
+const chip = 'rounded-full border border-blueprint-400/30 px-2.5 py-1 font-mono text-[10px] text-paper';
+---
+
+<MockupFrame title={m.title}>
+	<div class="flex flex-col gap-2.5">
+		<p data-chat-bubble class={bot}>{m.pickSite}</p>
+		<p data-chat-bubble class={user}>{m.site}</p>
+		<p data-chat-bubble class={bot}>{m.pickTask}</p>
+		<p data-chat-bubble class={user}>{m.task}</p>
+		<div data-chat-bubble class={`${bot} flex flex-col items-start gap-2`}>
+			<span>{m.pickAction}</span>
+			<span class="flex flex-wrap gap-1.5">
+				<span class={chip}>{m.start}</span>
+				<span class={chip}>{m.finish}</span>
+				<span class={chip}>{m.noteAction}</span>
+			</span>
+		</div>
+		<div data-chat-bubble class={user}>
+			<span>{m.note}</span>
+			<span class="mt-1.5 block font-mono text-[10px] text-paper-dim">{m.photos}</span>
+		</div>
+		<div data-chat-bubble class={`${bot} flex flex-col items-start gap-2`}>
+			<span>{m.save}</span>
+			<span class="flex gap-1.5">
+				<span class={chip}>{m.yes}</span>
+				<span class={chip}>{m.no}</span>
+			</span>
+		</div>
+		<p data-chat-bubble class="self-start text-[11px] font-semibold text-ok">{m.saved}</p>
+	</div>
+</MockupFrame>

@@ -234,6 +234,12 @@ mm.add('(prefers-reduced-motion: no-preference)', () => {
 			gsap.from(progress, { scaleX: 0, duration: 0.8, stagger: 0.1, ease: 'power2.out', scrollTrigger: trigger });
 		}
 
+		// Chat messages arrive one after another, like the bot replying.
+		const bubbles = figure.querySelectorAll('[data-chat-bubble]');
+		if (bubbles.length) {
+			gsap.from(bubbles, { opacity: 0, y: 8, duration: 0.45, stagger: 0.35, ease: 'power2.out', scrollTrigger: trigger });
+		}
+
 		const markers = figure.querySelectorAll('[data-plan-marker]');
 		if (markers.length) {
 			gsap.from(markers, { scale: 0, duration: 0.5, stagger: 0.18, ease: 'back.out(2)', delay: 0.6, scrollTrigger: trigger });
